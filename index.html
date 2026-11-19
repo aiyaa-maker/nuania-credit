@@ -18,33 +18,37 @@
 
     <style>
         :root {
-            /* Strict Sweet Choco & Pink Palette (คุมโทนน้ำตาลชมพูเท่านั้น) */
-            --bg-canvas: #FDF5F7;
-            --bg-dot: #EED2DA;
+            /* Soft Pastel Pink & Sweet Choco Palette (ชมพูพาสเทลอ่อนละมุน + น้ำตาลโกโก้) */
+            --bg-canvas: #FFF8FA;
+            --bg-dot: #F4DAE2;
             --bg-window: #FFFFFF;
-            --bg-surface: #FFF9FA;
-            --bg-muted: #F8EAEF;
+            --bg-surface: #FFFBFC;
+            --bg-muted: #FDF0F4;
             
-            --folder-tab: #FADBE4;
-            --folder-tab-text: #593A2E;
-            --folder-border: #DFBCC7;
+            --folder-tab: #FDE7EE;
+            --folder-tab-text: #5E3E32;
+            --folder-border: #ECCDD7;
             
-            --accent-primary: #E57A9B;
-            --accent-hover: #CF6384;
+            --accent-primary: #F09BB4;
+            --accent-hover: #E384A0;
             --accent-on-primary: #FFFFFF;
-            --accent-soft: #FDEEF2;
-            --accent-border: #F2BCCD;
+            --accent-soft: #FFF2F6;
+            --accent-border: #F7D2DE;
             
-            --text-primary: #593A2E;
-            --text-secondary: #7F5A4D;
-            --text-muted: #AA8A7F;
-            --danger-pink: #B84A6A;
+            --text-primary: #5E3E32;
+            --text-secondary: #856154;
+            --text-muted: #B29388;
+            --danger-pink: #C96885;
         }
 
         body {
             background-color: var(--bg-canvas);
-            background-image: radial-gradient(var(--bg-dot) 1.2px, transparent 1.2px);
-            background-size: 22px 22px;
+            /* โพกาดอทแบบจุดเอียง 45 องศา (Staggered 45° Diagonal Polka Dots) */
+            background-image: 
+                radial-gradient(var(--bg-dot) 2.2px, transparent 2.3px),
+                radial-gradient(var(--bg-dot) 2.2px, transparent 2.3px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
             color: var(--text-primary);
             font-family: 'Prompt', sans-serif;
             -webkit-tap-highlight-color: transparent;
@@ -60,8 +64,8 @@
             background-color: var(--bg-window);
             border: 2px solid var(--folder-border);
             box-shadow: 
-                0 24px 60px -16px rgba(89, 58, 46, 0.13),
-                0 6px 20px -6px rgba(229, 122, 155, 0.15);
+                0 24px 60px -16px rgba(94, 62, 50, 0.11),
+                0 6px 20px -6px rgba(240, 155, 180, 0.14);
             transition: border-color 0.3s ease, background-color 0.3s ease;
         }
 
@@ -77,9 +81,9 @@
         .ios-squircle {
             border-radius: 24%;
             box-shadow: 
-                0 4px 10px -2px rgba(89, 58, 46, 0.14),
-                0 1px 3px rgba(89, 58, 46, 0.06),
-                inset 0 1px 1px rgba(255, 255, 255, 0.7);
+                0 4px 10px -2px rgba(94, 62, 50, 0.12),
+                0 1px 3px rgba(94, 62, 50, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 0.75);
             overflow: hidden;
             flex-shrink: 0;
             transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -92,8 +96,8 @@
         .banner-pattern {
             background-color: var(--accent-soft);
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.65) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.75) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 1px, transparent 1px);
             background-size: 20px 20px;
             transition: background-color 0.3s ease;
         }
@@ -152,7 +156,7 @@
             margin-top: -1.5px;
             position: relative;
             z-index: 1;
-            box-shadow: 0 6px 18px -6px rgba(89, 58, 46, 0.06);
+            box-shadow: 0 6px 18px -6px rgba(94, 62, 50, 0.05);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
@@ -201,7 +205,7 @@
         .eq-playing .eq-bar:nth-child(2) { animation: eqBounce 0.55s ease-in-out infinite 0.15s; }
         .eq-playing .eq-bar:nth-child(3) { animation: eqBounce 0.85s ease-in-out infinite 0.3s; }
 
-        /* iOS Volume Range Slider (Matches Reference Image) */
+        /* iOS Volume Range Slider */
         input[type="range"].ios-volume-slider {
             -webkit-appearance: none;
             appearance: none;
@@ -220,7 +224,7 @@
             border-radius: 50%;
             background: #FFFFFF;
             border: 1.5px solid var(--folder-border);
-            box-shadow: 0 2px 6px rgba(89, 58, 46, 0.22);
+            box-shadow: 0 2px 6px rgba(94, 62, 50, 0.20);
             cursor: pointer;
             transition: transform 0.15s ease;
         }
@@ -233,7 +237,7 @@
             border-radius: 50%;
             background: #FFFFFF;
             border: 1.5px solid var(--folder-border);
-            box-shadow: 0 2px 6px rgba(89, 58, 46, 0.22);
+            box-shadow: 0 2px 6px rgba(94, 62, 50, 0.20);
             cursor: pointer;
         }
 
@@ -250,7 +254,7 @@
             padding: 0;
         }
         input[type="color"].mac-color-input::-webkit-color-swatch {
-            border: 1.5px solid rgba(89, 58, 46, 0.2);
+            border: 1.5px solid rgba(94, 62, 50, 0.18);
             border-radius: 999px;
         }
 
@@ -276,14 +280,14 @@
     <!-- Main macOS Finder Window Container -->
     <main class="mac-window w-full max-w-[448px] rounded-[30px] overflow-hidden relative">
         
-        <!-- macOS Top Titlebar (Strictly Brown & Pink) -->
+        <!-- macOS Top Titlebar (Strictly Soft Pink & Choco) -->
         <div class="mac-titlebar sticky top-0 z-30 px-4 py-2.5 flex items-center justify-between">
-            <!-- Left: Sweet Pink/Choco Traffic Lights + Breadcrumb -->
+            <!-- Left: Soft Pink/Choco Traffic Lights + Breadcrumb -->
             <div class="flex items-center gap-2.5">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #E57A9B;"></span>
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F3B5C6;"></span>
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #B5897A;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F09BB4;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F8CBD8;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #C29A8C;"></span>
                 </div>
                 <div class="h-3 w-[1.5px] bg-[var(--folder-border)]"></div>
                 <span class="text-[11px] font-medium text-[var(--text-secondary)] flex items-center gap-1.5 tracking-tight">
@@ -305,10 +309,10 @@
         <!-- 1. Banner Section -->
         <div id="bannerContainer" class="w-full h-32 sm:h-36 banner-pattern relative overflow-hidden border-b-[1.5px] border-[var(--folder-border)]">
             <img id="bannerImage" src="" alt="Store Banner" class="w-full h-full object-cover hidden" onerror="this.classList.add('hidden')">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#593A2E]/[0.04] via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#5E3E32]/[0.03] via-transparent to-transparent pointer-events-none"></div>
         </div>
 
-        <!-- 2. Circular Profile Picture & Store Info (โปรไฟล์แบบกลม) -->
+        <!-- 2. Circular Profile Picture & Store Info -->
         <div class="px-5 pb-4 relative text-center">
             <div class="relative -mt-12 mb-2.5 inline-block">
                 <div class="w-24 h-24 rounded-full bg-white p-1.5 shadow-sm mx-auto border-[1.5px] border-[var(--folder-border)]">
@@ -361,7 +365,7 @@
         <!-- ================= TAB 1: REVIEWS & CREDIT ================= -->
         <div id="tabContentReviews" class="px-5 space-y-5">
             
-            <!-- FOLDER 1: Rating Summary (1.5px Seamless Folder Tab + Pink/Cocoa Calendar Icon) -->
+            <!-- FOLDER 1: Rating Summary -->
             <section class="mac-folder">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
@@ -377,9 +381,9 @@
                 </div>
                 <div class="mac-folder-body px-4 py-3.5 flex items-center justify-between gap-2">
                     <div class="flex items-center gap-3">
-                        <!-- Apple Calendar App Squircle Icon (Pink & Cocoa) -->
+                        <!-- Apple Calendar App Squircle Icon (Soft Pastel Pink & Cocoa) -->
                         <div class="ios-squircle w-12 h-12 bg-white border-[1.5px] border-[var(--folder-border)] flex flex-col items-center justify-between">
-                            <div class="w-full h-3.5 flex items-center justify-center text-[7px] font-bold uppercase tracking-wider text-white" style="background: linear-gradient(180deg, #F093AE 0%, #D96B8C 100%);">
+                            <div class="w-full h-3.5 flex items-center justify-center text-[7px] font-bold uppercase tracking-wider text-white" style="background: linear-gradient(180deg, #F7B5C8 0%, #EC93AE 100%);">
                                 <span id="calMonthLabel">NOV</span>
                             </div>
                             <div class="flex-1 flex items-center justify-center">
@@ -407,7 +411,7 @@
                 </div>
             </section>
 
-            <!-- FOLDER 2: Write a Review (Mail Composer Style + Pink/Cocoa Mail Icon) -->
+            <!-- FOLDER 2: Write a Review -->
             <section class="mac-folder">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
@@ -426,11 +430,11 @@
                     <!-- iOS Mail Composer Header Strip -->
                     <div class="flex items-center justify-between gap-2.5 pb-2.5 border-b-[1.5px] border-[var(--folder-border)]">
                         <div class="flex items-center gap-2.5 min-w-0">
-                            <!-- Apple Mail App Squircle Icon (Pink & Cocoa) -->
-                            <div class="ios-squircle w-10 h-10 flex items-center justify-center" style="background: linear-gradient(180deg, #F5A3BC 0%, #DF7394 100%);">
+                            <!-- Apple Mail App Squircle Icon (Soft Pastel Pink & Cocoa) -->
+                            <div class="ios-squircle w-10 h-10 flex items-center justify-center" style="background: linear-gradient(180deg, #F9C0D1 0%, #EE97B1 100%);">
                                 <svg viewBox="0 0 36 36" class="w-6 h-6" fill="none">
-                                    <rect x="5" y="9" width="26" height="18" rx="3" fill="#FFF9FA"/>
-                                    <path d="M6.5 10.5L18 19.5L29.5 10.5" stroke="#7F5A4D" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <rect x="5" y="9" width="26" height="18" rx="3" fill="#FFFBFC"/>
+                                    <path d="M6.5 10.5L18 19.5L29.5 10.5" stroke="#856154" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                             <div class="min-w-0">
@@ -479,21 +483,21 @@
                             class="w-full bg-white text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] px-3.5 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors resize-none"></textarea>
                     </div>
 
-                    <!-- Attachment (All-Pink Photos Squircle Icon, No Brown) & Send Button -->
+                    <!-- Attachment & Send Button -->
                     <div class="flex items-center justify-between gap-2 pt-0.5 flex-wrap">
                         <div class="flex items-center gap-2">
                             <label class="btn-soft cursor-pointer text-[11px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border-[1.5px] border-[var(--folder-border)] px-2.5 py-1.5 rounded-xl flex items-center gap-2 font-medium">
                                 <span class="w-4 h-4 rounded-[5px] bg-[var(--accent-soft)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
-                                    <!-- Pure Pink Flower / Photo Icon -->
+                                    <!-- Soft Pastel Pink Flower / Photo Icon -->
                                     <svg viewBox="0 0 24 24" class="w-3.5 h-3.5">
-                                        <ellipse cx="12" cy="6" rx="2.3" ry="4" fill="#E57A9B"/>
-                                        <ellipse cx="16.2" cy="7.8" rx="2.3" ry="4" transform="rotate(45 16.2 7.8)" fill="#F5A3BC"/>
-                                        <ellipse cx="18" cy="12" rx="2.3" ry="4" transform="rotate(90 18 12)" fill="#EC85A5"/>
-                                        <ellipse cx="16.2" cy="16.2" rx="2.3" ry="4" transform="rotate(135 16.2 16.2)" fill="#F9BFD0"/>
-                                        <ellipse cx="12" cy="18" rx="2.3" ry="4" fill="#E57A9B"/>
-                                        <ellipse cx="7.8" cy="16.2" rx="2.3" ry="4" transform="rotate(45 7.8 16.2)" fill="#F5A3BC"/>
-                                        <ellipse cx="6" cy="12" rx="2.3" ry="4" transform="rotate(90 6 12)" fill="#EC85A5"/>
-                                        <ellipse cx="7.8" cy="7.8" rx="2.3" ry="4" transform="rotate(135 7.8 7.8)" fill="#F9BFD0"/>
+                                        <ellipse cx="12" cy="6" rx="2.3" ry="4" fill="#F09BB4"/>
+                                        <ellipse cx="16.2" cy="7.8" rx="2.3" ry="4" transform="rotate(45 16.2 7.8)" fill="#F9C2D2"/>
+                                        <ellipse cx="18" cy="12" rx="2.3" ry="4" transform="rotate(90 18 12)" fill="#F4ACC1"/>
+                                        <ellipse cx="16.2" cy="16.2" rx="2.3" ry="4" transform="rotate(135 16.2 16.2)" fill="#FCD7E2"/>
+                                        <ellipse cx="12" cy="18" rx="2.3" ry="4" fill="#F09BB4"/>
+                                        <ellipse cx="7.8" cy="16.2" rx="2.3" ry="4" transform="rotate(45 7.8 16.2)" fill="#F9C2D2"/>
+                                        <ellipse cx="6" cy="12" rx="2.3" ry="4" transform="rotate(90 6 12)" fill="#F4ACC1"/>
+                                        <ellipse cx="7.8" cy="7.8" rx="2.3" ry="4" transform="rotate(135 7.8 7.8)" fill="#FCD7E2"/>
                                     </svg>
                                 </span>
                                 <span id="uploadLabelText">Attach photo</span>
@@ -514,7 +518,7 @@
                 </form>
             </section>
 
-            <!-- FOLDER 3: Customer Credits Feed (Seamless Tab + Pink Messages Icon) -->
+            <!-- FOLDER 3: Customer Credits Feed -->
             <section class="mac-folder pb-2">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
@@ -541,15 +545,15 @@
 
                 <!-- Folder Body -->
                 <div class="mac-folder-body p-3 space-y-2.5">
-                    <!-- Folder Header Bar with Pink Messages Icon -->
+                    <!-- Folder Header Bar with Soft Pink Messages Icon -->
                     <div class="flex items-center justify-between px-1.5 pt-0.5 pb-1.5 border-b-[1.5px] border-[var(--folder-border)]/70">
                         <div class="flex items-center gap-2">
                             <div class="ios-squircle w-7 h-7 bg-white border-[1.5px] border-[var(--folder-border)] flex items-center justify-center">
                                 <svg viewBox="0 0 32 32" class="w-5 h-5">
                                     <defs>
                                         <linearGradient id="msgBubbleGrad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stop-color="#F6A6BE"/>
-                                            <stop offset="100%" stop-color="#DF7394"/>
+                                            <stop offset="0%" stop-color="#FAC3D4"/>
+                                            <stop offset="100%" stop-color="#EE97B1"/>
                                         </linearGradient>
                                     </defs>
                                     <path d="M16 5C9.37 5 4 9.58 4 15.23c0 3.21 1.73 6.07 4.44 7.95-.22 1.49-.97 2.94-1.01 3.01-.15.27-.02.61.28.69.12.03.24.05.36.05 1.46 0 3.31-.84 4.35-1.43 1.14.29 2.34.45 3.58.45 6.63 0 12-4.58 12-10.23S22.63 5 16 5z" fill="url(#msgBubbleGrad)"/>
@@ -585,15 +589,15 @@
                 </div>
 
                 <div class="mac-folder-body p-4 space-y-4">
-                    <!-- Apple Wallet Squircle Header (Strictly Brown & Pink Cards) -->
+                    <!-- Apple Wallet Squircle Header -->
                     <div class="flex items-center gap-3 bg-white p-3 rounded-2xl border-[1.5px] border-[var(--folder-border)]">
-                        <div class="ios-squircle w-11 h-11 flex items-center justify-center" style="background: linear-gradient(160deg, #694537 0%, #4A2E24 100%);">
+                        <div class="ios-squircle w-11 h-11 flex items-center justify-center" style="background: linear-gradient(160deg, #6E4A3C 0%, #52352B 100%);">
                             <svg viewBox="0 0 36 36" class="w-7 h-7">
-                                <rect x="6" y="8" width="24" height="6" rx="2.5" fill="#FADBE4"/>
-                                <rect x="6" y="11" width="24" height="6" rx="2.5" fill="#F29BB5"/>
-                                <rect x="6" y="14" width="24" height="6" rx="2.5" fill="#B88777"/>
-                                <path d="M6 17h24v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9z" fill="#FFF7F9"/>
-                                <path d="M14 17c0 1.66 1.79 3 4 3s4-1.34 4-3h8v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9h8z" fill="#FADBE4"/>
+                                <rect x="6" y="8" width="24" height="6" rx="2.5" fill="#FDE7EE"/>
+                                <rect x="6" y="11" width="24" height="6" rx="2.5" fill="#F6B6C9"/>
+                                <rect x="6" y="14" width="24" height="6" rx="2.5" fill="#C49788"/>
+                                <path d="M6 17h24v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9z" fill="#FFFBFC"/>
+                                <path d="M14 17c0 1.66 1.79 3 4 3s4-1.34 4-3h8v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9h8z" fill="#FDE7EE"/>
                             </svg>
                         </div>
                         <div class="min-w-0 flex-1">
@@ -615,18 +619,18 @@
             </section>
         </div>
 
-        <!-- Contact Dock / Folder Bar (Strictly Brown & Pink) -->
+        <!-- Contact Dock / Folder Bar -->
         <div class="px-5 pt-4 pb-3 mt-4 border-t-[1.5px] border-[var(--folder-border)] bg-[var(--bg-surface)]">
             <p class="text-[10px] font-medium text-[var(--text-muted)] text-center mb-2 uppercase tracking-wider">Contact & Socials</p>
             <div class="grid grid-cols-2 gap-2">
                 <a id="contactFacebookLink" href="https://facebook.com" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
-                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #F093AE 0%, #D96B8C 100%);">
+                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #F7B5C8 0%, #EC93AE 100%);">
                         <i class="fa-brands fa-facebook-f"></i>
                     </span>
                     <span>Facebook</span>
                 </a>
                 <a id="contactLineLink" href="https://line.me" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
-                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #8B6253 0%, #593A2E 100%);">
+                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #916859 0%, #5E3E32 100%);">
                         <i class="fa-brands fa-line"></i>
                     </span>
                     <span>LINE</span>
@@ -642,7 +646,7 @@
         </footer>
     </main>
 
-    <!-- FLOATING BOTTOM-LEFT SPEAKER TOGGLE BUTTON (ปุ่มเปิด/ปิดเพลงมุมซ้ายล่างของหน้าหลัก) -->
+    <!-- FLOATING BOTTOM-LEFT SPEAKER TOGGLE BUTTON -->
     <button id="floatingSpeakerBtn" type="button" onclick="toggleMusicPlay()" title="เปิด / ปิดเสียงเพลง"
         class="btn-soft fixed bottom-4 left-4 z-40 h-10 px-3.5 rounded-full bg-white/95 backdrop-blur-md border-[1.5px] border-[var(--folder-border)] shadow-lg flex items-center gap-2 text-xs font-medium text-[var(--text-primary)]">
         <i id="floatingSpeakerIcon" class="fa-solid fa-volume-xmark text-sm" style="color: var(--accent-primary);"></i>
@@ -654,15 +658,15 @@
         </div>
     </button>
 
-    <!-- WELCOME POP-UP (iOS Now Playing Widget Style, No Track Picker List) -->
-    <div id="welcomePopupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#4A2E24]/35 backdrop-blur-md transition-opacity duration-300">
+    <!-- WELCOME POP-UP (iOS Now Playing Widget Style) -->
+    <div id="welcomePopupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#52352B]/30 backdrop-blur-md transition-opacity duration-300">
         <div class="bg-white/95 backdrop-blur-xl w-full max-w-[356px] rounded-[28px] shadow-2xl border-2 border-[var(--folder-border)] p-5 space-y-4">
             
             <!-- Top Row: Album Cover Squircle + Track/Store Info + AirPlay (A) Badge -->
             <div class="flex items-start justify-between gap-3">
                 <div class="flex items-center gap-3 min-w-0">
                     <!-- Album Cover Box -->
-                    <div class="w-16 h-16 rounded-2xl border-[1.5px] border-[var(--folder-border)] overflow-hidden shrink-0 flex items-center justify-center shadow-2xs" style="background: linear-gradient(145deg, #FADBE4 0%, #F2B5C8 100%);">
+                    <div class="w-16 h-16 rounded-2xl border-[1.5px] border-[var(--folder-border)] overflow-hidden shrink-0 flex items-center justify-center shadow-2xs" style="background: linear-gradient(145deg, #FDE7EE 0%, #F7C9D7 100%);">
                         <img id="welcomeAlbumImg" src="" alt="Album Cover" class="w-full h-full object-cover hidden">
                         <i id="welcomeAlbumIcon" class="fa-solid fa-music text-xl" style="color: var(--text-primary);"></i>
                     </div>
@@ -672,7 +676,7 @@
                     </div>
                 </div>
 
-                <!-- Circular (A) Icon (Matches Reference Image Top-Right) -->
+                <!-- Circular (A) Icon -->
                 <div class="w-7 h-7 rounded-full border-[1.5px] border-[var(--text-primary)] flex items-center justify-center text-[11px] font-semibold text-[var(--text-primary)] shrink-0">
                     A
                 </div>
@@ -690,7 +694,7 @@
                 </div>
             </div>
 
-            <!-- Transport Controls Row: Rewind | Play (Starts Music & Enters) | Fast-Forward -->
+            <!-- Transport Controls Row -->
             <div class="flex items-center justify-center gap-8 py-1">
                 <button type="button" onclick="prevTrack()" title="Previous Track" class="btn-soft text-lg text-[var(--text-primary)] hover:opacity-75 p-2">
                     <i class="fa-solid fa-backward"></i>
@@ -703,7 +707,7 @@
                 </button>
             </div>
 
-            <!-- Bottom Row: Volume Bar (Low Speaker — Slider — High Speaker) -->
+            <!-- Bottom Row: Volume Bar -->
             <div class="flex items-center gap-2.5 pt-0.5">
                 <i class="fa-solid fa-volume-low text-xs text-[var(--text-primary)]"></i>
                 <input id="welcomeVolumeSlider" type="range" min="0" max="100" value="80" oninput="handleVolumeChange(this.value)" class="ios-volume-slider flex-1" aria-label="Volume">
@@ -718,7 +722,7 @@
     </div>
 
     <!-- iOS QUICK LOOK PHOTO LIGHTBOX MODAL -->
-    <div id="photoQuickLookModal" onclick="closeQuickLook()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#4A2E24]/50 backdrop-blur-md">
+    <div id="photoQuickLookModal" onclick="closeQuickLook()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#52352B]/45 backdrop-blur-md">
         <div onclick="event.stopPropagation()" class="bg-white rounded-[24px] p-2.5 max-w-[380px] w-full shadow-2xl border-2 border-[var(--folder-border)] space-y-2">
             <div class="flex items-center justify-between px-2 py-1">
                 <span class="text-[11px] font-medium text-[var(--text-primary)] flex items-center gap-1.5">
@@ -733,8 +737,8 @@
         </div>
     </div>
 
-    <!-- ADMIN PANEL MODAL (Padlock Icon) -->
-    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-[#4A2E24]/40 backdrop-blur-xs">
+    <!-- ADMIN PANEL MODAL -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-[#52352B]/35 backdrop-blur-xs">
         <div class="bg-white w-full max-w-[428px] rounded-[28px] shadow-2xl border-2 border-[var(--folder-border)] overflow-hidden">
             <div class="bg-[var(--bg-surface)] px-4 py-3 border-b-[1.5px] border-[var(--folder-border)] flex items-center justify-between">
                 <div class="flex items-center gap-2">
@@ -837,7 +841,7 @@
                     </div>
                 </form>
 
-                <!-- Sub-tab B: Theme Color & Music File Upload (ADMIN ONLY - Brown & Pink) -->
+                <!-- Sub-tab B: Theme Color & Music File Upload -->
                 <div id="adminAppearanceTab" class="hidden p-4 space-y-4 max-h-[65vh] overflow-y-auto">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between">
@@ -858,10 +862,10 @@
                         <!-- Custom Color Picker -->
                         <div class="flex items-center justify-between gap-2 bg-[var(--bg-surface)] px-3.5 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)]">
                             <label for="adminCustomColorInput" class="flex items-center gap-2.5 cursor-pointer flex-1 min-w-0">
-                                <input type="color" id="adminCustomColorInput" value="#E57A9B" oninput="applyCustomHexColor(this.value)" class="mac-color-input w-7 h-7 shrink-0">
+                                <input type="color" id="adminCustomColorInput" value="#F09BB4" oninput="applyCustomHexColor(this.value)" class="mac-color-input w-7 h-7 shrink-0">
                                 <div class="min-w-0">
                                     <span class="text-xs font-medium text-[var(--text-primary)] block leading-tight">เลือกสีเอง (Custom Color)</span>
-                                    <span id="adminCustomHexLabel" class="text-[10px] font-mono text-[var(--text-muted)] uppercase">#E57A9B</span>
+                                    <span id="adminCustomHexLabel" class="text-[10px] font-mono text-[var(--text-muted)] uppercase">#F09BB4</span>
                                 </div>
                             </label>
                         </div>
@@ -957,7 +961,7 @@
 
     <!-- Minimal Cocoa-Pink HUD Toast Notification -->
     <div id="toastNotification" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
-        <div class="bg-[#593A2E]/95 backdrop-blur-md text-white text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/15">
+        <div class="bg-[#5E3E32]/95 backdrop-blur-md text-white text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/15">
             <i id="toastIcon" class="fa-solid fa-circle-check" style="color: var(--folder-tab);"></i>
             <span id="toastMessage">Success</span>
         </div>
@@ -965,9 +969,9 @@
 
     <script>
         // ==========================================
-        // 0. STRICT BROWN & PINK THEME ENGINE (ADMIN ONLY)
+        // 0. SOFT PASTEL PINK & CHOCO THEME ENGINE
         // ==========================================
-        const THEME_STORAGE_KEY = 'choco_pink_only_theme_v2';
+        const THEME_STORAGE_KEY = 'choco_soft_pastel_pink_theme_v3';
         const DATA_STORAGE_KEY = 'choco_pink_only_store_data_v2';
         const AUDIO_DB_NAME = 'choco_pink_audio_storage_v1';
         const AUDIO_STORE_NAME = 'bgm_tracks';
@@ -975,99 +979,99 @@
         const PRESET_THEMES = [
             {
                 id: 'choco-strawberry',
-                name: 'Choco Strawberry',
-                hex: '#E57A9B',
+                name: 'Pastel Strawberry Milk',
+                hex: '#F09BB4',
                 vars: {
-                    '--bg-canvas': '#FDF5F7',
-                    '--bg-dot': '#EED2DA',
+                    '--bg-canvas': '#FFF8FA',
+                    '--bg-dot': '#F4DAE2',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FFF9FA',
-                    '--bg-muted': '#F8EAEF',
-                    '--folder-tab': '#FADBE4',
-                    '--folder-tab-text': '#593A2E',
-                    '--folder-border': '#DFBCC7',
-                    '--accent-primary': '#E57A9B',
-                    '--accent-hover': '#CF6384',
+                    '--bg-surface': '#FFFBFC',
+                    '--bg-muted': '#FDF0F4',
+                    '--folder-tab': '#FDE7EE',
+                    '--folder-tab-text': '#5E3E32',
+                    '--folder-border': '#ECCDD7',
+                    '--accent-primary': '#F09BB4',
+                    '--accent-hover': '#E384A0',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#FDEEF2',
-                    '--accent-border': '#F2BCCD',
-                    '--text-primary': '#593A2E',
-                    '--text-secondary': '#7F5A4D',
-                    '--text-muted': '#AA8A7F'
-                }
-            },
-            {
-                id: 'milk-cocoa-rose',
-                name: 'Milk Cocoa & Rose',
-                hex: '#B07468',
-                vars: {
-                    '--bg-canvas': '#FAF3F2',
-                    '--bg-dot': '#E8D5D2',
-                    '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FCF8F7',
-                    '--bg-muted': '#F5EAE8',
-                    '--folder-tab': '#F2DBD7',
-                    '--folder-tab-text': '#54352E',
-                    '--folder-border': '#DEC5C0',
-                    '--accent-primary': '#B07468',
-                    '--accent-hover': '#965D52',
-                    '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#F9ECEA',
-                    '--accent-border': '#E8C7C1',
-                    '--text-primary': '#4F332D',
-                    '--text-secondary': '#75534C',
-                    '--text-muted': '#A38680'
+                    '--accent-soft': '#FFF2F6',
+                    '--accent-border': '#F7D2DE',
+                    '--text-primary': '#5E3E32',
+                    '--text-secondary': '#856154',
+                    '--text-muted': '#B29388'
                 }
             },
             {
                 id: 'sakura-latte',
-                name: 'Sakura Latte',
-                hex: '#EC93AE',
+                name: 'Sakura Marshmallow',
+                hex: '#F4AEC3',
                 vars: {
-                    '--bg-canvas': '#FEF7F9',
-                    '--bg-dot': '#F2D8E0',
+                    '--bg-canvas': '#FFFAFC',
+                    '--bg-dot': '#F6DFE7',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FFFBFD',
-                    '--bg-muted': '#FAEEF2',
-                    '--folder-tab': '#FCE2EA',
-                    '--folder-tab-text': '#634136',
-                    '--folder-border': '#E8C7D2',
-                    '--accent-primary': '#EC93AE',
-                    '--accent-hover': '#D67A96',
+                    '--bg-surface': '#FFFCFD',
+                    '--bg-muted': '#FDF2F6',
+                    '--folder-tab': '#FEEBF1',
+                    '--folder-tab-text': '#634337',
+                    '--folder-border': '#EFD3DC',
+                    '--accent-primary': '#F4AEC3',
+                    '--accent-hover': '#E796AF',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#FEF0F5',
-                    '--accent-border': '#F7CDD9',
-                    '--text-primary': '#5E3E33',
-                    '--text-secondary': '#846054',
-                    '--text-muted': '#AD8E84'
+                    '--accent-soft': '#FFF4F8',
+                    '--accent-border': '#F9DAE4',
+                    '--text-primary': '#634337',
+                    '--text-secondary': '#896659',
+                    '--text-muted': '#B5968B'
                 }
             },
             {
-                id: 'dark-mocha-berry',
-                name: 'Dark Mocha Berry',
-                hex: '#C95F80',
+                id: 'milk-cocoa-rose',
+                name: 'Milk Cocoa & Blush',
+                hex: '#C48A7E',
                 vars: {
-                    '--bg-canvas': '#F9F2F4',
-                    '--bg-dot': '#E6CFD6',
+                    '--bg-canvas': '#FCF6F5',
+                    '--bg-dot': '#EEDBD8',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FCF7F9',
-                    '--bg-muted': '#F4E6EB',
-                    '--folder-tab': '#F3D2DC',
-                    '--folder-tab-text': '#4A2E24',
-                    '--folder-border': '#D9B6C1',
-                    '--accent-primary': '#C95F80',
-                    '--accent-hover': '#B04969',
+                    '--bg-surface': '#FDF9F9',
+                    '--bg-muted': '#F7EEEC',
+                    '--folder-tab': '#F6E2DF',
+                    '--folder-tab-text': '#583A32',
+                    '--folder-border': '#E4CECA',
+                    '--accent-primary': '#C48A7E',
+                    '--accent-hover': '#AE7367',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#FCEBF0',
-                    '--accent-border': '#EEBFD0',
-                    '--text-primary': '#4A2E24',
-                    '--text-secondary': '#704E42',
-                    '--text-muted': '#9C7E73'
+                    '--accent-soft': '#FBF0EE',
+                    '--accent-border': '#EDD2CD',
+                    '--text-primary': '#583A32',
+                    '--text-secondary': '#7D5C54',
+                    '--text-muted': '#AA8E87'
+                }
+            },
+            {
+                id: 'sweet-berry-cream',
+                name: 'Sweet Berry Cream',
+                hex: '#E68AA6',
+                vars: {
+                    '--bg-canvas': '#FDF6F8',
+                    '--bg-dot': '#F0D5DE',
+                    '--bg-window': '#FFFFFF',
+                    '--bg-surface': '#FFFAFC',
+                    '--bg-muted': '#F9ECF0',
+                    '--folder-tab': '#FBE0E8',
+                    '--folder-tab-text': '#54362C',
+                    '--folder-border': '#E6C6D0',
+                    '--accent-primary': '#E68AA6',
+                    '--accent-hover': '#D57391',
+                    '--accent-on-primary': '#FFFFFF',
+                    '--accent-soft': '#FDEFF4',
+                    '--accent-border': '#F4CAD7',
+                    '--text-primary': '#54362C',
+                    '--text-secondary': '#7A584C',
+                    '--text-muted': '#A6887D'
                 }
             }
         ];
 
-        let currentThemeState = { mode: 'preset', presetId: 'choco-strawberry', customHex: '#E57A9B' };
+        let currentThemeState = { mode: 'preset', presetId: 'choco-strawberry', customHex: '#F09BB4' };
 
         function initThemeSystem() {
             renderAdminPresetThemeButtons();
@@ -1100,7 +1104,7 @@
                 btn.className = 'admin-preset-btn btn-soft flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border-[1.5px] border-[var(--folder-border)] text-left transition-all';
 
                 const swatch = document.createElement('span');
-                swatch.className = 'w-5 h-5 rounded-lg shrink-0 border border-[#593A2E]/15 relative overflow-hidden';
+                swatch.className = 'w-5 h-5 rounded-lg shrink-0 border border-[#5E3E32]/15 relative overflow-hidden';
                 swatch.style.backgroundColor = theme.vars['--folder-tab'];
                 const innerDot = document.createElement('span');
                 innerDot.className = 'w-2.5 h-2.5 rounded-full absolute bottom-0.5 right-0.5';
@@ -1159,29 +1163,29 @@
             if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
             const base = hexToRgb(hex);
             const white = { r: 255, g: 255, b: 255 };
-            const cocoa = { r: 89, g: 58, b: 46 };
-            const neutralBg = { r: 253, g: 245, b: 247 };
+            const cocoa = { r: 94, g: 62, b: 50 };
+            const neutralBg = { r: 255, g: 248, b: 250 };
 
             const luminance = (0.299 * base.r + 0.587 * base.g + 0.114 * base.b) / 255;
-            const onPrimary = luminance > 0.7 ? '#593A2E' : '#FFFFFF';
+            const onPrimary = luminance > 0.78 ? '#5E3E32' : '#FFFFFF';
 
             const generatedVars = {
-                '--bg-canvas': mixColors(base, neutralBg, 0.08),
-                '--bg-dot': mixColors(base, { r: 238, g: 210, b: 218 }, 0.22),
+                '--bg-canvas': mixColors(base, neutralBg, 0.06),
+                '--bg-dot': mixColors(base, { r: 244, g: 218, b: 226 }, 0.20),
                 '--bg-window': '#FFFFFF',
-                '--bg-surface': mixColors(base, white, 0.045),
-                '--bg-muted': mixColors(base, { r: 248, g: 234, b: 239 }, 0.12),
-                '--folder-tab': mixColors(base, white, 0.26),
-                '--folder-tab-text': '#593A2E',
-                '--folder-border': mixColors(base, { r: 223, g: 188, b: 199 }, 0.28),
+                '--bg-surface': mixColors(base, white, 0.035),
+                '--bg-muted': mixColors(base, { r: 253, g: 240, b: 244 }, 0.10),
+                '--folder-tab': mixColors(base, white, 0.22),
+                '--folder-tab-text': '#5E3E32',
+                '--folder-border': mixColors(base, { r: 236, g: 205, b: 215 }, 0.25),
                 '--accent-primary': hex,
-                '--accent-hover': mixColors(base, cocoa, 0.85),
+                '--accent-hover': mixColors(base, cocoa, 0.86),
                 '--accent-on-primary': onPrimary,
-                '--accent-soft': mixColors(base, white, 0.14),
-                '--accent-border': mixColors(base, white, 0.35),
-                '--text-primary': '#593A2E',
-                '--text-secondary': '#7F5A4D',
-                '--text-muted': '#AA8A7F'
+                '--accent-soft': mixColors(base, white, 0.12),
+                '--accent-border': mixColors(base, white, 0.30),
+                '--text-primary': '#5E3E32',
+                '--text-secondary': '#856154',
+                '--text-muted': '#B29388'
             };
 
             const root = document.documentElement;
@@ -1218,15 +1222,15 @@
 
         function resetThemeToDefault() {
             applyPresetTheme('choco-strawberry', true);
-            showToast('รีเซ็ตสีธีมเป็น น้ำตาล-ชมพู แล้ว');
+            showToast('รีเซ็ตสีธีมเป็น ชมพูพาสเทลอ่อน แล้ว');
         }
 
         // ==========================================
-        // 1. INDEXEDDB AUDIO PERSISTENCE (FOR LOCAL AUDIO FILES)
+        // 1. INDEXEDDB AUDIO PERSISTENCE
         // ==========================================
         let uploadedAudioObjectUrl = '';
         let uploadedAudioFileName = '';
-        let stagedAudioFile = null; // Pending file chosen in Admin before clicking Save
+        let stagedAudioFile = null;
         let shouldClearUploadedAudio = false;
 
         function openAudioDB() {
