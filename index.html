@@ -18,71 +18,87 @@
 
     <style>
         :root {
-            /* Default Theme: Finder Sky (Soft Minimalist macOS) */
-            --bg-canvas: #F3F5F8;
-            --bg-dot: #DCE2EC;
+            /* Strict Sweet Choco & Pink Palette (คุมโทนน้ำตาลชมพูเท่านั้น) */
+            --bg-canvas: #FDF5F7;
+            --bg-dot: #EED2DA;
             --bg-window: #FFFFFF;
-            --bg-surface: #F9FAFC;
-            --bg-muted: #F1F3F7;
+            --bg-surface: #FFF9FA;
+            --bg-muted: #F8EAEF;
             
-            --folder-tab: #DCEBFE;
-            --folder-tab-text: #275A96;
-            --folder-border: #D9E2EC;
+            --folder-tab: #FADBE4;
+            --folder-tab-text: #593A2E;
+            --folder-border: #DFBCC7;
             
-            --accent-primary: #4A90E2;
-            --accent-hover: #357ABD;
+            --accent-primary: #E57A9B;
+            --accent-hover: #CF6384;
             --accent-on-primary: #FFFFFF;
-            --accent-soft: #EBF4FF;
-            --accent-border: #C4DDFB;
+            --accent-soft: #FDEEF2;
+            --accent-border: #F2BCCD;
             
-            --text-primary: #1F242D;
-            --text-secondary: #525B6B;
-            --text-muted: #8A94A6;
+            --text-primary: #593A2E;
+            --text-secondary: #7F5A4D;
+            --text-muted: #AA8A7F;
+            --danger-pink: #B84A6A;
         }
 
         body {
             background-color: var(--bg-canvas);
-            background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px);
+            background-image: radial-gradient(var(--bg-dot) 1.2px, transparent 1.2px);
             background-size: 22px 22px;
             color: var(--text-primary);
             font-family: 'Prompt', sans-serif;
             -webkit-tap-highlight-color: transparent;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.35s ease, color 0.35s ease;
         }
 
         .font-display {
             font-family: 'Mitr', sans-serif;
         }
 
-        /* macOS Window Frame */
+        /* macOS Finder Window Frame (Thicker Border) */
         .mac-window {
             background-color: var(--bg-window);
-            border: 1px solid var(--folder-border);
+            border: 2px solid var(--folder-border);
             box-shadow: 
-                0 20px 50px -15px rgba(15, 23, 42, 0.08),
-                0 4px 16px -4px rgba(15, 23, 42, 0.04);
+                0 24px 60px -16px rgba(89, 58, 46, 0.13),
+                0 6px 20px -6px rgba(229, 122, 155, 0.15);
             transition: border-color 0.3s ease, background-color 0.3s ease;
         }
 
-        /* macOS Titlebar */
+        /* iOS / macOS Frosted Glass Titlebar */
         .mac-titlebar {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--folder-border);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1.5px solid var(--folder-border);
+        }
+
+        /* Apple Squircle App Icon Styling */
+        .ios-squircle {
+            border-radius: 24%;
+            box-shadow: 
+                0 4px 10px -2px rgba(89, 58, 46, 0.14),
+                0 1px 3px rgba(89, 58, 46, 0.06),
+                inset 0 1px 1px rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .ios-squircle:hover {
+            transform: scale(1.06) rotate(-1.5deg);
         }
 
         /* Banner Soft Minimalist Pattern */
         .banner-pattern {
             background-color: var(--accent-soft);
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.55) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.65) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 1px, transparent 1px);
             background-size: 20px 20px;
             transition: background-color 0.3s ease;
         }
 
-        /* macOS Folder Component */
+        /* Seamless macOS Folder Component (1.5px Thicker Border, Zero Bleed) */
         .mac-folder {
             position: relative;
             margin-top: 2px;
@@ -100,56 +116,55 @@
         .mac-folder-tab-group {
             display: inline-flex;
             align-items: flex-end;
+            height: 28px;
         }
 
         .mac-folder-tab {
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            height: 28px;
             background-color: var(--folder-tab);
             color: var(--folder-tab-text);
-            border: 1px solid var(--folder-border);
+            border-top: 1.5px solid var(--folder-border);
+            border-left: 1.5px solid var(--folder-border);
+            border-right: none;
             border-bottom: none;
-            border-radius: 12px 12px 0 0;
-            padding: 5px 14px 4px 12px;
+            border-radius: 12px 0 0 0;
+            padding: 0 8px 0 12px;
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 0.01em;
-            position: relative;
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Smooth macOS folder shoulder curve */
         .mac-folder-shoulder {
-            width: 14px;
-            height: 14px;
-            margin-left: -1px;
-            margin-bottom: 0px;
-            color: var(--folder-tab);
-            transition: color 0.3s ease;
+            width: 22px;
+            height: 28px;
+            display: block;
             flex-shrink: 0;
         }
 
         .mac-folder-body {
             background-color: var(--bg-surface);
-            border: 1px solid var(--folder-border);
-            border-radius: 0 18px 18px 18px;
-            margin-top: -1px;
+            border: 1.5px solid var(--folder-border);
+            border-radius: 0 20px 20px 20px;
+            margin-top: -1.5px;
             position: relative;
             z-index: 1;
-            box-shadow: 0 4px 14px -4px rgba(15, 23, 42, 0.03);
+            box-shadow: 0 6px 18px -6px rgba(89, 58, 46, 0.06);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Soft Interactive Buttons */
+        /* Interactive Spring Buttons */
         .btn-soft {
-            transition: all 0.18s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .btn-soft:hover:not(:disabled) {
             transform: translateY(-1px);
         }
         .btn-soft:active:not(:disabled) {
-            transform: scale(0.97);
+            transform: scale(0.95);
         }
         .btn-soft:disabled {
             opacity: 0.55;
@@ -165,10 +180,61 @@
         }
 
         .heart-btn {
-            transition: transform 0.16s ease, color 0.16s ease;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.16s ease;
         }
         .heart-btn:hover {
-            transform: scale(1.16);
+            transform: scale(1.22);
+        }
+
+        /* Animated Audio Equalizer Bars */
+        @keyframes eqBounce {
+            0%, 100% { height: 4px; }
+            50% { height: 13px; }
+        }
+        .eq-bar {
+            width: 2.5px;
+            border-radius: 999px;
+            background-color: var(--accent-primary);
+            height: 4px;
+        }
+        .eq-playing .eq-bar:nth-child(1) { animation: eqBounce 0.75s ease-in-out infinite; }
+        .eq-playing .eq-bar:nth-child(2) { animation: eqBounce 0.55s ease-in-out infinite 0.15s; }
+        .eq-playing .eq-bar:nth-child(3) { animation: eqBounce 0.85s ease-in-out infinite 0.3s; }
+
+        /* iOS Volume Range Slider (Matches Reference Image) */
+        input[type="range"].ios-volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(to right, var(--text-primary) 0%, var(--text-primary) 80%, var(--folder-border) 80%, var(--folder-border) 100%);
+            outline: none;
+            cursor: pointer;
+        }
+        input[type="range"].ios-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1.5px solid var(--folder-border);
+            box-shadow: 0 2px 6px rgba(89, 58, 46, 0.22);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        input[type="range"].ios-volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.12);
+        }
+        input[type="range"].ios-volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1.5px solid var(--folder-border);
+            box-shadow: 0 2px 6px rgba(89, 58, 46, 0.22);
+            cursor: pointer;
         }
 
         /* Custom Color Picker Input Styling */
@@ -184,7 +250,7 @@
             padding: 0;
         }
         input[type="color"].mac-color-input::-webkit-color-swatch {
-            border: 1px solid rgba(0, 0, 0, 0.12);
+            border: 1.5px solid rgba(89, 58, 46, 0.2);
             border-radius: 999px;
         }
 
@@ -205,109 +271,61 @@
         }
     </style>
 </head>
-<body class="min-h-screen py-4 px-3 sm:py-8 sm:px-4 flex flex-col items-center">
+<body class="min-h-screen py-4 px-3 sm:py-8 sm:px-4 pb-20 flex flex-col items-center">
 
     <!-- Main macOS Finder Window Container -->
-    <main class="mac-window w-full max-w-[448px] rounded-[28px] overflow-hidden relative">
+    <main class="mac-window w-full max-w-[448px] rounded-[30px] overflow-hidden relative">
         
-        <!-- macOS Top Titlebar -->
+        <!-- macOS Top Titlebar (Strictly Brown & Pink) -->
         <div class="mac-titlebar sticky top-0 z-30 px-4 py-2.5 flex items-center justify-between">
-            <!-- Left: macOS Traffic Lights + Breadcrumb -->
+            <!-- Left: Sweet Pink/Choco Traffic Lights + Breadcrumb -->
             <div class="flex items-center gap-2.5">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/90 border border-black/5"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/90 border border-black/5"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]/90 border border-black/5"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #E57A9B;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F3B5C6;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #B5897A;"></span>
                 </div>
-                <div class="h-3 w-[1px] bg-[var(--folder-border)]"></div>
+                <div class="h-3 w-[1.5px] bg-[var(--folder-border)]"></div>
                 <span class="text-[11px] font-medium text-[var(--text-secondary)] flex items-center gap-1.5 tracking-tight">
                     <i class="fa-solid fa-folder text-[10px]" style="color: var(--accent-primary);"></i>
                     <span>Store / Credit</span>
                 </span>
             </div>
 
-            <!-- Right: Music Toggle, Theme Customizer Toggle, Admin Lock -->
+            <!-- Right: Admin Panel Lock Button -->
             <div class="flex items-center gap-1.5">
-                <!-- Music BGM Button -->
-                <button id="musicToggleBtn" onclick="toggleMusic()" title="Play/Pause BGM" 
-                    class="btn-soft h-7 px-2.5 rounded-full bg-[var(--bg-muted)] hover:bg-[var(--accent-soft)] border border-[var(--folder-border)] flex items-center justify-center gap-1 text-[11px] text-[var(--text-secondary)]">
-                    <i id="musicPlayIcon" class="fa-solid fa-volume-xmark text-[var(--text-muted)]"></i>
-                    <span class="text-[10px] font-medium hidden sm:inline">BGM</span>
-                </button>
-                <audio id="customAudioPlayer" preload="none"></audio>
-
-                <!-- Theme Color Customizer Button -->
-                <button id="themeToggleBtn" onclick="toggleThemePopover()" title="เปลี่ยนสีธีม (Theme Color)" 
-                    class="btn-soft h-7 px-2.5 rounded-full bg-[var(--accent-soft)] hover:opacity-90 border border-[var(--accent-border)] flex items-center justify-center gap-1.5 text-[11px] font-medium" style="color: var(--folder-tab-text);">
-                    <span id="activeThemeDot" class="w-2.5 h-2.5 rounded-full border border-white shadow-2xs" style="background-color: var(--accent-primary);"></span>
-                    <i class="fa-solid fa-palette text-[10px]"></i>
-                </button>
-
-                <!-- Admin Panel Button -->
-                <button onclick="openAdminModal()" title="Admin Panel" 
-                    class="btn-soft w-7 h-7 rounded-full bg-[var(--bg-muted)] hover:bg-[var(--accent-soft)] border border-[var(--folder-border)] flex items-center justify-center text-[11px] text-[var(--text-secondary)]">
+                <audio id="customAudioPlayer" preload="metadata" loop></audio>
+                <button onclick="openAdminModal()" title="Admin Settings" 
+                    class="btn-soft w-7 h-7 rounded-full bg-[var(--bg-muted)] hover:bg-[var(--accent-soft)] border-[1.5px] border-[var(--folder-border)] flex items-center justify-center text-[11px] text-[var(--text-secondary)]">
                     <i class="fa-solid fa-lock"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Collapsible Theme Customizer Drawer (macOS Sheet) -->
-        <div id="themeCustomizerPanel" class="hidden border-b border-[var(--folder-border)] bg-[var(--bg-surface)] px-4 py-3.5 transition-all">
-            <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[11px] font-medium text-[var(--text-primary)] flex items-center gap-1.5">
-                    <i class="fa-solid fa-swatchbook text-[11px]" style="color: var(--accent-primary);"></i>
-                    <span>เลือกโทนสีแฟ้ม (Folder Theme)</span>
-                </span>
-                <button type="button" onclick="toggleThemePopover()" class="text-[11px] text-[var(--text-muted)] hover:text-[var(--text-primary)] px-1.5">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <!-- Preset Color Swatches -->
-            <div id="presetThemesGrid" class="grid grid-cols-3 gap-1.5 mb-3">
-                <!-- Populated via JS -->
-            </div>
-
-            <!-- Custom Color Picker Bar -->
-            <div class="flex items-center justify-between gap-2 bg-white px-3 py-2 rounded-xl border border-[var(--folder-border)]">
-                <label for="customThemeColorInput" class="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                    <input type="color" id="customThemeColorInput" value="#4A90E2" oninput="applyCustomHexColor(this.value)" class="mac-color-input w-6 h-6 shrink-0">
-                    <div class="min-w-0">
-                        <span class="text-[11px] font-medium text-[var(--text-primary)] block leading-tight">เลือกสีเอง (Custom)</span>
-                        <span id="customHexLabel" class="text-[10px] font-mono text-[var(--text-muted)] uppercase">#4A90E2</span>
-                    </div>
-                </label>
-                <button type="button" onclick="resetThemeToDefault()" class="btn-soft text-[10px] font-medium px-2.5 py-1 rounded-lg bg-[var(--bg-muted)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                    รีเซ็ต
-                </button>
-            </div>
-        </div>
-
         <!-- 1. Banner Section -->
-        <div id="bannerContainer" class="w-full h-32 sm:h-36 banner-pattern relative overflow-hidden border-b border-[var(--folder-border)]">
+        <div id="bannerContainer" class="w-full h-32 sm:h-36 banner-pattern relative overflow-hidden border-b-[1.5px] border-[var(--folder-border)]">
             <img id="bannerImage" src="" alt="Store Banner" class="w-full h-full object-cover hidden" onerror="this.classList.add('hidden')">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/[0.04] via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#593A2E]/[0.04] via-transparent to-transparent pointer-events-none"></div>
         </div>
 
-        <!-- 2. Profile Picture & Store Info (Minimalist Header) -->
+        <!-- 2. Circular Profile Picture & Store Info (โปรไฟล์แบบกลม) -->
         <div class="px-5 pb-4 relative text-center">
-            <div class="relative -mt-11 mb-2.5 inline-block">
-                <!-- macOS Squircle Icon Frame -->
-                <div class="w-[88px] h-[88px] rounded-[26px] bg-white p-1.5 shadow-sm mx-auto border border-[var(--folder-border)]">
-                    <div id="avatarWrapper" class="w-full h-full rounded-[20px] flex items-center justify-center overflow-hidden relative" style="background-color: var(--accent-soft);">
+            <div class="relative -mt-12 mb-2.5 inline-block">
+                <div class="w-24 h-24 rounded-full bg-white p-1.5 shadow-sm mx-auto border-[1.5px] border-[var(--folder-border)]">
+                    <div id="avatarWrapper" class="w-full h-full rounded-full flex items-center justify-center overflow-hidden relative" style="background-color: var(--accent-soft);">
                         <img id="profileImage" src="" alt="Profile" class="w-full h-full object-cover hidden" onerror="handleAvatarError()">
                         <div id="avatarFallback" class="w-full h-full flex flex-col items-center justify-center" style="color: var(--accent-primary);">
-                            <i class="fa-solid fa-store text-2xl opacity-85"></i>
+                            <i class="fa-solid fa-store text-2xl opacity-90"></i>
                         </div>
                     </div>
                 </div>
-                <span title="Verified" class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full text-[9px] flex items-center justify-center border-2 border-white shadow-2xs btn-primary-theme">
+                <span title="Verified" class="absolute bottom-0.5 right-0.5 w-5 h-5 rounded-full text-[9px] flex items-center justify-center border-2 border-white shadow-2xs btn-primary-theme">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </div>
 
             <h1 id="storeNameDisplay" class="font-display text-lg font-medium text-[var(--text-primary)] tracking-tight leading-snug">
-                My Minimal Store
+                Sweet Choco Studio
             </h1>
             <p id="storeBioDisplay" class="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed max-w-[340px] mx-auto font-light">
                 Welcome to our credit & payment folder.
@@ -315,25 +333,25 @@
 
             <!-- Mini Status Pills -->
             <div class="flex items-center justify-center gap-2 mt-3">
-                <span class="inline-flex items-center gap-1.5 text-[10px] font-medium px-3 py-1 rounded-full border border-[var(--accent-border)]" style="background-color: var(--accent-soft); color: var(--folder-tab-text);">
+                <span class="inline-flex items-center gap-1.5 text-[10px] font-medium px-3 py-1 rounded-full border-[1.5px] border-[var(--accent-border)]" style="background-color: var(--accent-soft); color: var(--text-primary);">
                     <i class="fa-solid fa-shield-heart text-[9px]" style="color: var(--accent-primary);"></i>
                     <span>Verified Credit</span>
                 </span>
-                <span id="totalReviewBadge" class="inline-flex items-center gap-1.5 text-[10px] font-medium bg-[var(--bg-muted)] text-[var(--text-secondary)] px-3 py-1 rounded-full border border-[var(--folder-border)]">
+                <span id="totalReviewBadge" class="inline-flex items-center gap-1.5 text-[10px] font-medium bg-[var(--bg-muted)] text-[var(--text-secondary)] px-3 py-1 rounded-full border-[1.5px] border-[var(--folder-border)]">
                     <i class="fa-solid fa-heart text-[9px]" style="color: var(--accent-primary);"></i>
                     <span id="totalReviewBadgeText">0 Reviews</span>
                 </span>
             </div>
         </div>
 
-        <!-- macOS Segmented Control Switcher -->
+        <!-- iOS / macOS Segmented Control Switcher -->
         <div class="px-5 mb-5">
-            <div class="flex bg-[var(--bg-muted)] p-1 rounded-xl border border-[var(--folder-border)] gap-1">
-                <button onclick="switchTab('reviews')" id="navReviewsTab" class="flex-1 py-2 text-xs font-medium rounded-lg bg-white text-[var(--text-primary)] shadow-2xs border border-[var(--folder-border)]/60 transition-all flex items-center justify-center gap-1.5">
+            <div class="flex bg-[var(--bg-muted)] p-1 rounded-2xl border-[1.5px] border-[var(--folder-border)] gap-1">
+                <button onclick="switchTab('reviews')" id="navReviewsTab" class="flex-1 py-2 text-xs font-medium rounded-xl bg-white text-[var(--text-primary)] shadow-2xs border-[1.5px] border-[var(--folder-border)] transition-all flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-folder-open text-[10px]" style="color: var(--accent-primary);"></i>
                     <span>Reviews & Credit</span>
                 </button>
-                <button onclick="switchTab('payment')" id="navPaymentTab" class="flex-1 py-2 text-xs font-medium rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all flex items-center justify-center gap-1.5">
+                <button onclick="switchTab('payment')" id="navPaymentTab" class="flex-1 py-2 text-xs font-medium rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-wallet text-[10px]"></i>
                     <span>Payment Accounts</span>
                 </button>
@@ -343,27 +361,38 @@
         <!-- ================= TAB 1: REVIEWS & CREDIT ================= -->
         <div id="tabContentReviews" class="px-5 space-y-5">
             
-            <!-- FOLDER 1: Overall Rating Folder -->
+            <!-- FOLDER 1: Rating Summary (1.5px Seamless Folder Tab + Pink/Cocoa Calendar Icon) -->
             <section class="mac-folder">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
                         <div class="mac-folder-tab">
-                            <i class="fa-solid fa-folder text-[10px]"></i>
+                            <i class="fa-solid fa-folder text-[10px]" style="color: var(--accent-primary);"></i>
                             <span>Rating Summary</span>
                         </div>
-                        <svg class="mac-folder-shoulder" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                            <path d="M0 0 C5 0, 7 14, 14 14 L0 14 Z"></path>
+                        <svg class="mac-folder-shoulder" viewBox="0 0 22 28" aria-hidden="true">
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25 L 22 28 L 0 28 Z" fill="var(--folder-tab)"></path>
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25" fill="none" stroke="var(--folder-border)" stroke-width="1.5"></path>
                         </svg>
                     </div>
                 </div>
-                <div class="mac-folder-body px-4 py-3.5 flex items-center justify-between">
+                <div class="mac-folder-body px-4 py-3.5 flex items-center justify-between gap-2">
                     <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-2xl flex items-center justify-center border border-[var(--accent-border)]" style="background-color: var(--accent-soft);">
-                            <span id="avgScoreDisplay" class="font-display text-xl font-semibold" style="color: var(--folder-tab-text);">5.0</span>
+                        <!-- Apple Calendar App Squircle Icon (Pink & Cocoa) -->
+                        <div class="ios-squircle w-12 h-12 bg-white border-[1.5px] border-[var(--folder-border)] flex flex-col items-center justify-between">
+                            <div class="w-full h-3.5 flex items-center justify-center text-[7px] font-bold uppercase tracking-wider text-white" style="background: linear-gradient(180deg, #F093AE 0%, #D96B8C 100%);">
+                                <span id="calMonthLabel">NOV</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center">
+                                <span id="calDayLabel" class="font-sans text-[19px] font-semibold text-[var(--text-primary)] leading-none">19</span>
+                            </div>
                         </div>
+
                         <div>
-                            <p class="text-[10px] font-medium text-[var(--text-muted)] uppercase tracking-wider">Overall Satisfaction</p>
-                            <div class="flex text-xs gap-1 my-0.5" style="color: var(--accent-primary);">
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="avgScoreDisplay" class="font-display text-xl font-semibold text-[var(--text-primary)]">5.0</span>
+                                <span class="text-[10px] text-[var(--text-muted)]">/ 5.0</span>
+                            </div>
+                            <div class="flex text-xs gap-1 mt-0.5" style="color: var(--accent-primary);">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-solid fa-heart"></i>
@@ -373,103 +402,134 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <span id="reviewCountText" class="text-[11px] text-[var(--text-secondary)] font-medium bg-white px-2.5 py-1 rounded-lg border border-[var(--folder-border)] inline-block">Based on 0 reviews</span>
+                        <span id="reviewCountText" class="text-[11px] text-[var(--text-secondary)] font-medium bg-white px-2.5 py-1 rounded-xl border-[1.5px] border-[var(--folder-border)] inline-block">Based on 0 reviews</span>
                     </div>
                 </div>
             </section>
 
-            <!-- FOLDER 2: Write a Review Folder -->
+            <!-- FOLDER 2: Write a Review (Mail Composer Style + Pink/Cocoa Mail Icon) -->
             <section class="mac-folder">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
                         <div class="mac-folder-tab">
-                            <i class="fa-solid fa-folder-plus text-[10px]"></i>
-                            <span>Write a Review</span>
+                            <i class="fa-solid fa-paper-plane text-[10px]" style="color: var(--accent-primary);"></i>
+                            <span>New Message / Review</span>
                         </div>
-                        <svg class="mac-folder-shoulder" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                            <path d="M0 0 C5 0, 7 14, 14 14 L0 14 Z"></path>
+                        <svg class="mac-folder-shoulder" viewBox="0 0 22 28" aria-hidden="true">
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25 L 22 28 L 0 28 Z" fill="var(--folder-tab)"></path>
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25" fill="none" stroke="var(--folder-border)" stroke-width="1.5"></path>
                         </svg>
                     </div>
                 </div>
 
                 <form id="reviewForm" onsubmit="submitReview(event)" class="mac-folder-body p-4 space-y-3">
-                    <!-- Satisfaction Rating Bar -->
-                    <div class="flex items-center justify-between bg-white px-3.5 py-2 rounded-xl border border-[var(--folder-border)]">
-                        <span class="text-xs text-[var(--text-secondary)] font-medium">Satisfaction</span>
-                        <div class="flex items-center gap-1.5" id="heartRatingSelector" role="radiogroup">
-                            <button type="button" onclick="setRating(1)" class="heart-btn text-sm focus:outline-none" data-val="1"><i class="fa-solid fa-heart"></i></button>
-                            <button type="button" onclick="setRating(2)" class="heart-btn text-sm focus:outline-none" data-val="2"><i class="fa-solid fa-heart"></i></button>
-                            <button type="button" onclick="setRating(3)" class="heart-btn text-sm focus:outline-none" data-val="3"><i class="fa-solid fa-heart"></i></button>
-                            <button type="button" onclick="setRating(4)" class="heart-btn text-sm focus:outline-none" data-val="4"><i class="fa-solid fa-heart"></i></button>
-                            <button type="button" onclick="setRating(5)" class="heart-btn text-sm focus:outline-none" data-val="5"><i class="fa-solid fa-heart"></i></button>
+                    <!-- iOS Mail Composer Header Strip -->
+                    <div class="flex items-center justify-between gap-2.5 pb-2.5 border-b-[1.5px] border-[var(--folder-border)]">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <!-- Apple Mail App Squircle Icon (Pink & Cocoa) -->
+                            <div class="ios-squircle w-10 h-10 flex items-center justify-center" style="background: linear-gradient(180deg, #F5A3BC 0%, #DF7394 100%);">
+                                <svg viewBox="0 0 36 36" class="w-6 h-6" fill="none">
+                                    <rect x="5" y="9" width="26" height="18" rx="3" fill="#FFF9FA"/>
+                                    <path d="M6.5 10.5L18 19.5L29.5 10.5" stroke="#7F5A4D" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-1 text-[11px]">
+                                    <span class="text-[var(--text-muted)]">To:</span>
+                                    <span id="mailRecipientName" class="font-medium text-[var(--text-primary)] truncate">Sweet Choco Studio</span>
+                                </div>
+                                <p class="text-[10px] text-[var(--text-muted)]">ส่งจดหมายรีวิว & ให้กำลังใจร้านค้า</p>
+                            </div>
                         </div>
-                        <span id="ratingLabel" class="text-[11px] font-semibold min-w-[30px] text-right" style="color: var(--accent-primary);">5/5</span>
+
+                        <!-- Heart Rating Pill -->
+                        <div class="flex items-center gap-1 bg-white px-2.5 py-1.5 rounded-xl border-[1.5px] border-[var(--folder-border)] shrink-0" id="heartRatingSelector" role="radiogroup">
+                            <button type="button" onclick="setRating(1)" class="heart-btn text-xs focus:outline-none" data-val="1"><i class="fa-solid fa-heart"></i></button>
+                            <button type="button" onclick="setRating(2)" class="heart-btn text-xs focus:outline-none" data-val="2"><i class="fa-solid fa-heart"></i></button>
+                            <button type="button" onclick="setRating(3)" class="heart-btn text-xs focus:outline-none" data-val="3"><i class="fa-solid fa-heart"></i></button>
+                            <button type="button" onclick="setRating(4)" class="heart-btn text-xs focus:outline-none" data-val="4"><i class="fa-solid fa-heart"></i></button>
+                            <button type="button" onclick="setRating(5)" class="heart-btn text-xs focus:outline-none" data-val="5"><i class="fa-solid fa-heart"></i></button>
+                            <span id="ratingLabel" class="text-[10px] font-semibold ml-1" style="color: var(--accent-primary);">5/5</span>
+                        </div>
                     </div>
 
-                    <!-- Customer Name Input -->
-                    <div class="relative">
-                        <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-xs"></i>
+                    <!-- Mail "From:" Field -->
+                    <div class="flex items-center bg-white px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus-within:border-[var(--accent-primary)] transition-colors">
+                        <span class="text-[11px] text-[var(--text-muted)] mr-2 shrink-0">From:</span>
                         <input type="text" id="customerNameInput" maxlength="40" placeholder="Your name (Optional)" 
-                            class="w-full bg-white text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] pl-9 pr-3.5 py-2.5 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors">
+                            class="w-full bg-transparent text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none">
                     </div>
 
-                    <!-- Quick Tags -->
+                    <!-- Quick Subject Tags -->
                     <div class="flex flex-wrap gap-1.5" id="quickTagsContainer">
-                        <button type="button" onclick="appendQuickTag('Fast delivery')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
+                        <button type="button" onclick="appendQuickTag('Fast delivery')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border-[1.5px] border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
                             <i class="fa-solid fa-plus text-[8px]" style="color: var(--accent-primary);"></i> Fast delivery
                         </button>
-                        <button type="button" onclick="appendQuickTag('Cute & Accurate')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
+                        <button type="button" onclick="appendQuickTag('Cute & Accurate')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border-[1.5px] border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
                             <i class="fa-solid fa-plus text-[8px]" style="color: var(--accent-primary);"></i> Cute & Accurate
                         </button>
-                        <button type="button" onclick="appendQuickTag('Great service')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
+                        <button type="button" onclick="appendQuickTag('Great service')" class="btn-soft text-[10px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border-[1.5px] border-[var(--folder-border)] px-2.5 py-1 rounded-lg flex items-center gap-1 font-medium">
                             <i class="fa-solid fa-plus text-[8px]" style="color: var(--accent-primary);"></i> Great service
                         </button>
                     </div>
 
-                    <!-- Review Comment Textarea -->
+                    <!-- Mail Body Textarea -->
                     <div>
-                        <textarea id="reviewTextInput" rows="2" maxlength="250" required placeholder="Write your review or supportive message here..."
-                            class="w-full bg-white text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] px-3.5 py-2.5 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors resize-none"></textarea>
+                        <textarea id="reviewTextInput" rows="2" maxlength="250" required placeholder="Write your message or review here..."
+                            class="w-full bg-white text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] px-3.5 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors resize-none"></textarea>
                     </div>
 
-                    <!-- Image Attachment & Submit Row -->
+                    <!-- Attachment (All-Pink Photos Squircle Icon, No Brown) & Send Button -->
                     <div class="flex items-center justify-between gap-2 pt-0.5 flex-wrap">
                         <div class="flex items-center gap-2">
-                            <label class="btn-soft cursor-pointer text-[11px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border border-[var(--folder-border)] px-3 py-1.5 rounded-xl flex items-center gap-1.5 font-medium">
-                                <i class="fa-regular fa-image text-xs" style="color: var(--accent-primary);"></i>
+                            <label class="btn-soft cursor-pointer text-[11px] bg-white hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] border-[1.5px] border-[var(--folder-border)] px-2.5 py-1.5 rounded-xl flex items-center gap-2 font-medium">
+                                <span class="w-4 h-4 rounded-[5px] bg-[var(--accent-soft)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                                    <!-- Pure Pink Flower / Photo Icon -->
+                                    <svg viewBox="0 0 24 24" class="w-3.5 h-3.5">
+                                        <ellipse cx="12" cy="6" rx="2.3" ry="4" fill="#E57A9B"/>
+                                        <ellipse cx="16.2" cy="7.8" rx="2.3" ry="4" transform="rotate(45 16.2 7.8)" fill="#F5A3BC"/>
+                                        <ellipse cx="18" cy="12" rx="2.3" ry="4" transform="rotate(90 18 12)" fill="#EC85A5"/>
+                                        <ellipse cx="16.2" cy="16.2" rx="2.3" ry="4" transform="rotate(135 16.2 16.2)" fill="#F9BFD0"/>
+                                        <ellipse cx="12" cy="18" rx="2.3" ry="4" fill="#E57A9B"/>
+                                        <ellipse cx="7.8" cy="16.2" rx="2.3" ry="4" transform="rotate(45 7.8 16.2)" fill="#F5A3BC"/>
+                                        <ellipse cx="6" cy="12" rx="2.3" ry="4" transform="rotate(90 6 12)" fill="#EC85A5"/>
+                                        <ellipse cx="7.8" cy="7.8" rx="2.3" ry="4" transform="rotate(135 7.8 7.8)" fill="#F9BFD0"/>
+                                    </svg>
+                                </span>
                                 <span id="uploadLabelText">Attach photo</span>
                                 <input type="file" id="reviewImageFile" accept="image/*" class="hidden" onchange="handleImagePreview(event)">
                             </label>
-                            <div id="imagePreviewWrapper" class="hidden items-center gap-1.5 bg-white px-2.5 py-1 rounded-xl border border-[var(--folder-border)]">
+                            <div id="imagePreviewWrapper" class="hidden items-center gap-1.5 bg-white px-2.5 py-1 rounded-xl border-[1.5px] border-[var(--folder-border)]">
                                 <img id="imagePreviewTag" src="" alt="Thumbnail" class="w-5 h-5 object-cover rounded-md">
                                 <span class="text-[10px] text-[var(--text-primary)] truncate max-w-[70px]" id="imageFileName">Photo</span>
-                                <button type="button" onclick="clearSelectedImage()" class="text-red-500 hover:text-red-700 text-xs px-0.5"><i class="fa-solid fa-xmark"></i></button>
+                                <button type="button" onclick="clearSelectedImage()" class="text-xs px-0.5" style="color: var(--danger-pink);"><i class="fa-solid fa-xmark"></i></button>
                             </div>
                         </div>
 
                         <button type="submit" id="submitReviewBtn" class="btn-soft btn-primary-theme text-xs font-medium px-4 py-2 rounded-xl shadow-2xs flex items-center gap-1.5 ml-auto">
-                            <i class="fa-solid fa-paper-plane text-[10px]"></i>
-                            <span>Submit</span>
+                            <i class="fa-solid fa-arrow-up text-[10px]"></i>
+                            <span>Send</span>
                         </button>
                     </div>
                 </form>
             </section>
 
-            <!-- FOLDER 3: Customer Credits Feed Folder -->
+            <!-- FOLDER 3: Customer Credits Feed (Seamless Tab + Pink Messages Icon) -->
             <section class="mac-folder pb-2">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
                         <div class="mac-folder-tab">
-                            <i class="fa-solid fa-folder-open text-[10px]"></i>
+                            <i class="fa-solid fa-folder-open text-[10px]" style="color: var(--accent-primary);"></i>
                             <span>Customer Credits</span>
                         </div>
-                        <svg class="mac-folder-shoulder" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                            <path d="M0 0 C5 0, 7 14, 14 14 L0 14 Z"></path>
+                        <svg class="mac-folder-shoulder" viewBox="0 0 22 28" aria-hidden="true">
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25 L 22 28 L 0 28 Z" fill="var(--folder-tab)"></path>
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25" fill="none" stroke="var(--folder-border)" stroke-width="1.5"></path>
                         </svg>
                     </div>
 
                     <!-- Filter Segmented Pill -->
-                    <div class="flex items-center gap-0.5 bg-[var(--bg-muted)] p-0.5 rounded-lg border border-[var(--folder-border)] mb-1">
+                    <div class="flex items-center gap-0.5 bg-[var(--bg-muted)] p-0.5 rounded-lg border-[1.5px] border-[var(--folder-border)] mb-1">
                         <button onclick="setFilter('all')" id="filterAllBtn" class="btn-soft text-[10px] font-medium px-2.5 py-0.5 rounded-md btn-primary-theme">
                             All
                         </button>
@@ -479,8 +539,27 @@
                     </div>
                 </div>
 
-                <!-- Folder Body containing Review Document Cards -->
-                <div class="mac-folder-body p-3">
+                <!-- Folder Body -->
+                <div class="mac-folder-body p-3 space-y-2.5">
+                    <!-- Folder Header Bar with Pink Messages Icon -->
+                    <div class="flex items-center justify-between px-1.5 pt-0.5 pb-1.5 border-b-[1.5px] border-[var(--folder-border)]/70">
+                        <div class="flex items-center gap-2">
+                            <div class="ios-squircle w-7 h-7 bg-white border-[1.5px] border-[var(--folder-border)] flex items-center justify-center">
+                                <svg viewBox="0 0 32 32" class="w-5 h-5">
+                                    <defs>
+                                        <linearGradient id="msgBubbleGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#F6A6BE"/>
+                                            <stop offset="100%" stop-color="#DF7394"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M16 5C9.37 5 4 9.58 4 15.23c0 3.21 1.73 6.07 4.44 7.95-.22 1.49-.97 2.94-1.01 3.01-.15.27-.02.61.28.69.12.03.24.05.36.05 1.46 0 3.31-.84 4.35-1.43 1.14.29 2.34.45 3.58.45 6.63 0 12-4.58 12-10.23S22.63 5 16 5z" fill="url(#msgBubbleGrad)"/>
+                                </svg>
+                            </div>
+                            <span class="text-[11px] font-medium text-[var(--text-secondary)]">Verified Messages</span>
+                        </div>
+                        <span class="text-[10px] text-[var(--text-muted)]">Tap photo to zoom</span>
+                    </div>
+
                     <div id="reviewsList" class="space-y-2.5 max-h-[390px] overflow-y-auto pr-0.5">
                         <!-- Populated dynamically via JS -->
                     </div>
@@ -490,31 +569,42 @@
 
         <!-- ================= TAB 2: PAYMENT & ACCOUNT INFO ================= -->
         <div id="tabContentPayment" class="hidden px-5 pb-3 space-y-4">
-            <!-- FOLDER: Official Payment Accounts -->
             <section class="mac-folder">
                 <div class="mac-folder-header">
                     <div class="mac-folder-tab-group">
                         <div class="mac-folder-tab">
-                            <i class="fa-solid fa-folder-closed text-[10px]"></i>
+                            <i class="fa-solid fa-folder-closed text-[10px]" style="color: var(--accent-primary);"></i>
                             <span>Payment Accounts</span>
                         </div>
-                        <svg class="mac-folder-shoulder" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                            <path d="M0 0 C5 0, 7 14, 14 14 L0 14 Z"></path>
+                        <svg class="mac-folder-shoulder" viewBox="0 0 22 28" aria-hidden="true">
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25 L 22 28 L 0 28 Z" fill="var(--folder-tab)"></path>
+                            <path d="M 0 0.75 C 8 0.75, 11 27.25, 22 27.25" fill="none" stroke="var(--folder-border)" stroke-width="1.5"></path>
                         </svg>
                     </div>
                     <span class="text-[10px] text-[var(--text-muted)] mb-1 pr-1">Official Transfer</span>
                 </div>
 
                 <div class="mac-folder-body p-4 space-y-4">
-                    <!-- Featured QR / Payment Image Container -->
-                    <div id="featuredPaymentImageContainer" class="w-full bg-white rounded-2xl overflow-hidden border border-[var(--folder-border)] flex items-center justify-center p-3">
-                        <!-- Populated dynamically -->
+                    <!-- Apple Wallet Squircle Header (Strictly Brown & Pink Cards) -->
+                    <div class="flex items-center gap-3 bg-white p-3 rounded-2xl border-[1.5px] border-[var(--folder-border)]">
+                        <div class="ios-squircle w-11 h-11 flex items-center justify-center" style="background: linear-gradient(160deg, #694537 0%, #4A2E24 100%);">
+                            <svg viewBox="0 0 36 36" class="w-7 h-7">
+                                <rect x="6" y="8" width="24" height="6" rx="2.5" fill="#FADBE4"/>
+                                <rect x="6" y="11" width="24" height="6" rx="2.5" fill="#F29BB5"/>
+                                <rect x="6" y="14" width="24" height="6" rx="2.5" fill="#B88777"/>
+                                <path d="M6 17h24v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9z" fill="#FFF7F9"/>
+                                <path d="M14 17c0 1.66 1.79 3 4 3s4-1.34 4-3h8v9a3 3 0 01-3 3H9a3 3 0 01-3-3v-9h8z" fill="#FADBE4"/>
+                            </svg>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block">Account Name</span>
+                            <span id="unifiedAccountNameDisplay" class="font-display text-sm font-medium text-[var(--text-primary)] truncate block">Sweet Choco Official</span>
+                        </div>
                     </div>
 
-                    <!-- Unified Account Name -->
-                    <div class="bg-white rounded-xl border border-[var(--folder-border)] px-4 py-2.5 text-center">
-                        <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block mb-0.5">Account Name</span>
-                        <span id="unifiedAccountNameDisplay" class="font-display text-sm font-medium text-[var(--text-primary)]">Account Name</span>
+                    <!-- Featured QR / Payment Image Container -->
+                    <div id="featuredPaymentImageContainer" class="w-full bg-white rounded-2xl overflow-hidden border-[1.5px] border-[var(--folder-border)] flex items-center justify-center p-3">
+                        <!-- Populated dynamically -->
                     </div>
 
                     <!-- Bank Accounts Combined -->
@@ -525,56 +615,151 @@
             </section>
         </div>
 
-        <!-- Contact Dock / Folder Bar -->
-        <div class="px-5 pt-4 pb-3 mt-4 border-t border-[var(--folder-border)] bg-[var(--bg-surface)]">
+        <!-- Contact Dock / Folder Bar (Strictly Brown & Pink) -->
+        <div class="px-5 pt-4 pb-3 mt-4 border-t-[1.5px] border-[var(--folder-border)] bg-[var(--bg-surface)]">
             <p class="text-[10px] font-medium text-[var(--text-muted)] text-center mb-2 uppercase tracking-wider">Contact & Socials</p>
             <div class="grid grid-cols-2 gap-2">
-                <a id="contactFacebookLink" href="https://facebook.com" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2.5 px-3 rounded-xl border border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
-                    <i class="fa-brands fa-facebook" style="color: var(--accent-primary);"></i>
+                <a id="contactFacebookLink" href="https://facebook.com" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
+                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #F093AE 0%, #D96B8C 100%);">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </span>
                     <span>Facebook</span>
                 </a>
-                <a id="contactLineLink" href="https://line.me" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2.5 px-3 rounded-xl border border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
-                    <i class="fa-brands fa-line" style="color: var(--accent-primary);"></i>
+                <a id="contactLineLink" href="https://line.me" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
+                    <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #8B6253 0%, #593A2E 100%);">
+                        <i class="fa-brands fa-line"></i>
+                    </span>
                     <span>LINE</span>
                 </a>
             </div>
         </div>
 
         <!-- Minimal Footer -->
-        <footer class="bg-[var(--bg-window)] border-t border-[var(--folder-border)]/70 py-2.5 px-5 text-center">
+        <footer class="bg-[var(--bg-window)] border-t-[1.5px] border-[var(--folder-border)]/70 py-2.5 px-5 text-center">
             <p class="text-[10px] text-[var(--text-muted)] font-light uppercase tracking-widest">
                 Thank you for your support
             </p>
         </footer>
     </main>
 
-    <!-- ADMIN PANEL MODAL (macOS Window Sheet) -->
-    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-slate-900/35 backdrop-blur-xs">
-        <div class="bg-white w-full max-w-[420px] rounded-[24px] shadow-2xl border border-[var(--folder-border)] overflow-hidden">
-            <div class="bg-[var(--bg-surface)] px-4 py-3 border-b border-[var(--folder-border)] flex items-center justify-between">
+    <!-- FLOATING BOTTOM-LEFT SPEAKER TOGGLE BUTTON (ปุ่มเปิด/ปิดเพลงมุมซ้ายล่างของหน้าหลัก) -->
+    <button id="floatingSpeakerBtn" type="button" onclick="toggleMusicPlay()" title="เปิด / ปิดเสียงเพลง"
+        class="btn-soft fixed bottom-4 left-4 z-40 h-10 px-3.5 rounded-full bg-white/95 backdrop-blur-md border-[1.5px] border-[var(--folder-border)] shadow-lg flex items-center gap-2 text-xs font-medium text-[var(--text-primary)]">
+        <i id="floatingSpeakerIcon" class="fa-solid fa-volume-xmark text-sm" style="color: var(--accent-primary);"></i>
+        <span id="floatingSpeakerText" class="text-[11px]">ปิดเพลง</span>
+        <div id="floatingEqWave" class="hidden items-end gap-[2px] h-3 ml-0.5">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+        </div>
+    </button>
+
+    <!-- WELCOME POP-UP (iOS Now Playing Widget Style, No Track Picker List) -->
+    <div id="welcomePopupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#4A2E24]/35 backdrop-blur-md transition-opacity duration-300">
+        <div class="bg-white/95 backdrop-blur-xl w-full max-w-[356px] rounded-[28px] shadow-2xl border-2 border-[var(--folder-border)] p-5 space-y-4">
+            
+            <!-- Top Row: Album Cover Squircle + Track/Store Info + AirPlay (A) Badge -->
+            <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <!-- Album Cover Box -->
+                    <div class="w-16 h-16 rounded-2xl border-[1.5px] border-[var(--folder-border)] overflow-hidden shrink-0 flex items-center justify-center shadow-2xs" style="background: linear-gradient(145deg, #FADBE4 0%, #F2B5C8 100%);">
+                        <img id="welcomeAlbumImg" src="" alt="Album Cover" class="w-full h-full object-cover hidden">
+                        <i id="welcomeAlbumIcon" class="fa-solid fa-music text-xl" style="color: var(--text-primary);"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <h3 id="welcomeTrackTitle" class="font-display text-sm font-medium text-[var(--text-primary)] truncate">Strawberry Music Box</h3>
+                        <p id="welcomeStoreSubtitle" class="text-[11px] text-[var(--text-muted)] truncate mt-0.5">Sweet Choco Studio</p>
+                    </div>
+                </div>
+
+                <!-- Circular (A) Icon (Matches Reference Image Top-Right) -->
+                <div class="w-7 h-7 rounded-full border-[1.5px] border-[var(--text-primary)] flex items-center justify-center text-[11px] font-semibold text-[var(--text-primary)] shrink-0">
+                    A
+                </div>
+            </div>
+
+            <!-- Middle Row: Progress Bar + Timestamps -->
+            <div class="space-y-1.5 pt-0.5">
+                <div class="w-full h-[3.5px] bg-[var(--folder-border)] rounded-full relative flex items-center">
+                    <div id="welcomeProgressFill" class="h-full rounded-full bg-[var(--text-primary)] transition-all duration-300" style="width: 35%;"></div>
+                    <span id="welcomeProgressDot" class="w-2.5 h-2.5 rounded-full bg-[var(--text-primary)] -ml-1 shadow-2xs"></span>
+                </div>
+                <div class="flex items-center justify-between text-[10px] font-mono font-medium text-[var(--text-secondary)]">
+                    <span id="welcomeElapsedTime">0:24</span>
+                    <span id="welcomeRemainTime">-0:48</span>
+                </div>
+            </div>
+
+            <!-- Transport Controls Row: Rewind | Play (Starts Music & Enters) | Fast-Forward -->
+            <div class="flex items-center justify-center gap-8 py-1">
+                <button type="button" onclick="prevTrack()" title="Previous Track" class="btn-soft text-lg text-[var(--text-primary)] hover:opacity-75 p-2">
+                    <i class="fa-solid fa-backward"></i>
+                </button>
+                <button type="button" onclick="startMusicAndEnter()" title="เริ่มเล่นเพลง & เข้าสู่หน้ารีวิว" class="btn-soft w-12 h-12 rounded-full btn-primary-theme shadow-md flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-play ml-0.5"></i>
+                </button>
+                <button type="button" onclick="nextTrack()" title="Next Track" class="btn-soft text-lg text-[var(--text-primary)] hover:opacity-75 p-2">
+                    <i class="fa-solid fa-forward"></i>
+                </button>
+            </div>
+
+            <!-- Bottom Row: Volume Bar (Low Speaker — Slider — High Speaker) -->
+            <div class="flex items-center gap-2.5 pt-0.5">
+                <i class="fa-solid fa-volume-low text-xs text-[var(--text-primary)]"></i>
+                <input id="welcomeVolumeSlider" type="range" min="0" max="100" value="80" oninput="handleVolumeChange(this.value)" class="ios-volume-slider flex-1" aria-label="Volume">
+                <i class="fa-solid fa-volume-high text-xs text-[var(--text-primary)]"></i>
+            </div>
+
+            <!-- Subtle Helper Caption -->
+            <div class="text-center pt-0.5">
+                <p class="text-[10px] text-[var(--text-muted)]">กดปุ่ม <span class="font-semibold text-[var(--text-primary)]">▶</span> เพื่อเริ่มเล่นเพลงและเข้าสู่หน้ารีวิว</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS QUICK LOOK PHOTO LIGHTBOX MODAL -->
+    <div id="photoQuickLookModal" onclick="closeQuickLook()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#4A2E24]/50 backdrop-blur-md">
+        <div onclick="event.stopPropagation()" class="bg-white rounded-[24px] p-2.5 max-w-[380px] w-full shadow-2xl border-2 border-[var(--folder-border)] space-y-2">
+            <div class="flex items-center justify-between px-2 py-1">
+                <span class="text-[11px] font-medium text-[var(--text-primary)] flex items-center gap-1.5">
+                    <i class="fa-regular fa-image" style="color: var(--accent-primary);"></i>
+                    <span>Quick Look</span>
+                </span>
+                <button type="button" onclick="closeQuickLook()" class="w-6 h-6 rounded-full bg-[var(--bg-muted)] hover:bg-[var(--accent-soft)] text-[var(--text-secondary)] flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <img id="quickLookImage" src="" alt="Preview" class="w-full max-h-[70vh] object-contain rounded-2xl bg-[var(--bg-surface)]">
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL MODAL (Padlock Icon) -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-[#4A2E24]/40 backdrop-blur-xs">
+        <div class="bg-white w-full max-w-[428px] rounded-[28px] shadow-2xl border-2 border-[var(--folder-border)] overflow-hidden">
+            <div class="bg-[var(--bg-surface)] px-4 py-3 border-b-[1.5px] border-[var(--folder-border)] flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg flex items-center justify-center text-[11px] btn-primary-theme">
-                        <i class="fa-solid fa-sliders"></i>
+                    <span class="w-6 h-6 rounded-full flex items-center justify-center text-[11px] btn-primary-theme">
+                        <i class="fa-solid fa-lock"></i>
                     </span>
                     <h2 class="font-display text-sm font-medium text-[var(--text-primary)]">Admin Dashboard</h2>
                 </div>
-                <button onclick="closeAdminModal()" class="btn-soft w-6 h-6 rounded-full bg-white text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center text-xs border border-[var(--folder-border)]">
+                <button onclick="closeAdminModal()" class="btn-soft w-6 h-6 rounded-full bg-white text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center text-xs border-[1.5px] border-[var(--folder-border)]">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <!-- Local PIN Login View -->
             <div id="adminLoginView" class="p-6 text-center">
-                <div class="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 text-lg border border-[var(--accent-border)]" style="background-color: var(--accent-soft); color: var(--accent-primary);">
-                    <i class="fa-solid fa-key"></i>
+                <div class="w-12 h-12 rounded-full bg-[var(--accent-soft)] text-[var(--text-primary)] flex items-center justify-center mx-auto mb-3 text-base border-[1.5px] border-[var(--accent-border)]">
+                    <i class="fa-solid fa-lock" style="color: var(--accent-primary);"></i>
                 </div>
                 <h3 class="font-display text-sm font-medium text-[var(--text-primary)]">Owner Authentication</h3>
-                <p class="text-[11px] text-[var(--text-muted)] mt-0.5 mb-4">กรอกรหัส PIN สำหรับจัดการข้อมูลในเครื่อง (เริ่มต้น: 1234)</p>
+                <p class="text-[11px] text-[var(--text-muted)] mt-0.5 mb-4">กรอกรหัส PIN สำหรับแอดมิน (เริ่มต้น: 1234)</p>
                 
                 <form onsubmit="handleAdminLogin(event)" class="space-y-3 max-w-[240px] mx-auto">
                     <input type="password" id="adminPinInput" placeholder="Enter PIN" required
-                        class="w-full text-center tracking-widest bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-4 py-2.5 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
-                    <p id="loginErrorMsg" class="text-[10px] text-red-500 hidden">รหัส PIN ไม่ถูกต้อง</p>
+                        class="w-full text-center tracking-widest bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-4 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                    <p id="loginErrorMsg" class="text-[10px] hidden" style="color: var(--danger-pink);">รหัส PIN ไม่ถูกต้อง</p>
                     <button type="submit" id="adminLoginBtn" class="btn-soft btn-primary-theme w-full text-xs font-medium py-2.5 rounded-xl shadow-2xs">
                         Unlock
                     </button>
@@ -583,19 +768,22 @@
 
             <!-- Dashboard View -->
             <div id="adminDashboardView" class="hidden">
-                <div class="flex items-center justify-between border-b border-[var(--folder-border)] px-3 pt-2.5 bg-[var(--bg-surface)]">
+                <div class="flex items-center justify-between border-b-[1.5px] border-[var(--folder-border)] px-3 pt-2.5 bg-[var(--bg-surface)]">
                     <div class="flex gap-1 overflow-x-auto">
-                        <button onclick="switchAdminTab('settings')" id="tabSettingsBtn" class="text-[11px] font-medium pb-2 px-2.5 border-b-2 border-[var(--accent-primary)] text-[var(--text-primary)] flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-store text-[10px]"></i> Store Info
+                        <button onclick="switchAdminTab('settings')" id="tabSettingsBtn" class="text-[11px] font-medium pb-2 px-2 border-b-2 border-[var(--accent-primary)] text-[var(--text-primary)] flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-store text-[10px]"></i> Store
                         </button>
-                        <button onclick="switchAdminTab('payment')" id="tabPaymentAdminBtn" class="text-[11px] font-medium pb-2 px-2.5 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0">
+                        <button onclick="switchAdminTab('appearance')" id="tabAppearanceBtn" class="text-[11px] font-medium pb-2 px-2 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0">
+                            <i class="fa-solid fa-palette text-[10px]"></i> Theme & Music
+                        </button>
+                        <button onclick="switchAdminTab('payment')" id="tabPaymentAdminBtn" class="text-[11px] font-medium pb-2 px-2 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-wallet text-[10px]"></i> Accounts
                         </button>
-                        <button onclick="switchAdminTab('reviews')" id="tabReviewsBtn" class="text-[11px] font-medium pb-2 px-2.5 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0">
+                        <button onclick="switchAdminTab('reviews')" id="tabReviewsBtn" class="text-[11px] font-medium pb-2 px-2 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0">
                             <i class="fa-solid fa-comments text-[10px]"></i> Reviews
                         </button>
                     </div>
-                    <button type="button" onclick="handleAdminLogout()" class="text-[10px] text-red-500 hover:underline pb-2 px-2 shrink-0">
+                    <button type="button" onclick="handleAdminLogout()" class="text-[10px] hover:underline pb-2 px-1.5 shrink-0" style="color: var(--danger-pink);">
                         Lock
                     </button>
                 </div>
@@ -604,23 +792,23 @@
                 <form id="adminSettingsForm" onsubmit="saveAdminSettings(event)" class="p-4 space-y-3 max-h-[65vh] overflow-y-auto">
                     <div>
                         <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Store Name</label>
-                        <input type="text" id="editStoreName" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                        <input type="text" id="editStoreName" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                     </div>
 
                     <div>
                         <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Store Bio</label>
-                        <textarea id="editStoreBio" rows="2" class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] resize-none"></textarea>
+                        <textarea id="editStoreBio" rows="2" class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)] resize-none"></textarea>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <div>
                             <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Profile Image</label>
-                            <input type="file" id="editAvatarFile" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--folder-tab-text)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border border-[var(--folder-border)] p-1" onchange="handleAdminAvatarUpload(event)">
+                            <input type="file" id="editAvatarFile" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--text-primary)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border-[1.5px] border-[var(--folder-border)] p-1" onchange="handleAdminAvatarUpload(event)">
                             <input type="hidden" id="editAvatarUrl">
                         </div>
                         <div>
                             <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Banner Image</label>
-                            <input type="file" id="editBannerFile" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--folder-tab-text)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border border-[var(--folder-border)] p-1" onchange="handleAdminBannerUpload(event)">
+                            <input type="file" id="editBannerFile" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--text-primary)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border-[1.5px] border-[var(--folder-border)] p-1" onchange="handleAdminBannerUpload(event)">
                             <input type="hidden" id="editBannerUrl">
                         </div>
                     </div>
@@ -628,17 +816,17 @@
                     <div class="grid grid-cols-2 gap-2.5">
                         <div>
                             <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">Facebook URL</label>
-                            <input type="url" id="editFacebookUrl" placeholder="https://facebook.com/..." class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                            <input type="url" id="editFacebookUrl" placeholder="https://facebook.com/..." class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                         </div>
                         <div>
                             <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">LINE URL</label>
-                            <input type="url" id="editLineUrl" placeholder="https://line.me/..." class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                            <input type="url" id="editLineUrl" placeholder="https://line.me/..." class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">Admin PIN (สำหรับปลดล็อกหน้านี้)</label>
-                        <input type="text" id="editAdminPin" maxlength="20" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                        <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">Admin PIN (รหัสปลดล็อก)</label>
+                        <input type="text" id="editAdminPin" maxlength="20" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                     </div>
 
                     <div class="flex items-center justify-end pt-2">
@@ -649,24 +837,99 @@
                     </div>
                 </form>
 
-                <!-- Sub-tab B: Manage Payment Accounts -->
+                <!-- Sub-tab B: Theme Color & Music File Upload (ADMIN ONLY - Brown & Pink) -->
+                <div id="adminAppearanceTab" class="hidden p-4 space-y-4 max-h-[65vh] overflow-y-auto">
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-medium text-[var(--text-primary)] flex items-center gap-1.5">
+                                <i class="fa-solid fa-swatchbook text-[11px]" style="color: var(--accent-primary);"></i>
+                                <span>โทนสีน้ำตาล-ชมพู (แอดมินเท่านั้น)</span>
+                            </label>
+                            <button type="button" onclick="resetThemeToDefault()" class="text-[10px] text-[var(--text-secondary)] hover:underline">
+                                ค่าเริ่มต้น
+                            </button>
+                        </div>
+
+                        <!-- Preset Brown & Pink Swatches Grid -->
+                        <div id="adminPresetThemesGrid" class="grid grid-cols-2 gap-2">
+                            <!-- Populated via JS -->
+                        </div>
+
+                        <!-- Custom Color Picker -->
+                        <div class="flex items-center justify-between gap-2 bg-[var(--bg-surface)] px-3.5 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)]">
+                            <label for="adminCustomColorInput" class="flex items-center gap-2.5 cursor-pointer flex-1 min-w-0">
+                                <input type="color" id="adminCustomColorInput" value="#E57A9B" oninput="applyCustomHexColor(this.value)" class="mac-color-input w-7 h-7 shrink-0">
+                                <div class="min-w-0">
+                                    <span class="text-xs font-medium text-[var(--text-primary)] block leading-tight">เลือกสีเอง (Custom Color)</span>
+                                    <span id="adminCustomHexLabel" class="text-[10px] font-mono text-[var(--text-muted)] uppercase">#E57A9B</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Custom BGM File Upload & Track Settings -->
+                    <div class="pt-3 border-t-[1.5px] border-dashed border-[var(--folder-border)] space-y-2.5">
+                        <label class="text-xs font-medium text-[var(--text-primary)] flex items-center gap-1.5">
+                            <i class="fa-solid fa-music text-[11px]" style="color: var(--accent-primary);"></i>
+                            <span>เพลงประจำร้าน (เลือกไฟล์เพลงจากเครื่อง)</span>
+                        </label>
+
+                        <!-- File Upload Picker -->
+                        <label class="btn-soft cursor-pointer w-full bg-[var(--bg-surface)] hover:bg-[var(--accent-soft)] border-[1.5px] border-dashed border-[var(--accent-border)] rounded-xl px-3.5 py-2.5 flex items-center justify-between gap-2 transition-colors">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <span class="w-7 h-7 rounded-lg bg-[var(--accent-soft)] border border-[var(--accent-border)] flex items-center justify-center shrink-0" style="color: var(--accent-primary);">
+                                    <i class="fa-solid fa-file-audio text-xs"></i>
+                                </span>
+                                <div class="min-w-0">
+                                    <span class="text-[11px] font-medium text-[var(--text-primary)] block truncate">เลือกไฟล์เพลง (.mp3, .m4a, .wav)</span>
+                                    <span class="text-[10px] text-[var(--text-muted)] block">รองรับไฟล์เสียงจากในเครื่องโดยตรง</span>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-medium px-2.5 py-1 rounded-lg btn-primary-theme shrink-0">เลือกไฟล์</span>
+                            <input type="file" id="editCustomSongFile" accept="audio/*" class="hidden" onchange="handleAdminAudioFileUpload(event)">
+                        </label>
+
+                        <!-- Selected Uploaded Audio Pill -->
+                        <div id="uploadedAudioStatusBadge" class="hidden items-center justify-between gap-2 bg-[var(--accent-soft)] px-3 py-2 rounded-xl border-[1.5px] border-[var(--accent-border)]">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <i class="fa-solid fa-circle-check text-xs shrink-0" style="color: var(--accent-primary);"></i>
+                                <span id="uploadedAudioFileName" class="text-[11px] font-medium text-[var(--text-primary)] truncate">song.mp3</span>
+                            </div>
+                            <button type="button" onclick="clearAdminUploadedAudio()" title="ลบไฟล์เพลงนี้" class="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white border border-[var(--folder-border)] hover:opacity-80 shrink-0" style="color: var(--danger-pink);">
+                                ลบไฟล์
+                            </button>
+                        </div>
+
+                        <input type="text" id="editCustomSongTitle" placeholder="ชื่อเพลงที่จะแสดง (เช่น Strawberry Melody)" class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                        <input type="url" id="editCustomSongUrl" placeholder="หรือวางลิงก์ไฟล์เพลง MP3 URL (ถ้าไม่ใช้ไฟล์จากเครื่อง)" class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+
+                        <div class="flex justify-end pt-1">
+                            <button type="button" onclick="saveMusicAndThemeSettings()" class="btn-soft btn-primary-theme text-xs font-medium px-4 py-2 rounded-xl shadow-2xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-check text-[10px]"></i>
+                                <span>บันทึกธีมและเพลง</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-tab C: Manage Payment Accounts -->
                 <form id="adminPaymentForm" onsubmit="savePaymentAccounts(event)" class="hidden p-4 space-y-3 max-h-[65vh] overflow-y-auto">
                     <p class="text-[11px] text-[var(--text-muted)]">ตั้งค่าชื่อบัญชี รูปภาพ QR Code และช่องทางการชำระเงิน</p>
                     
                     <div>
                         <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Unified Account Name</label>
-                        <input type="text" id="editUnifiedAccountName" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                        <input type="text" id="editUnifiedAccountName" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                     </div>
 
                     <div>
                         <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Featured Payment / QR Image</label>
-                        <input type="file" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--folder-tab-text)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border border-[var(--folder-border)] p-1" onchange="handleFeaturedPaymentUpload(event)">
+                        <input type="file" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--text-primary)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border-[1.5px] border-[var(--folder-border)] p-1" onchange="handleFeaturedPaymentUpload(event)">
                         <input type="hidden" id="editFeaturedPaymentImg">
                     </div>
 
-                    <div class="flex items-center justify-between pt-2 border-t border-dashed border-[var(--folder-border)]">
+                    <div class="flex items-center justify-between pt-2 border-t-[1.5px] border-dashed border-[var(--folder-border)]">
                         <span class="text-[11px] font-medium text-[var(--text-primary)]">รายการบัญชี</span>
-                        <button type="button" onclick="addAdminPaymentField()" class="btn-soft text-[10px] font-medium px-2.5 py-1 rounded-lg bg-[var(--accent-soft)] border border-[var(--accent-border)]" style="color: var(--folder-tab-text);">
+                        <button type="button" onclick="addAdminPaymentField()" class="btn-soft text-[10px] font-medium px-2.5 py-1 rounded-lg bg-[var(--accent-soft)] border-[1.5px] border-[var(--accent-border)] text-[var(--text-primary)]">
                             + เพิ่มบัญชี
                         </button>
                     </div>
@@ -683,7 +946,7 @@
                     </div>
                 </form>
 
-                <!-- Sub-tab C: Manage Reviews -->
+                <!-- Sub-tab D: Manage Reviews -->
                 <div id="adminReviewsTab" class="hidden p-4 max-h-[65vh] overflow-y-auto space-y-2">
                     <p class="text-[11px] text-[var(--text-muted)] mb-2">ปักหมุด กดหัวใจ หรือลบรีวิว</p>
                     <div id="adminReviewsList" class="space-y-2"></div>
@@ -692,9 +955,9 @@
         </div>
     </div>
 
-    <!-- Minimal macOS HUD Toast Notification -->
+    <!-- Minimal Cocoa-Pink HUD Toast Notification -->
     <div id="toastNotification" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
-        <div class="bg-[#1F242D]/95 backdrop-blur-md text-white text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/10">
+        <div class="bg-[#593A2E]/95 backdrop-blur-md text-white text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/15">
             <i id="toastIcon" class="fa-solid fa-circle-check" style="color: var(--folder-tab);"></i>
             <span id="toastMessage">Success</span>
         </div>
@@ -702,156 +965,112 @@
 
     <script>
         // ==========================================
-        // 0. MACOS FOLDER THEME ENGINE (PRESETS + CUSTOM)
+        // 0. STRICT BROWN & PINK THEME ENGINE (ADMIN ONLY)
         // ==========================================
-        const THEME_STORAGE_KEY = 'mac_folder_store_theme_v1';
-        const DATA_STORAGE_KEY = 'mac_folder_store_standalone_data_v1';
+        const THEME_STORAGE_KEY = 'choco_pink_only_theme_v2';
+        const DATA_STORAGE_KEY = 'choco_pink_only_store_data_v2';
+        const AUDIO_DB_NAME = 'choco_pink_audio_storage_v1';
+        const AUDIO_STORE_NAME = 'bgm_tracks';
 
         const PRESET_THEMES = [
             {
-                id: 'finder-sky',
-                name: 'Finder Sky',
-                hex: '#4A90E2',
+                id: 'choco-strawberry',
+                name: 'Choco Strawberry',
+                hex: '#E57A9B',
                 vars: {
-                    '--bg-canvas': '#F3F5F8',
-                    '--bg-dot': '#DCE2EC',
+                    '--bg-canvas': '#FDF5F7',
+                    '--bg-dot': '#EED2DA',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#F9FAFC',
-                    '--bg-muted': '#F1F3F7',
-                    '--folder-tab': '#DCEBFE',
-                    '--folder-tab-text': '#275A96',
-                    '--folder-border': '#D9E2EC',
-                    '--accent-primary': '#4A90E2',
-                    '--accent-hover': '#357ABD',
+                    '--bg-surface': '#FFF9FA',
+                    '--bg-muted': '#F8EAEF',
+                    '--folder-tab': '#FADBE4',
+                    '--folder-tab-text': '#593A2E',
+                    '--folder-border': '#DFBCC7',
+                    '--accent-primary': '#E57A9B',
+                    '--accent-hover': '#CF6384',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#EBF4FF',
-                    '--accent-border': '#C4DDFB',
-                    '--text-primary': '#1F242D',
-                    '--text-secondary': '#525B6B',
-                    '--text-muted': '#8A94A6'
+                    '--accent-soft': '#FDEEF2',
+                    '--accent-border': '#F2BCCD',
+                    '--text-primary': '#593A2E',
+                    '--text-secondary': '#7F5A4D',
+                    '--text-muted': '#AA8A7F'
                 }
             },
             {
-                id: 'blossom-rose',
-                name: 'Blossom Rose',
-                hex: '#D97B96',
+                id: 'milk-cocoa-rose',
+                name: 'Milk Cocoa & Rose',
+                hex: '#B07468',
                 vars: {
-                    '--bg-canvas': '#FAF5F6',
-                    '--bg-dot': '#EEDCE1',
+                    '--bg-canvas': '#FAF3F2',
+                    '--bg-dot': '#E8D5D2',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FDF9FA',
-                    '--bg-muted': '#F7EFF1',
-                    '--folder-tab': '#F8DCE4',
-                    '--folder-tab-text': '#8C3B53',
-                    '--folder-border': '#EAD6DC',
-                    '--accent-primary': '#D97B96',
-                    '--accent-hover': '#C26480',
+                    '--bg-surface': '#FCF8F7',
+                    '--bg-muted': '#F5EAE8',
+                    '--folder-tab': '#F2DBD7',
+                    '--folder-tab-text': '#54352E',
+                    '--folder-border': '#DEC5C0',
+                    '--accent-primary': '#B07468',
+                    '--accent-hover': '#965D52',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#FCEEF2',
-                    '--accent-border': '#F2C6D3',
-                    '--text-primary': '#2E2225',
-                    '--text-secondary': '#695359',
-                    '--text-muted': '#9C858B'
+                    '--accent-soft': '#F9ECEA',
+                    '--accent-border': '#E8C7C1',
+                    '--text-primary': '#4F332D',
+                    '--text-secondary': '#75534C',
+                    '--text-muted': '#A38680'
                 }
             },
             {
-                id: 'matcha-sage',
-                name: 'Matcha Sage',
-                hex: '#6B9E78',
+                id: 'sakura-latte',
+                name: 'Sakura Latte',
+                hex: '#EC93AE',
                 vars: {
-                    '--bg-canvas': '#F3F7F4',
-                    '--bg-dot': '#DCE6DF',
+                    '--bg-canvas': '#FEF7F9',
+                    '--bg-dot': '#F2D8E0',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#F8FBF9',
-                    '--bg-muted': '#EFF4F0',
-                    '--folder-tab': '#D9ECDE',
-                    '--folder-tab-text': '#2F5E3B',
-                    '--folder-border': '#D5E3D9',
-                    '--accent-primary': '#6B9E78',
-                    '--accent-hover': '#568562',
+                    '--bg-surface': '#FFFBFD',
+                    '--bg-muted': '#FAEEF2',
+                    '--folder-tab': '#FCE2EA',
+                    '--folder-tab-text': '#634136',
+                    '--folder-border': '#E8C7D2',
+                    '--accent-primary': '#EC93AE',
+                    '--accent-hover': '#D67A96',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#EBF5EE',
-                    '--accent-border': '#C1DEC8',
-                    '--text-primary': '#1E2921',
-                    '--text-secondary': '#4E6153',
-                    '--text-muted': '#839688'
+                    '--accent-soft': '#FEF0F5',
+                    '--accent-border': '#F7CDD9',
+                    '--text-primary': '#5E3E33',
+                    '--text-secondary': '#846054',
+                    '--text-muted': '#AD8E84'
                 }
             },
             {
-                id: 'sandstone-oat',
-                name: 'Sandstone Oat',
-                hex: '#B89572',
+                id: 'dark-mocha-berry',
+                name: 'Dark Mocha Berry',
+                hex: '#C95F80',
                 vars: {
-                    '--bg-canvas': '#F8F6F2',
-                    '--bg-dot': '#E7E1D6',
+                    '--bg-canvas': '#F9F2F4',
+                    '--bg-dot': '#E6CFD6',
                     '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FCFBF8',
-                    '--bg-muted': '#F4F0E8',
-                    '--folder-tab': '#EFE3D3',
-                    '--folder-tab-text': '#6E5033',
-                    '--folder-border': '#E4DDD1',
-                    '--accent-primary': '#B89572',
-                    '--accent-hover': '#9E7C5A',
+                    '--bg-surface': '#FCF7F9',
+                    '--bg-muted': '#F4E6EB',
+                    '--folder-tab': '#F3D2DC',
+                    '--folder-tab-text': '#4A2E24',
+                    '--folder-border': '#D9B6C1',
+                    '--accent-primary': '#C95F80',
+                    '--accent-hover': '#B04969',
                     '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#F7F1E8',
-                    '--accent-border': '#E3D1BC',
-                    '--text-primary': '#2B251F',
-                    '--text-secondary': '#63594E',
-                    '--text-muted': '#968B7E'
-                }
-            },
-            {
-                id: 'lavender-mist',
-                name: 'Lavender Mist',
-                hex: '#8F82C9',
-                vars: {
-                    '--bg-canvas': '#F5F4FA',
-                    '--bg-dot': '#E1DFEE',
-                    '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FAF9FD',
-                    '--bg-muted': '#F1EFF8',
-                    '--folder-tab': '#E3DFFA',
-                    '--folder-tab-text': '#493E7D',
-                    '--folder-border': '#DDD9EC',
-                    '--accent-primary': '#8F82C9',
-                    '--accent-hover': '#7769B3',
-                    '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#F0EEFC',
-                    '--accent-border': '#CFC9F0',
-                    '--text-primary': '#22202E',
-                    '--text-secondary': '#57536B',
-                    '--text-muted': '#8B879E'
-                }
-            },
-            {
-                id: 'graphite-mono',
-                name: 'Graphite Mono',
-                hex: '#4B5563',
-                vars: {
-                    '--bg-canvas': '#F5F5F7',
-                    '--bg-dot': '#DFDFE3',
-                    '--bg-window': '#FFFFFF',
-                    '--bg-surface': '#FAFAFB',
-                    '--bg-muted': '#EFEFF2',
-                    '--folder-tab': '#E5E7EB',
-                    '--folder-tab-text': '#374151',
-                    '--folder-border': '#E2E4E9',
-                    '--accent-primary': '#4B5563',
-                    '--accent-hover': '#374151',
-                    '--accent-on-primary': '#FFFFFF',
-                    '--accent-soft': '#F3F4F6',
-                    '--accent-border': '#D1D5DB',
-                    '--text-primary': '#1D1D1F',
-                    '--text-secondary': '#515154',
-                    '--text-muted': '#86868B'
+                    '--accent-soft': '#FCEBF0',
+                    '--accent-border': '#EEBFD0',
+                    '--text-primary': '#4A2E24',
+                    '--text-secondary': '#704E42',
+                    '--text-muted': '#9C7E73'
                 }
             }
         ];
 
-        let currentThemeState = { mode: 'preset', presetId: 'finder-sky', customHex: '#4A90E2' };
+        let currentThemeState = { mode: 'preset', presetId: 'choco-strawberry', customHex: '#E57A9B' };
 
         function initThemeSystem() {
-            renderPresetThemeButtons();
+            renderAdminPresetThemeButtons();
             try {
                 const saved = localStorage.getItem(THEME_STORAGE_KEY);
                 if (saved) {
@@ -865,16 +1084,12 @@
                     }
                 }
             } catch (e) {}
-            applyPresetTheme('finder-sky', false);
+            applyPresetTheme('choco-strawberry', false);
         }
 
-        function toggleThemePopover() {
-            const panel = document.getElementById('themeCustomizerPanel');
-            panel.classList.toggle('hidden');
-        }
-
-        function renderPresetThemeButtons() {
-            const grid = document.getElementById('presetThemesGrid');
+        function renderAdminPresetThemeButtons() {
+            const grid = document.getElementById('adminPresetThemesGrid');
+            if (!grid) return;
             grid.replaceChildren();
 
             PRESET_THEMES.forEach(theme => {
@@ -882,13 +1097,13 @@
                 btn.type = 'button';
                 btn.dataset.themeId = theme.id;
                 btn.onclick = () => applyPresetTheme(theme.id, true);
-                btn.className = 'preset-theme-btn btn-soft flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-[var(--folder-border)] text-left transition-all';
+                btn.className = 'admin-preset-btn btn-soft flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border-[1.5px] border-[var(--folder-border)] text-left transition-all';
 
                 const swatch = document.createElement('span');
-                swatch.className = 'w-4 h-4 rounded-md shrink-0 border border-black/10 relative overflow-hidden';
+                swatch.className = 'w-5 h-5 rounded-lg shrink-0 border border-[#593A2E]/15 relative overflow-hidden';
                 swatch.style.backgroundColor = theme.vars['--folder-tab'];
                 const innerDot = document.createElement('span');
-                innerDot.className = 'w-2 h-2 rounded-full absolute bottom-0.5 right-0.5';
+                innerDot.className = 'w-2.5 h-2.5 rounded-full absolute bottom-0.5 right-0.5';
                 innerDot.style.backgroundColor = theme.hex;
                 swatch.appendChild(innerDot);
 
@@ -909,9 +1124,12 @@
             });
 
             currentThemeState = { mode: 'preset', presetId: theme.id, customHex: theme.hex };
-            document.getElementById('customThemeColorInput').value = theme.hex;
-            document.getElementById('customHexLabel').textContent = theme.hex.toUpperCase();
-            updateThemeSelectionUI(theme.id);
+            const colorInput = document.getElementById('adminCustomColorInput');
+            const hexLabel = document.getElementById('adminCustomHexLabel');
+            if (colorInput) colorInput.value = theme.hex;
+            if (hexLabel) hexLabel.textContent = theme.hex.toUpperCase();
+            updateAdminThemeSelectionUI(theme.id);
+            updateVolumeSliderFill();
 
             if (saveToStorage) {
                 try {
@@ -941,29 +1159,29 @@
             if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
             const base = hexToRgb(hex);
             const white = { r: 255, g: 255, b: 255 };
-            const black = { r: 20, g: 24, b: 32 };
-            const neutralBg = { r: 245, g: 246, b: 248 };
+            const cocoa = { r: 89, g: 58, b: 46 };
+            const neutralBg = { r: 253, g: 245, b: 247 };
 
             const luminance = (0.299 * base.r + 0.587 * base.g + 0.114 * base.b) / 255;
-            const onPrimary = luminance > 0.68 ? '#1F242D' : '#FFFFFF';
+            const onPrimary = luminance > 0.7 ? '#593A2E' : '#FFFFFF';
 
             const generatedVars = {
-                '--bg-canvas': mixColors(base, neutralBg, 0.06),
-                '--bg-dot': mixColors(base, { r: 220, g: 224, b: 230 }, 0.14),
+                '--bg-canvas': mixColors(base, neutralBg, 0.08),
+                '--bg-dot': mixColors(base, { r: 238, g: 210, b: 218 }, 0.22),
                 '--bg-window': '#FFFFFF',
-                '--bg-surface': mixColors(base, white, 0.035),
-                '--bg-muted': mixColors(base, { r: 240, g: 242, b: 245 }, 0.08),
-                '--folder-tab': mixColors(base, white, 0.24),
-                '--folder-tab-text': mixColors(base, black, 0.52),
-                '--folder-border': mixColors(base, { r: 218, g: 223, b: 230 }, 0.22),
+                '--bg-surface': mixColors(base, white, 0.045),
+                '--bg-muted': mixColors(base, { r: 248, g: 234, b: 239 }, 0.12),
+                '--folder-tab': mixColors(base, white, 0.26),
+                '--folder-tab-text': '#593A2E',
+                '--folder-border': mixColors(base, { r: 223, g: 188, b: 199 }, 0.28),
                 '--accent-primary': hex,
-                '--accent-hover': mixColors(base, black, 0.85),
+                '--accent-hover': mixColors(base, cocoa, 0.85),
                 '--accent-on-primary': onPrimary,
-                '--accent-soft': mixColors(base, white, 0.12),
-                '--accent-border': mixColors(base, white, 0.34),
-                '--text-primary': '#1F242D',
-                '--text-secondary': '#525B6B',
-                '--text-muted': '#8A94A6'
+                '--accent-soft': mixColors(base, white, 0.14),
+                '--accent-border': mixColors(base, white, 0.35),
+                '--text-primary': '#593A2E',
+                '--text-secondary': '#7F5A4D',
+                '--text-muted': '#AA8A7F'
             };
 
             const root = document.documentElement;
@@ -972,9 +1190,12 @@
             });
 
             currentThemeState = { mode: 'custom', presetId: null, customHex: hex };
-            document.getElementById('customThemeColorInput').value = hex;
-            document.getElementById('customHexLabel').textContent = hex.toUpperCase();
-            updateThemeSelectionUI(null);
+            const colorInput = document.getElementById('adminCustomColorInput');
+            const hexLabel = document.getElementById('adminCustomHexLabel');
+            if (colorInput) colorInput.value = hex;
+            if (hexLabel) hexLabel.textContent = hex.toUpperCase();
+            updateAdminThemeSelectionUI(null);
+            updateVolumeSliderFill();
 
             if (saveToStorage) {
                 try {
@@ -983,8 +1204,8 @@
             }
         }
 
-        function updateThemeSelectionUI(activePresetId) {
-            document.querySelectorAll('.preset-theme-btn').forEach(btn => {
+        function updateAdminThemeSelectionUI(activePresetId) {
+            document.querySelectorAll('.admin-preset-btn').forEach(btn => {
                 if (btn.dataset.themeId === activePresetId) {
                     btn.style.borderColor = 'var(--accent-primary)';
                     btn.style.backgroundColor = 'var(--accent-soft)';
@@ -996,23 +1217,92 @@
         }
 
         function resetThemeToDefault() {
-            applyPresetTheme('finder-sky', true);
-            showToast('รีเซ็ตสีธีมเป็นค่าเริ่มต้นแล้ว');
+            applyPresetTheme('choco-strawberry', true);
+            showToast('รีเซ็ตสีธีมเป็น น้ำตาล-ชมพู แล้ว');
         }
 
         // ==========================================
-        // 1. STANDALONE LOCAL STATE (NO EXTERNAL DB)
+        // 1. INDEXEDDB AUDIO PERSISTENCE (FOR LOCAL AUDIO FILES)
+        // ==========================================
+        let uploadedAudioObjectUrl = '';
+        let uploadedAudioFileName = '';
+        let stagedAudioFile = null; // Pending file chosen in Admin before clicking Save
+        let shouldClearUploadedAudio = false;
+
+        function openAudioDB() {
+            return new Promise((resolve, reject) => {
+                if (!window.indexedDB) {
+                    reject(new Error('IndexedDB not supported'));
+                    return;
+                }
+                const req = indexedDB.open(AUDIO_DB_NAME, 1);
+                req.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(AUDIO_STORE_NAME)) {
+                        db.createObjectStore(AUDIO_STORE_NAME);
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        async function saveAudioBlobToDB(blob, fileName) {
+            try {
+                const db = await openAudioDB();
+                return new Promise((resolve, reject) => {
+                    const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');
+                    tx.objectStore(AUDIO_STORE_NAME).put({ blob, fileName }, 'custom_bgm');
+                    tx.oncomplete = () => resolve(true);
+                    tx.onerror = () => reject(tx.error);
+                });
+            } catch (e) {
+                return false;
+            }
+        }
+
+        async function loadAudioBlobFromDB() {
+            try {
+                const db = await openAudioDB();
+                return new Promise((resolve) => {
+                    const tx = db.transaction(AUDIO_STORE_NAME, 'readonly');
+                    const req = tx.objectStore(AUDIO_STORE_NAME).get('custom_bgm');
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => resolve(null);
+                });
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function deleteAudioBlobFromDB() {
+            try {
+                const db = await openAudioDB();
+                return new Promise((resolve) => {
+                    const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');
+                    tx.objectStore(AUDIO_STORE_NAME).delete('custom_bgm');
+                    tx.oncomplete = () => resolve(true);
+                    tx.onerror = () => resolve(false);
+                });
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // ==========================================
+        // 2. STANDALONE LOCAL STATE
         // ==========================================
         const DEFAULT_STATE = {
             storeSettings: {
-                store_name: 'My Minimal Store',
+                store_name: 'Sweet Choco Studio',
                 store_bio: 'Welcome to our credit & payment folder.',
                 avatar_url: '',
                 banner_url: '',
                 facebook_url: 'https://facebook.com',
                 line_url: 'https://line.me',
+                song_title: '',
                 song_url: '',
-                unified_account_name: 'Account Name',
+                unified_account_name: 'Sweet Choco Official',
                 featured_payment_image: '',
                 admin_pin: '1234'
             },
@@ -1049,9 +1339,7 @@
                         reviews = parsed.reviews;
                     }
                 }
-            } catch (e) {
-                console.warn('Local storage unavailable, using in-memory session state.');
-            }
+            } catch (e) {}
         }
 
         function persistLocalData() {
@@ -1062,37 +1350,312 @@
                     reviews
                 }));
             } catch (e) {
-                showToast('บันทึกชั่วคราวในเซสชัน (พื้นที่จัดเก็บเบราว์เซอร์เต็ม)');
+                showToast('บันทึกชั่วคราวในเซสชัน');
             }
         }
 
         // ==========================================
-        // 2. INITIALIZATION
+        // 3. INITIALIZATION & LIVE CALENDAR ICON
         // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             initThemeSystem();
             loadLocalData();
+            updateLiveCalendarIcon();
             setRating(5);
             renderStoreProfile();
+            setupAudioPlayerEvents();
+
+            const savedAudio = await loadAudioBlobFromDB();
+            if (savedAudio && savedAudio.blob) {
+                uploadedAudioObjectUrl = URL.createObjectURL(savedAudio.blob);
+                uploadedAudioFileName = savedAudio.fileName || 'Uploaded Track';
+            }
+
+            updateWelcomePlayerUI();
+            updateVolumeSliderFill();
             renderPaymentAccounts();
             renderReviews();
         });
 
-        function createStatusMessage(text) {
-            const div = document.createElement('div');
-            div.className = 'text-center py-6 bg-white rounded-xl border border-dashed border-[var(--folder-border)] text-[var(--text-muted)]';
-            const p = document.createElement('p');
-            p.className = 'text-xs';
-            p.textContent = text;
-            div.appendChild(p);
-            return div;
+        function updateLiveCalendarIcon() {
+            const now = new Date();
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const monthEl = document.getElementById('calMonthLabel');
+            const dayEl = document.getElementById('calDayLabel');
+            if (monthEl) monthEl.textContent = months[now.getMonth()];
+            if (dayEl) dayEl.textContent = String(now.getDate());
         }
 
         // ==========================================
-        // 3. RENDERING FUNCTIONS (Safe DOM API)
+        // 4. WELCOME NOW-PLAYING POPUP & AUDIO ENGINE
+        // ==========================================
+        const BUILTIN_PLAYLIST = [
+            {
+                id: 'track-1',
+                title: 'Strawberry Music Box',
+                durationLabel: '-1:12',
+                type: 'synth',
+                tempo: 620,
+                notes: [523.25, 659.25, 783.99, 987.77, 880.00, 783.99, 659.25, 587.33, 523.25, 659.25, 783.99, 659.25, 587.33, 493.88, 523.25, 0]
+            },
+            {
+                id: 'track-2',
+                title: 'Caramel Latte Waltz',
+                durationLabel: '-1:28',
+                type: 'synth',
+                tempo: 560,
+                notes: [659.25, 587.33, 523.25, 587.33, 659.25, 659.25, 659.25, 0, 587.33, 587.33, 587.33, 0, 659.25, 783.99, 783.99, 0]
+            },
+            {
+                id: 'track-3',
+                title: 'Pink Vanilla Lullaby',
+                durationLabel: '-1:05',
+                type: 'synth',
+                tempo: 680,
+                notes: [783.99, 659.25, 587.33, 523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33, 659.25, 523.25, 0, 523.25, 0]
+            }
+        ];
+
+        let isPlaying = false;
+        let currentTrackIndex = 0;
+        let masterVolume = 0.8;
+        let audioCtx = null;
+        let synthInterval = null;
+        let synthStep = 0;
+
+        function formatSeconds(sec) {
+            if (!isFinite(sec) || sec < 0) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${String(s).padStart(2, '0')}`;
+        }
+
+        function setupAudioPlayerEvents() {
+            const audioEl = document.getElementById('customAudioPlayer');
+            if (!audioEl) return;
+
+            audioEl.addEventListener('loadedmetadata', () => {
+                if (isFinite(audioEl.duration) && audioEl.duration > 0) {
+                    const remainEl = document.getElementById('welcomeRemainTime');
+                    if (remainEl) remainEl.textContent = `-${formatSeconds(audioEl.duration)}`;
+                }
+            });
+
+            audioEl.addEventListener('timeupdate', () => {
+                if (isFinite(audioEl.duration) && audioEl.duration > 0) {
+                    const elapsed = audioEl.currentTime;
+                    const remain = Math.max(0, audioEl.duration - elapsed);
+                    const pct = Math.min(100, Math.max(0, (elapsed / audioEl.duration) * 100));
+
+                    const elapsedEl = document.getElementById('welcomeElapsedTime');
+                    const remainEl = document.getElementById('welcomeRemainTime');
+                    const fillEl = document.getElementById('welcomeProgressFill');
+
+                    if (elapsedEl) elapsedEl.textContent = formatSeconds(elapsed);
+                    if (remainEl) remainEl.textContent = `-${formatSeconds(remain)}`;
+                    if (fillEl) fillEl.style.width = `${pct}%`;
+                }
+            });
+        }
+
+        function getActivePlaylist() {
+            const list = [...BUILTIN_PLAYLIST];
+            if (uploadedAudioObjectUrl) {
+                const cleanFallbackName = uploadedAudioFileName.replace(/\.[^/.]+$/, '') || 'Store Uploaded BGM';
+                list.unshift({
+                    id: 'uploaded-file-track',
+                    title: (storeSettings.song_title && storeSettings.song_title.trim()) || cleanFallbackName,
+                    durationLabel: '-1:30',
+                    type: 'audio',
+                    url: uploadedAudioObjectUrl
+                });
+            } else if (storeSettings.song_url && storeSettings.song_url.trim() !== '') {
+                list.unshift({
+                    id: 'custom-track',
+                    title: (storeSettings.song_title && storeSettings.song_title.trim()) || 'Store Featured BGM',
+                    durationLabel: '-1:30',
+                    type: 'audio',
+                    url: storeSettings.song_url.trim()
+                });
+            }
+            return list;
+        }
+
+        function updateWelcomePlayerUI() {
+            const list = getActivePlaylist();
+            if (currentTrackIndex >= list.length) currentTrackIndex = 0;
+            const current = list[currentTrackIndex];
+
+            const titleEl = document.getElementById('welcomeTrackTitle');
+            const remainEl = document.getElementById('welcomeRemainTime');
+            if (titleEl) titleEl.textContent = current.title;
+            if (remainEl) remainEl.textContent = current.durationLabel || '-1:06';
+        }
+
+        function handleVolumeChange(val) {
+            masterVolume = Math.max(0, Math.min(1, Number(val) / 100));
+            const audioEl = document.getElementById('customAudioPlayer');
+            if (audioEl) audioEl.volume = masterVolume;
+            updateVolumeSliderFill();
+        }
+
+        function updateVolumeSliderFill() {
+            const slider = document.getElementById('welcomeVolumeSlider');
+            if (!slider) return;
+            const pct = Number(slider.value);
+            slider.style.background = `linear-gradient(to right, var(--text-primary) 0%, var(--text-primary) ${pct}%, var(--folder-border) ${pct}%, var(--folder-border) 100%)`;
+        }
+
+        function startMusicAndEnter() {
+            playTrackAtIndex(currentTrackIndex);
+            closeWelcomePopup();
+        }
+
+        function closeWelcomePopup() {
+            const modal = document.getElementById('welcomePopupModal');
+            if (modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 280);
+            }
+            switchTab('reviews');
+        }
+
+        function toggleMusicPlay() {
+            if (isPlaying) {
+                stopMusic();
+            } else {
+                playTrackAtIndex(currentTrackIndex);
+            }
+        }
+
+        function prevTrack() {
+            const list = getActivePlaylist();
+            currentTrackIndex = (currentTrackIndex - 1 + list.length) % list.length;
+            updateWelcomePlayerUI();
+            if (isPlaying) {
+                playTrackAtIndex(currentTrackIndex);
+            }
+        }
+
+        function nextTrack() {
+            const list = getActivePlaylist();
+            currentTrackIndex = (currentTrackIndex + 1) % list.length;
+            updateWelcomePlayerUI();
+            if (isPlaying) {
+                playTrackAtIndex(currentTrackIndex);
+            }
+        }
+
+        function playTrackAtIndex(index) {
+            const list = getActivePlaylist();
+            currentTrackIndex = index;
+            const track = list[currentTrackIndex];
+            updateWelcomePlayerUI();
+
+            stopMusic(false);
+
+            if (track.type === 'audio' && track.url) {
+                const audioEl = document.getElementById('customAudioPlayer');
+                audioEl.src = track.url;
+                audioEl.volume = masterVolume;
+                audioEl.play().then(() => {
+                    setPlayerUIState(true);
+                }).catch(() => {
+                    startBuiltInSynthTrack(BUILTIN_PLAYLIST[0]);
+                });
+            } else {
+                startBuiltInSynthTrack(track);
+            }
+        }
+
+        function startBuiltInSynthTrack(track) {
+            try {
+                if (!audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                synthStep = 0;
+                setPlayerUIState(true);
+                playMusicBoxNote(track.notes);
+
+                synthInterval = setInterval(() => {
+                    playMusicBoxNote(track.notes);
+                }, track.tempo || 620);
+            } catch (err) {
+                showToast('เบราว์เซอร์บล็อกการเล่นเสียงอัตโนมัติ');
+            }
+        }
+
+        function playMusicBoxNote(notesArray) {
+            if (!audioCtx || !isPlaying) return;
+            const freq = notesArray[synthStep % notesArray.length];
+            synthStep++;
+
+            if (!freq || freq === 0 || masterVolume <= 0.01) return;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            const peakGain = Math.max(0.002, 0.055 * masterVolume);
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(peakGain, audioCtx.currentTime + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.58);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.6);
+        }
+
+        function stopMusic(updateUI = true) {
+            const audioEl = document.getElementById('customAudioPlayer');
+            audioEl.pause();
+
+            if (synthInterval) {
+                clearInterval(synthInterval);
+                synthInterval = null;
+            }
+            if (updateUI) {
+                setPlayerUIState(false);
+            }
+        }
+
+        function setPlayerUIState(playing) {
+            isPlaying = playing;
+            const speakerIcon = document.getElementById('floatingSpeakerIcon');
+            const speakerText = document.getElementById('floatingSpeakerText');
+            const eqWave = document.getElementById('floatingEqWave');
+
+            if (playing) {
+                speakerIcon.className = 'fa-solid fa-volume-high text-sm';
+                speakerText.textContent = 'เปิดเพลง';
+                eqWave.classList.remove('hidden');
+                eqWave.classList.add('flex', 'eq-playing');
+            } else {
+                speakerIcon.className = 'fa-solid fa-volume-xmark text-sm';
+                speakerText.textContent = 'ปิดเพลง';
+                eqWave.classList.add('hidden');
+                eqWave.classList.remove('flex', 'eq-playing');
+            }
+        }
+
+        // ==========================================
+        // 5. RENDERING FUNCTIONS (Safe DOM API)
         // ==========================================
         function renderStoreProfile() {
-            document.getElementById('storeNameDisplay').textContent = storeSettings.store_name || 'My Minimal Store';
+            const name = storeSettings.store_name || 'Sweet Choco Studio';
+            document.getElementById('storeNameDisplay').textContent = name;
+            document.getElementById('welcomeStoreSubtitle').textContent = name;
+            document.getElementById('mailRecipientName').textContent = name;
             document.getElementById('storeBioDisplay').textContent = storeSettings.store_bio || '';
 
             document.getElementById('contactFacebookLink').href = storeSettings.facebook_url || 'https://facebook.com';
@@ -1108,28 +1671,32 @@
 
             const profileImg = document.getElementById('profileImage');
             const avatarFallback = document.getElementById('avatarFallback');
+            const welcomeAlbumImg = document.getElementById('welcomeAlbumImg');
+            const welcomeAlbumIcon = document.getElementById('welcomeAlbumIcon');
+
             if (storeSettings.avatar_url && storeSettings.avatar_url.trim() !== '') {
-                profileImg.src = storeSettings.avatar_url.trim();
+                const url = storeSettings.avatar_url.trim();
+                profileImg.src = url;
                 profileImg.classList.remove('hidden');
                 avatarFallback.classList.add('hidden');
-            } else {
-                handleAvatarError();
-            }
 
-            const audioEl = document.getElementById('customAudioPlayer');
-            if (storeSettings.song_url && storeSettings.song_url.trim() !== '') {
-                if (audioEl.src !== storeSettings.song_url.trim()) {
-                    stopMusic();
-                    audioEl.src = storeSettings.song_url.trim();
+                if (welcomeAlbumImg) {
+                    welcomeAlbumImg.src = url;
+                    welcomeAlbumImg.classList.remove('hidden');
+                    welcomeAlbumIcon.classList.add('hidden');
                 }
             } else {
-                audioEl.removeAttribute('src');
+                handleAvatarError();
             }
         }
 
         function handleAvatarError() {
             document.getElementById('profileImage').classList.add('hidden');
             document.getElementById('avatarFallback').classList.remove('hidden');
+            const welcomeAlbumImg = document.getElementById('welcomeAlbumImg');
+            const welcomeAlbumIcon = document.getElementById('welcomeAlbumIcon');
+            if (welcomeAlbumImg) welcomeAlbumImg.classList.add('hidden');
+            if (welcomeAlbumIcon) welcomeAlbumIcon.classList.remove('hidden');
         }
 
         function switchTab(tabName) {
@@ -1139,8 +1706,8 @@
             const btnRev = document.getElementById('navReviewsTab');
             const btnPay = document.getElementById('navPaymentTab');
 
-            const activeClasses = 'flex-1 py-2 text-xs font-medium rounded-lg bg-white text-[var(--text-primary)] shadow-2xs border border-[var(--folder-border)]/60 transition-all flex items-center justify-center gap-1.5';
-            const inactiveClasses = 'flex-1 py-2 text-xs font-medium rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all flex items-center justify-center gap-1.5';
+            const activeClasses = 'flex-1 py-2 text-xs font-medium rounded-xl bg-white text-[var(--text-primary)] shadow-2xs border-[1.5px] border-[var(--folder-border)] transition-all flex items-center justify-center gap-1.5';
+            const inactiveClasses = 'flex-1 py-2 text-xs font-medium rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all flex items-center justify-center gap-1.5';
 
             if (tabName === 'reviews') {
                 revTab.classList.remove('hidden');
@@ -1170,16 +1737,17 @@
                 const img = document.createElement('img');
                 img.src = storeSettings.featured_payment_image.trim();
                 img.alt = 'Featured Payment QR';
-                img.className = 'w-full h-auto max-h-[340px] object-contain rounded-xl';
+                img.className = 'w-full h-auto max-h-[340px] object-contain rounded-xl cursor-zoom-in';
+                img.onclick = () => openQuickLook(img.src);
                 imgContainer.appendChild(img);
             } else {
                 const placeholder = document.createElement('div');
-                placeholder.className = 'flex flex-col items-center justify-center text-[var(--text-muted)] text-[11px] py-10';
+                placeholder.className = 'flex flex-col items-center justify-center text-[var(--text-muted)] text-[11px] py-9';
                 const icon = document.createElement('i');
-                icon.className = 'fa-regular fa-qrcode text-2xl mb-1.5';
+                icon.className = 'fa-solid fa-qrcode text-2xl mb-1.5';
                 icon.style.color = 'var(--accent-primary)';
                 const span = document.createElement('span');
-                span.textContent = 'ยังไม่มีรูปภาพ QR Code (อัปโหลดได้ที่ปุ่มล็อกมุมขวาบน)';
+                span.textContent = 'ยังไม่มีรูปภาพ QR Code (อัปโหลดได้ที่ปุ่มแม่กุญแจมุมขวาบน)';
                 placeholder.append(icon, span);
                 imgContainer.appendChild(placeholder);
             }
@@ -1188,13 +1756,16 @@
             listContainer.replaceChildren();
 
             if (paymentAccounts.length === 0) {
-                listContainer.appendChild(createStatusMessage('ยังไม่มีข้อมูลบัญชีชำระเงิน'));
+                const empty = document.createElement('div');
+                empty.className = 'text-center py-6 bg-white rounded-xl border-[1.5px] border-dashed border-[var(--folder-border)] text-xs text-[var(--text-muted)]';
+                empty.textContent = 'ยังไม่มีข้อมูลบัญชีชำระเงิน';
+                listContainer.appendChild(empty);
                 return;
             }
 
             paymentAccounts.forEach(acc => {
                 const card = document.createElement('div');
-                card.className = 'bg-white px-4 py-3 rounded-xl border border-[var(--folder-border)] flex items-center justify-between gap-3';
+                card.className = 'bg-white px-4 py-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-between gap-3';
 
                 const infoDiv = document.createElement('div');
                 infoDiv.className = 'min-w-0';
@@ -1214,8 +1785,7 @@
                     const copyBtn = document.createElement('button');
                     copyBtn.type = 'button';
                     copyBtn.title = 'คัดลอกเลขบัญชี';
-                    copyBtn.className = 'btn-soft w-8 h-8 rounded-lg bg-[var(--accent-soft)] border border-[var(--accent-border)] flex items-center justify-center text-xs shrink-0';
-                    copyBtn.style.color = 'var(--folder-tab-text)';
+                    copyBtn.className = 'btn-soft w-8 h-8 rounded-xl bg-[var(--accent-soft)] border-[1.5px] border-[var(--accent-border)] flex items-center justify-center text-xs shrink-0 text-[var(--text-primary)]';
                     copyBtn.onclick = () => {
                         navigator.clipboard.writeText(acc.account_number.trim()).then(() => {
                             showToast(`คัดลอก ${acc.title} แล้ว`);
@@ -1265,12 +1835,13 @@
 
             if (filteredReviews.length === 0) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'text-center py-8 bg-white rounded-xl border border-dashed border-[var(--folder-border)]';
+                emptyBox.className = 'text-center py-8 bg-white rounded-2xl border-[1.5px] border-dashed border-[var(--folder-border)]';
                 const icon = document.createElement('i');
-                icon.className = 'fa-regular fa-folder-open text-xl text-[var(--text-muted)] mb-1.5';
+                icon.className = 'fa-regular fa-folder-open text-xl mb-1.5';
+                icon.style.color = 'var(--accent-primary)';
                 const p = document.createElement('p');
                 p.className = 'text-xs text-[var(--text-muted)]';
-                p.textContent = 'ยังไม่มีรีวิวในโฟลเดอร์นี้';
+                p.textContent = 'ยังไม่มีข้อความรีวิวในโฟลเดอร์นี้';
                 emptyBox.append(icon, p);
                 listEl.appendChild(emptyBox);
                 return;
@@ -1278,10 +1849,9 @@
 
             filteredReviews.forEach(rev => {
                 const article = document.createElement('article');
-                article.className = 'bg-white transition-all border rounded-2xl p-3.5 shadow-2xs';
+                article.className = 'bg-white transition-all border-[1.5px] rounded-2xl p-3.5 shadow-2xs';
                 article.style.borderColor = rev.pinned ? 'var(--accent-primary)' : 'var(--folder-border)';
 
-                // Top Header Row
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'flex items-start justify-between gap-2 mb-1.5';
 
@@ -1289,9 +1859,8 @@
                 leftInfo.className = 'flex items-center gap-2.5 min-w-0';
 
                 const avatarIconBox = document.createElement('div');
-                avatarIconBox.className = 'w-7 h-7 rounded-xl flex items-center justify-center text-[11px] font-medium shrink-0 border border-[var(--accent-border)]';
+                avatarIconBox.className = 'w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-medium shrink-0 border-[1.5px] border-[var(--accent-border)] text-[var(--text-primary)]';
                 avatarIconBox.style.backgroundColor = 'var(--accent-soft)';
-                avatarIconBox.style.color = 'var(--folder-tab-text)';
                 const userIcon = document.createElement('i');
                 userIcon.className = 'fa-solid fa-user text-[10px]';
                 avatarIconBox.appendChild(userIcon);
@@ -1309,11 +1878,11 @@
 
                 if (rev.pinned) {
                     const pinBadge = document.createElement('span');
-                    pinBadge.className = 'inline-flex items-center gap-1 text-[9px] font-medium px-2 py-0.5 rounded-md border border-[var(--accent-border)]';
+                    pinBadge.className = 'inline-flex items-center gap-1 text-[9px] font-medium px-2 py-0.5 rounded-md border-[1.5px] border-[var(--accent-border)] text-[var(--text-primary)]';
                     pinBadge.style.backgroundColor = 'var(--accent-soft)';
-                    pinBadge.style.color = 'var(--folder-tab-text)';
                     const pinIcon = document.createElement('i');
                     pinIcon.className = 'fa-solid fa-thumbtack text-[8px]';
+                    pinIcon.style.color = 'var(--accent-primary)';
                     const pinText = document.createElement('span');
                     pinText.textContent = 'Pinned';
                     pinBadge.append(pinIcon, pinText);
@@ -1327,9 +1896,8 @@
                 nameDateBox.append(nameRow, dateSpan);
                 leftInfo.append(avatarIconBox, nameDateBox);
 
-                // Rating Hearts Pill
                 const heartsBox = document.createElement('div');
-                heartsBox.className = 'flex items-center gap-0.5 shrink-0 bg-[var(--bg-surface)] px-2 py-1 rounded-lg border border-[var(--folder-border)]';
+                heartsBox.className = 'flex items-center gap-0.5 shrink-0 bg-[var(--bg-surface)] px-2 py-1 rounded-lg border-[1.5px] border-[var(--folder-border)]';
                 for (let i = 1; i <= 5; i++) {
                     const hIcon = document.createElement('i');
                     if (i <= Number(rev.rating)) {
@@ -1344,38 +1912,31 @@
                 headerDiv.append(leftInfo, heartsBox);
                 article.appendChild(headerDiv);
 
-                // Comment Paragraph
                 const commentP = document.createElement('p');
                 commentP.className = 'text-xs text-[var(--text-secondary)] leading-relaxed pl-9 break-words';
                 commentP.textContent = rev.comment;
                 article.appendChild(commentP);
 
-                // Image Attachment
                 if (rev.image_url && rev.image_url.trim() !== '') {
                     const imgWrap = document.createElement('div');
                     imgWrap.className = 'mt-2.5 pl-9';
-                    const link = document.createElement('a');
-                    link.href = rev.image_url;
-                    link.target = '_blank';
                     const img = document.createElement('img');
                     img.src = rev.image_url;
                     img.alt = 'Review Photo';
-                    img.className = 'w-20 h-20 object-cover rounded-xl border border-[var(--folder-border)] hover:opacity-95 transition-opacity';
-                    link.appendChild(img);
-                    imgWrap.appendChild(link);
+                    img.className = 'w-20 h-20 object-cover rounded-xl border-[1.5px] border-[var(--folder-border)] hover:opacity-90 transition-opacity cursor-zoom-in';
+                    img.onclick = () => openQuickLook(rev.image_url);
+                    imgWrap.appendChild(img);
                     article.appendChild(imgWrap);
                 }
 
-                // Seller Like Badge / Admin Action
                 if (rev.liked_by_seller || isAdminAuthenticated) {
                     const actionRow = document.createElement('div');
                     actionRow.className = 'flex items-center gap-1.5 mt-2.5 pl-9 flex-wrap';
 
                     if (rev.liked_by_seller) {
                         const badge = document.createElement('div');
-                        badge.className = 'inline-flex items-center gap-1 text-[10px] font-medium px-2.5 py-0.5 rounded-lg border border-[var(--accent-border)]';
+                        badge.className = 'inline-flex items-center gap-1 text-[10px] font-medium px-2.5 py-0.5 rounded-lg border-[1.5px] border-[var(--accent-border)] text-[var(--text-primary)]';
                         badge.style.backgroundColor = 'var(--accent-soft)';
-                        badge.style.color = 'var(--folder-tab-text)';
                         const h = document.createElement('i');
                         h.className = 'fa-solid fa-heart';
                         h.style.color = 'var(--accent-primary)';
@@ -1388,7 +1949,7 @@
                     if (isAdminAuthenticated) {
                         const toggleBtn = document.createElement('button');
                         toggleBtn.type = 'button';
-                        toggleBtn.className = 'btn-soft text-[10px] text-[var(--text-secondary)] bg-[var(--bg-surface)] px-2.5 py-0.5 rounded-lg border border-[var(--folder-border)] flex items-center gap-1 font-medium';
+                        toggleBtn.className = 'btn-soft text-[10px] text-[var(--text-secondary)] bg-[var(--bg-surface)] px-2.5 py-0.5 rounded-lg border-[1.5px] border-[var(--folder-border)] flex items-center gap-1 font-medium';
                         toggleBtn.onclick = () => toggleSellerLike(rev.id, !rev.liked_by_seller);
                         const h = document.createElement('i');
                         h.className = `fa-solid fa-heart${rev.liked_by_seller ? '' : '-slash'}`;
@@ -1407,8 +1968,21 @@
         }
 
         // ==========================================
-        // 4. CUSTOMER REVIEW INTERACTIONS
+        // 6. QUICK LOOK & CUSTOMER INTERACTIONS
         // ==========================================
+        function openQuickLook(imgSrc) {
+            const modal = document.getElementById('photoQuickLookModal');
+            document.getElementById('quickLookImage').src = imgSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQuickLook() {
+            const modal = document.getElementById('photoQuickLookModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
         function setRating(val) {
             selectedRating = val;
             document.getElementById('ratingLabel').textContent = `${val}/5`;
@@ -1483,7 +2057,7 @@
             clearSelectedImage();
             setRating(5);
             renderReviews();
-            showToast('ส่งรีวิวเรียบร้อยแล้ว');
+            showToast('ส่งจดหมายรีวิวเรียบร้อยแล้ว');
         }
 
         function setFilter(filterType) {
@@ -1502,112 +2076,7 @@
         }
 
         // ==========================================
-        // 5. MUSIC PLAYER LOGIC
-        // ==========================================
-        let isPlaying = false;
-        let audioCtx = null;
-        let synthInterval = null;
-        let synthStep = 0;
-
-        const melodyNotes = [
-            523.25, 659.25, 783.99, 987.77,
-            880.00, 783.99, 659.25, 587.33,
-            523.25, 659.25, 783.99, 659.25,
-            587.33, 493.88, 523.25, 0
-        ];
-
-        function toggleMusic() {
-            if (isPlaying) {
-                stopMusic();
-            } else {
-                startMusic();
-            }
-        }
-
-        function startMusic() {
-            const customUrl = storeSettings.song_url && storeSettings.song_url.trim();
-            const audioEl = document.getElementById('customAudioPlayer');
-
-            if (customUrl) {
-                audioEl.play().then(() => {
-                    setPlayerUIState(true);
-                }).catch(() => {
-                    startBuiltInMusicBox();
-                });
-            } else {
-                startBuiltInMusicBox();
-            }
-        }
-
-        function startBuiltInMusicBox() {
-            try {
-                if (!audioCtx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    audioCtx = new AudioContext();
-                }
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
-                setPlayerUIState(true);
-                playMusicBoxNote();
-
-                synthInterval = setInterval(() => {
-                    playMusicBoxNote();
-                }, 650);
-            } catch (err) {
-                showToast('Audio autoplay not supported');
-            }
-        }
-
-        function playMusicBoxNote() {
-            if (!audioCtx || !isPlaying) return;
-            const freq = melodyNotes[synthStep % melodyNotes.length];
-            synthStep++;
-
-            if (freq === 0) return;
-
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.04);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.6);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.62);
-        }
-
-        function stopMusic() {
-            const audioEl = document.getElementById('customAudioPlayer');
-            audioEl.pause();
-
-            if (synthInterval) {
-                clearInterval(synthInterval);
-                synthInterval = null;
-            }
-            setPlayerUIState(false);
-        }
-
-        function setPlayerUIState(playing) {
-            isPlaying = playing;
-            const icon = document.getElementById('musicPlayIcon');
-            if (playing) {
-                icon.className = 'fa-solid fa-volume-high animate-pulse';
-                icon.style.color = 'var(--accent-primary)';
-            } else {
-                icon.className = 'fa-solid fa-volume-xmark text-[var(--text-muted)]';
-                icon.style.color = '';
-            }
-        }
-
-        // ==========================================
-        // 6. LOCAL ADMIN PANEL
+        // 7. LOCAL ADMIN PANEL & AUDIO UPLOAD HANDLERS
         // ==========================================
         function openAdminModal() {
             const modal = document.getElementById('adminModal');
@@ -1643,7 +2112,7 @@
                 errorMsg.classList.add('hidden');
                 showAdminDashboard();
                 renderReviews();
-                showToast('ปลดล็อกโหมดจัดการแล้ว');
+                showToast('ปลดล็อกหน้าแอดมินแล้ว');
             } else {
                 errorMsg.classList.remove('hidden');
             }
@@ -1652,7 +2121,7 @@
         function handleAdminLogout() {
             isAdminAuthenticated = false;
             closeAdminModal();
-            showToast('ล็อกหน้าจัดการแล้ว');
+            showToast('ล็อกหน้าแอดมินแล้ว');
         }
 
         function showAdminDashboard() {
@@ -1667,6 +2136,13 @@
             document.getElementById('editLineUrl').value = storeSettings.line_url || '';
             document.getElementById('editAdminPin').value = storeSettings.admin_pin || '1234';
 
+            stagedAudioFile = null;
+            shouldClearUploadedAudio = false;
+            document.getElementById('editCustomSongFile').value = '';
+            document.getElementById('editCustomSongTitle').value = storeSettings.song_title || '';
+            document.getElementById('editCustomSongUrl').value = storeSettings.song_url || '';
+            updateAdminUploadedAudioBadge();
+
             document.getElementById('editUnifiedAccountName').value = storeSettings.unified_account_name || '';
             document.getElementById('editFeaturedPaymentImg').value = storeSettings.featured_payment_image || '';
 
@@ -1675,28 +2151,76 @@
             renderAdminReviewsList();
         }
 
+        function updateAdminUploadedAudioBadge() {
+            const badge = document.getElementById('uploadedAudioStatusBadge');
+            const nameEl = document.getElementById('uploadedAudioFileName');
+            if (!badge || !nameEl) return;
+
+            if (stagedAudioFile) {
+                nameEl.textContent = stagedAudioFile.name;
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+            } else if (!shouldClearUploadedAudio && uploadedAudioObjectUrl) {
+                nameEl.textContent = uploadedAudioFileName || 'Uploaded Audio File';
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+            } else {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
+        }
+
+        function handleAdminAudioFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            stagedAudioFile = file;
+            shouldClearUploadedAudio = false;
+
+            const titleInput = document.getElementById('editCustomSongTitle');
+            if (titleInput && titleInput.value.trim() === '') {
+                titleInput.value = file.name.replace(/\.[^/.]+$/, '');
+            }
+            updateAdminUploadedAudioBadge();
+        }
+
+        function clearAdminUploadedAudio() {
+            stagedAudioFile = null;
+            shouldClearUploadedAudio = true;
+            document.getElementById('editCustomSongFile').value = '';
+            updateAdminUploadedAudioBadge();
+        }
+
         function switchAdminTab(tabName) {
             const settingsForm = document.getElementById('adminSettingsForm');
+            const appearanceTab = document.getElementById('adminAppearanceTab');
             const paymentForm = document.getElementById('adminPaymentForm');
             const reviewsTab = document.getElementById('adminReviewsTab');
+
             const btnSet = document.getElementById('tabSettingsBtn');
+            const btnApp = document.getElementById('tabAppearanceBtn');
             const btnPay = document.getElementById('tabPaymentAdminBtn');
             const btnRev = document.getElementById('tabReviewsBtn');
 
             settingsForm.classList.add('hidden');
+            appearanceTab.classList.add('hidden');
             paymentForm.classList.add('hidden');
             reviewsTab.classList.add('hidden');
 
-            const activeCls = 'text-[11px] font-medium pb-2 px-2.5 border-b-2 border-[var(--accent-primary)] text-[var(--text-primary)] flex items-center gap-1 shrink-0';
-            const inactiveCls = 'text-[11px] font-medium pb-2 px-2.5 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0';
+            const activeCls = 'text-[11px] font-medium pb-2 px-2 border-b-2 border-[var(--accent-primary)] text-[var(--text-primary)] flex items-center gap-1 shrink-0';
+            const inactiveCls = 'text-[11px] font-medium pb-2 px-2 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1 shrink-0';
 
             btnSet.className = inactiveCls;
+            btnApp.className = inactiveCls;
             btnPay.className = inactiveCls;
             btnRev.className = inactiveCls;
 
             if (tabName === 'settings') {
                 settingsForm.classList.remove('hidden');
                 btnSet.className = activeCls;
+            } else if (tabName === 'appearance') {
+                appearanceTab.classList.remove('hidden');
+                btnApp.className = activeCls;
             } else if (tabName === 'payment') {
                 paymentForm.classList.remove('hidden');
                 btnPay.className = activeCls;
@@ -1762,6 +2286,41 @@
             showToast('บันทึกข้อมูลร้านค้าเรียบร้อยแล้ว');
         }
 
+        async function saveMusicAndThemeSettings() {
+            if (!isAdminAuthenticated) return;
+
+            storeSettings.song_title = document.getElementById('editCustomSongTitle').value.trim();
+            storeSettings.song_url = document.getElementById('editCustomSongUrl').value.trim();
+
+            if (stagedAudioFile) {
+                if (uploadedAudioObjectUrl) {
+                    URL.revokeObjectURL(uploadedAudioObjectUrl);
+                }
+                uploadedAudioObjectUrl = URL.createObjectURL(stagedAudioFile);
+                uploadedAudioFileName = stagedAudioFile.name;
+                await saveAudioBlobToDB(stagedAudioFile, stagedAudioFile.name);
+                stagedAudioFile = null;
+                currentTrackIndex = 0;
+            } else if (shouldClearUploadedAudio) {
+                if (uploadedAudioObjectUrl) {
+                    URL.revokeObjectURL(uploadedAudioObjectUrl);
+                }
+                uploadedAudioObjectUrl = '';
+                uploadedAudioFileName = '';
+                await deleteAudioBlobFromDB();
+                shouldClearUploadedAudio = false;
+                currentTrackIndex = 0;
+            }
+
+            persistLocalData();
+            updateWelcomePlayerUI();
+            if (isPlaying) {
+                playTrackAtIndex(currentTrackIndex);
+            }
+            closeAdminModal();
+            showToast('บันทึกสีธีมและเพลงเรียบร้อยแล้ว');
+        }
+
         function addAdminPaymentField() {
             syncDraftPaymentFields();
             adminDraftAccounts.push({
@@ -1804,7 +2363,7 @@
 
             adminDraftAccounts.forEach((acc, index) => {
                 const card = document.createElement('div');
-                card.className = 'bg-[var(--bg-surface)] p-3.5 rounded-xl border border-[var(--folder-border)] space-y-2';
+                card.className = 'bg-[var(--bg-surface)] p-3.5 rounded-xl border-[1.5px] border-[var(--folder-border)] space-y-2';
 
                 const topRow = document.createElement('div');
                 topRow.className = 'flex items-center justify-between';
@@ -1815,7 +2374,8 @@
 
                 const removeBtn = document.createElement('button');
                 removeBtn.type = 'button';
-                removeBtn.className = 'text-[10px] text-red-500 hover:underline';
+                removeBtn.className = 'text-[10px] hover:underline';
+                removeBtn.style.color = 'var(--danger-pink)';
                 removeBtn.textContent = 'ลบ';
                 removeBtn.onclick = () => removeAdminPaymentField(index);
 
@@ -1829,7 +2389,7 @@
                 titleInput.type = 'text';
                 titleInput.id = `editPayTitle_${index}`;
                 titleInput.value = acc.title || '';
-                titleInput.className = 'w-full bg-white text-xs text-[var(--text-primary)] px-3 py-1.5 rounded-lg border border-[var(--folder-border)]';
+                titleInput.className = 'w-full bg-white text-xs text-[var(--text-primary)] px-3 py-1.5 rounded-lg border-[1.5px] border-[var(--folder-border)]';
                 titleInput.dataset.accId = acc.id || '';
                 titleDiv.append(titleLabel, titleInput);
 
@@ -1841,7 +2401,7 @@
                 numInput.type = 'text';
                 numInput.id = `editPayNo_${index}`;
                 numInput.value = acc.account_number || '';
-                numInput.className = 'w-full bg-white text-xs text-[var(--text-primary)] px-3 py-1.5 rounded-lg border border-[var(--folder-border)]';
+                numInput.className = 'w-full bg-white text-xs text-[var(--text-primary)] px-3 py-1.5 rounded-lg border-[1.5px] border-[var(--folder-border)]';
                 numDiv.append(numLabel, numInput);
 
                 card.append(topRow, titleDiv, numDiv);
@@ -1886,7 +2446,7 @@
 
             reviews.forEach(rev => {
                 const card = document.createElement('div');
-                card.className = 'bg-[var(--bg-surface)] border border-[var(--folder-border)] rounded-xl p-3 flex items-start justify-between gap-2';
+                card.className = 'bg-[var(--bg-surface)] border-[1.5px] border-[var(--folder-border)] rounded-xl p-3 flex items-start justify-between gap-2';
 
                 const infoCol = document.createElement('div');
                 infoCol.className = 'min-w-0 flex-1';
@@ -1907,9 +2467,8 @@
 
                 if (rev.liked_by_seller) {
                     const loveBadge = document.createElement('span');
-                    loveBadge.className = 'text-[9px] px-2 rounded-md';
+                    loveBadge.className = 'text-[9px] px-2 rounded-md text-[var(--text-primary)]';
                     loveBadge.style.backgroundColor = 'var(--accent-soft)';
-                    loveBadge.style.color = 'var(--folder-tab-text)';
                     loveBadge.textContent = 'Love by owner';
                     topRow.appendChild(loveBadge);
                 }
@@ -1920,14 +2479,13 @@
 
                 infoCol.append(topRow, commentP);
 
-                // Action Buttons
                 const btnGroup = document.createElement('div');
                 btnGroup.className = 'flex items-center gap-1 shrink-0';
 
                 const likeBtn = document.createElement('button');
                 likeBtn.type = 'button';
                 likeBtn.title = 'Love by owner';
-                likeBtn.className = 'btn-soft w-6 h-6 rounded-lg border flex items-center justify-center text-[10px]';
+                likeBtn.className = 'btn-soft w-6 h-6 rounded-lg border-[1.5px] flex items-center justify-center text-[10px]';
                 likeBtn.style.backgroundColor = rev.liked_by_seller ? 'var(--accent-soft)' : '#FFFFFF';
                 likeBtn.style.borderColor = rev.liked_by_seller ? 'var(--accent-primary)' : 'var(--folder-border)';
                 likeBtn.style.color = rev.liked_by_seller ? 'var(--accent-primary)' : 'var(--text-muted)';
@@ -1939,7 +2497,7 @@
                 const pinBtn = document.createElement('button');
                 pinBtn.type = 'button';
                 pinBtn.title = rev.pinned ? 'Unpin' : 'Pin';
-                pinBtn.className = 'btn-soft w-6 h-6 rounded-lg border flex items-center justify-center text-[10px]';
+                pinBtn.className = 'btn-soft w-6 h-6 rounded-lg border-[1.5px] flex items-center justify-center text-[10px]';
                 pinBtn.style.backgroundColor = rev.pinned ? 'var(--accent-soft)' : '#FFFFFF';
                 pinBtn.style.borderColor = rev.pinned ? 'var(--accent-primary)' : 'var(--folder-border)';
                 pinBtn.style.color = rev.pinned ? 'var(--accent-primary)' : 'var(--text-muted)';
@@ -1951,7 +2509,8 @@
                 const delBtn = document.createElement('button');
                 delBtn.type = 'button';
                 delBtn.title = 'Delete';
-                delBtn.className = 'btn-soft w-6 h-6 rounded-lg bg-white hover:bg-red-50 text-red-500 border border-[var(--folder-border)] flex items-center justify-center text-[10px]';
+                delBtn.className = 'btn-soft w-6 h-6 rounded-lg bg-white hover:bg-[var(--accent-soft)] border-[1.5px] border-[var(--folder-border)] flex items-center justify-center text-[10px]';
+                delBtn.style.color = 'var(--danger-pink)';
                 delBtn.onclick = () => deleteReview(rev.id);
                 const trashIcon = document.createElement('i');
                 trashIcon.className = 'fa-solid fa-trash-can';
@@ -1997,7 +2556,7 @@
         }
 
         // ==========================================
-        // 7. TOAST NOTIFICATION
+        // 8. TOAST NOTIFICATION
         // ==========================================
         let toastTimer = null;
         function showToast(msg) {
