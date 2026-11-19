@@ -16,6 +16,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Supabase JS SDK v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             /* Soft Pastel Pink & Sweet Choco Palette (ชมพูพาสเทลอ่อนละมุน + น้ำตาลโกโก้) */
@@ -329,10 +332,10 @@
             </div>
 
             <h1 id="storeNameDisplay" class="font-display text-lg font-medium text-[var(--text-primary)] tracking-tight leading-snug">
-                Sweet Choco Studio
+                กำลังโหลด...
             </h1>
             <p id="storeBioDisplay" class="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed max-w-[340px] mx-auto font-light">
-                Welcome to our credit & payment folder.
+                กำลังเชื่อมต่อข้อมูลร้านค้า...
             </p>
 
             <!-- Mini Status Pills -->
@@ -406,7 +409,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <span id="reviewCountText" class="text-[11px] text-[var(--text-secondary)] font-medium bg-white px-2.5 py-1 rounded-xl border-[1.5px] border-[var(--folder-border)] inline-block">Based on 0 reviews</span>
+                        <span id="reviewCountText" class="text-[11px] text-[var(--text-secondary)] font-medium bg-white px-2.5 py-1 rounded-xl border-[1.5px] border-[var(--folder-border)] inline-block">กำลังโหลด...</span>
                     </div>
                 </div>
             </section>
@@ -440,7 +443,7 @@
                             <div class="min-w-0">
                                 <div class="flex items-center gap-1 text-[11px]">
                                     <span class="text-[var(--text-muted)]">To:</span>
-                                    <span id="mailRecipientName" class="font-medium text-[var(--text-primary)] truncate">Sweet Choco Studio</span>
+                                    <span id="mailRecipientName" class="font-medium text-[var(--text-primary)] truncate">Store</span>
                                 </div>
                                 <p class="text-[10px] text-[var(--text-muted)]">ส่งจดหมายรีวิว & ให้กำลังใจร้านค้า</p>
                             </div>
@@ -602,7 +605,7 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block">Account Name</span>
-                            <span id="unifiedAccountNameDisplay" class="font-display text-sm font-medium text-[var(--text-primary)] truncate block">Sweet Choco Official</span>
+                            <span id="unifiedAccountNameDisplay" class="font-display text-sm font-medium text-[var(--text-primary)] truncate block">กำลังโหลด...</span>
                         </div>
                     </div>
 
@@ -623,13 +626,13 @@
         <div class="px-5 pt-4 pb-3 mt-4 border-t-[1.5px] border-[var(--folder-border)] bg-[var(--bg-surface)]">
             <p class="text-[10px] font-medium text-[var(--text-muted)] text-center mb-2 uppercase tracking-wider">Contact & Socials</p>
             <div class="grid grid-cols-2 gap-2">
-                <a id="contactFacebookLink" href="https://facebook.com" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
+                <a id="contactFacebookLink" href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
                     <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #F7B5C8 0%, #EC93AE 100%);">
                         <i class="fa-brands fa-facebook-f"></i>
                     </span>
                     <span>Facebook</span>
                 </a>
-                <a id="contactLineLink" href="https://line.me" target="_blank" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
+                <a id="contactLineLink" href="https://line.me" target="_blank" rel="noopener noreferrer" class="btn-soft bg-white hover:bg-[var(--accent-soft)] text-[var(--text-primary)] text-xs font-medium py-2 px-3 rounded-2xl border-[1.5px] border-[var(--folder-border)] flex items-center justify-center gap-2 shadow-2xs">
                     <span class="w-5 h-5 rounded-lg flex items-center justify-center text-white text-[11px]" style="background: linear-gradient(180deg, #916859 0%, #5E3E32 100%);">
                         <i class="fa-brands fa-line"></i>
                     </span>
@@ -672,7 +675,7 @@
                     </div>
                     <div class="min-w-0">
                         <h3 id="welcomeTrackTitle" class="font-display text-sm font-medium text-[var(--text-primary)] truncate">Strawberry Music Box</h3>
-                        <p id="welcomeStoreSubtitle" class="text-[11px] text-[var(--text-muted)] truncate mt-0.5">Sweet Choco Studio</p>
+                        <p id="welcomeStoreSubtitle" class="text-[11px] text-[var(--text-muted)] truncate mt-0.5">กำลังโหลด...</p>
                     </div>
                 </div>
 
@@ -752,18 +755,20 @@
                 </button>
             </div>
 
-            <!-- Local PIN Login View -->
+            <!-- Supabase Admin Auth Login View -->
             <div id="adminLoginView" class="p-6 text-center">
                 <div class="w-12 h-12 rounded-full bg-[var(--accent-soft)] text-[var(--text-primary)] flex items-center justify-center mx-auto mb-3 text-base border-[1.5px] border-[var(--accent-border)]">
                     <i class="fa-solid fa-lock" style="color: var(--accent-primary);"></i>
                 </div>
                 <h3 class="font-display text-sm font-medium text-[var(--text-primary)]">Owner Authentication</h3>
-                <p class="text-[11px] text-[var(--text-muted)] mt-0.5 mb-4">กรอกรหัส PIN สำหรับแอดมิน (เริ่มต้น: 1234)</p>
+                <p id="adminLoginSubtitle" class="text-[11px] text-[var(--text-muted)] mt-0.5 mb-4">เข้าสู่ระบบสำหรับแอดมินร้านค้า</p>
                 
                 <form onsubmit="handleAdminLogin(event)" class="space-y-3 max-w-[240px] mx-auto">
-                    <input type="password" id="adminPinInput" placeholder="Enter PIN" required
+                    <input type="email" id="adminEmailInput" placeholder="Admin Email" required autocomplete="email"
+                        class="w-full text-center bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-4 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
+                    <input type="password" id="adminPasswordInput" placeholder="Password" required autocomplete="current-password"
                         class="w-full text-center tracking-widest bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-4 py-2.5 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
-                    <p id="loginErrorMsg" class="text-[10px] hidden" style="color: var(--danger-pink);">รหัส PIN ไม่ถูกต้อง</p>
+                    <p id="loginErrorMsg" class="text-[10px] hidden" style="color: var(--danger-pink);">อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
                     <button type="submit" id="adminLoginBtn" class="btn-soft btn-primary-theme w-full text-xs font-medium py-2.5 rounded-xl shadow-2xs">
                         Unlock
                     </button>
@@ -787,7 +792,7 @@
                             <i class="fa-solid fa-comments text-[10px]"></i> Reviews
                         </button>
                     </div>
-                    <button type="button" onclick="handleAdminLogout()" class="text-[10px] hover:underline pb-2 px-1.5 shrink-0" style="color: var(--danger-pink);">
+                    <button type="button" id="adminLogoutBtn" onclick="handleAdminLogout()" class="text-[10px] hover:underline pb-2 px-1.5 shrink-0" style="color: var(--danger-pink);">
                         Lock
                     </button>
                 </div>
@@ -826,11 +831,6 @@
                             <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">LINE URL</label>
                             <input type="url" id="editLineUrl" placeholder="https://line.me/..." class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                         </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-[10px] font-medium text-[var(--text-primary)] mb-0.5">Admin PIN (รหัสปลดล็อก)</label>
-                        <input type="text" id="editAdminPin" maxlength="20" required class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
                     </div>
 
                     <div class="flex items-center justify-end pt-2">
@@ -908,7 +908,7 @@
                         <input type="url" id="editCustomSongUrl" placeholder="หรือวางลิงก์ไฟล์เพลง MP3 URL (ถ้าไม่ใช้ไฟล์จากเครื่อง)" class="w-full bg-[var(--bg-surface)] text-xs text-[var(--text-primary)] px-3.5 py-2 rounded-xl border-[1.5px] border-[var(--folder-border)] focus:outline-none focus:border-[var(--accent-primary)]">
 
                         <div class="flex justify-end pt-1">
-                            <button type="button" onclick="saveMusicAndThemeSettings()" class="btn-soft btn-primary-theme text-xs font-medium px-4 py-2 rounded-xl shadow-2xs flex items-center gap-1.5">
+                            <button type="button" id="saveAppearanceBtn" onclick="saveMusicAndThemeSettings()" class="btn-soft btn-primary-theme text-xs font-medium px-4 py-2 rounded-xl shadow-2xs flex items-center gap-1.5">
                                 <i class="fa-solid fa-check text-[10px]"></i>
                                 <span>บันทึกธีมและเพลง</span>
                             </button>
@@ -927,7 +927,7 @@
 
                     <div>
                         <label class="block text-[11px] font-medium text-[var(--text-primary)] mb-1">Featured Payment / QR Image</label>
-                        <input type="file" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--text-primary)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border-[1.5px] border-[var(--folder-border)] p-1" onchange="handleFeaturedPaymentUpload(event)">
+                        <input type="file" id="editFeaturedPaymentFile" accept="image/*" class="w-full text-[10px] text-[var(--text-secondary)] file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:bg-[var(--accent-soft)] file:text-[var(--text-primary)] cursor-pointer bg-[var(--bg-surface)] rounded-xl border-[1.5px] border-[var(--folder-border)] p-1" onchange="handleFeaturedPaymentUpload(event)">
                         <input type="hidden" id="editFeaturedPaymentImg">
                     </div>
 
@@ -969,13 +969,61 @@
 
     <script>
         // ==========================================
-        // 0. SOFT PASTEL PINK & CHOCO THEME ENGINE
+        // 0. SUPABASE CLIENT & CONFIGURATION
         // ==========================================
-        const THEME_STORAGE_KEY = 'choco_soft_pastel_pink_theme_v3';
-        const DATA_STORAGE_KEY = 'choco_pink_only_store_data_v2';
-        const AUDIO_DB_NAME = 'choco_pink_audio_storage_v1';
-        const AUDIO_STORE_NAME = 'bgm_tracks';
+        const SUPABASE_URL = 'https://emcobcfyxfzjzajpvily.supabase.co';
+        const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_xc9IXZMNMCuzv_tCC-3z5A_FGtChsdz';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
+        const STORE_ID = 1;
+        const STORE_ASSETS_BUCKET = 'store-assets';
+        const REVIEW_IMAGES_BUCKET = 'review-images';
+
+        function sanitizeStorageFileName(originalName) {
+            const parts = (originalName || 'file').split('.');
+            const ext = parts.length > 1 ? parts.pop().toLowerCase().replace(/[^a-z0-9]/g, '') : 'bin';
+            const base = parts.join('.').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 40) || 'asset';
+            return `${Date.now()}_${Math.random().toString(36).slice(2, 7)}_${base}.${ext || 'bin'}`;
+        }
+
+        function safeExternalUrl(url, fallback) {
+            if (!url || typeof url !== 'string') return fallback;
+            const trimmed = url.trim();
+            if (/^https?:\/\//i.test(trimmed)) {
+                return trimmed;
+            }
+            return fallback;
+        }
+
+        function safeImageUrl(url) {
+            if (!url || typeof url !== 'string') return '';
+            const trimmed = url.trim();
+            if (/^https?:\/\//i.test(trimmed)) {
+                return trimmed;
+            }
+            return '';
+        }
+
+        async function uploadFileToBucket(bucketName, folderPrefix, file) {
+            const safeName = sanitizeStorageFileName(file.name);
+            const filePath = `${folderPrefix}/${safeName}`;
+            const { error: uploadError } = await supabaseClient.storage
+                .from(bucketName)
+                .upload(filePath, file, {
+                    cacheControl: '3600',
+                    upsert: false,
+                    contentType: file.type || undefined
+                });
+            if (uploadError) {
+                throw uploadError;
+            }
+            const { data } = supabaseClient.storage.from(bucketName).getPublicUrl(filePath);
+            return data.publicUrl;
+        }
+
+        // ==========================================
+        // 1. SOFT PASTEL PINK & CHOCO THEME ENGINE
+        // ==========================================
         const PRESET_THEMES = [
             {
                 id: 'choco-strawberry',
@@ -1075,20 +1123,15 @@
 
         function initThemeSystem() {
             renderAdminPresetThemeButtons();
-            try {
-                const saved = localStorage.getItem(THEME_STORAGE_KEY);
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    if (parsed.mode === 'custom' && parsed.customHex) {
-                        applyCustomHexColor(parsed.customHex, false);
-                        return;
-                    } else if (parsed.presetId) {
-                        applyPresetTheme(parsed.presetId, false);
-                        return;
-                    }
-                }
-            } catch (e) {}
-            applyPresetTheme('choco-strawberry', false);
+            applyPresetTheme('choco-strawberry');
+        }
+
+        function applySavedStoreTheme() {
+            if (storeSettings.theme_mode === 'custom' && storeSettings.theme_custom_hex) {
+                applyCustomHexColor(storeSettings.theme_custom_hex);
+            } else {
+                applyPresetTheme(storeSettings.theme_preset_id || 'choco-strawberry');
+            }
         }
 
         function renderAdminPresetThemeButtons() {
@@ -1100,7 +1143,7 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.dataset.themeId = theme.id;
-                btn.onclick = () => applyPresetTheme(theme.id, true);
+                btn.onclick = () => applyPresetTheme(theme.id);
                 btn.className = 'admin-preset-btn btn-soft flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border-[1.5px] border-[var(--folder-border)] text-left transition-all';
 
                 const swatch = document.createElement('span');
@@ -1120,7 +1163,7 @@
             });
         }
 
-        function applyPresetTheme(presetId, saveToStorage = true) {
+        function applyPresetTheme(presetId) {
             const theme = PRESET_THEMES.find(t => t.id === presetId) || PRESET_THEMES[0];
             const root = document.documentElement;
             Object.entries(theme.vars).forEach(([key, val]) => {
@@ -1134,12 +1177,6 @@
             if (hexLabel) hexLabel.textContent = theme.hex.toUpperCase();
             updateAdminThemeSelectionUI(theme.id);
             updateVolumeSliderFill();
-
-            if (saveToStorage) {
-                try {
-                    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(currentThemeState));
-                } catch (e) {}
-            }
         }
 
         function hexToRgb(hex) {
@@ -1159,7 +1196,7 @@
             return `rgb(${r}, ${g}, ${b})`;
         }
 
-        function applyCustomHexColor(hex, saveToStorage = true) {
+        function applyCustomHexColor(hex) {
             if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
             const base = hexToRgb(hex);
             const white = { r: 255, g: 255, b: 255 };
@@ -1200,12 +1237,6 @@
             if (hexLabel) hexLabel.textContent = hex.toUpperCase();
             updateAdminThemeSelectionUI(null);
             updateVolumeSliderFill();
-
-            if (saveToStorage) {
-                try {
-                    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(currentThemeState));
-                } catch (e) {}
-            }
         }
 
         function updateAdminThemeSelectionUI(activePresetId) {
@@ -1221,164 +1252,180 @@
         }
 
         function resetThemeToDefault() {
-            applyPresetTheme('choco-strawberry', true);
-            showToast('รีเซ็ตสีธีมเป็น ชมพูพาสเทลอ่อน แล้ว');
+            applyPresetTheme('choco-strawberry');
+            showToast('รีเซ็ตสีธีมเป็น ชมพูพาสเทลอ่อน แล้ว (กดบันทึกเพื่อยืนยัน)');
         }
 
         // ==========================================
-        // 1. INDEXEDDB AUDIO PERSISTENCE
+        // 2. APPLICATION STATE (SUPABASE BACKED)
         // ==========================================
-        let uploadedAudioObjectUrl = '';
-        let uploadedAudioFileName = '';
-        let stagedAudioFile = null;
-        let shouldClearUploadedAudio = false;
-
-        function openAudioDB() {
-            return new Promise((resolve, reject) => {
-                if (!window.indexedDB) {
-                    reject(new Error('IndexedDB not supported'));
-                    return;
-                }
-                const req = indexedDB.open(AUDIO_DB_NAME, 1);
-                req.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains(AUDIO_STORE_NAME)) {
-                        db.createObjectStore(AUDIO_STORE_NAME);
-                    }
-                };
-                req.onsuccess = () => resolve(req.result);
-                req.onerror = () => reject(req.error);
-            });
-        }
-
-        async function saveAudioBlobToDB(blob, fileName) {
-            try {
-                const db = await openAudioDB();
-                return new Promise((resolve, reject) => {
-                    const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');
-                    tx.objectStore(AUDIO_STORE_NAME).put({ blob, fileName }, 'custom_bgm');
-                    tx.oncomplete = () => resolve(true);
-                    tx.onerror = () => reject(tx.error);
-                });
-            } catch (e) {
-                return false;
-            }
-        }
-
-        async function loadAudioBlobFromDB() {
-            try {
-                const db = await openAudioDB();
-                return new Promise((resolve) => {
-                    const tx = db.transaction(AUDIO_STORE_NAME, 'readonly');
-                    const req = tx.objectStore(AUDIO_STORE_NAME).get('custom_bgm');
-                    req.onsuccess = () => resolve(req.result || null);
-                    req.onerror = () => resolve(null);
-                });
-            } catch (e) {
-                return null;
-            }
-        }
-
-        async function deleteAudioBlobFromDB() {
-            try {
-                const db = await openAudioDB();
-                return new Promise((resolve) => {
-                    const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');
-                    tx.objectStore(AUDIO_STORE_NAME).delete('custom_bgm');
-                    tx.oncomplete = () => resolve(true);
-                    tx.onerror = () => resolve(false);
-                });
-            } catch (e) {
-                return false;
-            }
-        }
-
-        // ==========================================
-        // 2. STANDALONE LOCAL STATE
-        // ==========================================
-        const DEFAULT_STATE = {
-            storeSettings: {
-                store_name: 'Sweet Choco Studio',
-                store_bio: 'Welcome to our credit & payment folder.',
-                avatar_url: '',
-                banner_url: '',
-                facebook_url: 'https://facebook.com',
-                line_url: 'https://line.me',
-                song_title: '',
-                song_url: '',
-                unified_account_name: 'Sweet Choco Official',
-                featured_payment_image: '',
-                admin_pin: '1234'
-            },
-            paymentAccounts: [
-                { id: 'acc-1', title: 'PromptPay', account_number: '000-000-0000' },
-                { id: 'acc-2', title: 'Bank Account', account_number: '000-0-00000-0' }
-            ],
-            reviews: []
+        let storeSettings = {
+            id: STORE_ID,
+            store_name: '',
+            store_bio: '',
+            avatar_url: '',
+            banner_url: '',
+            facebook_url: 'https://facebook.com',
+            line_url: 'https://line.me',
+            song_title: '',
+            song_url: '',
+            unified_account_name: '',
+            featured_payment_image: '',
+            theme_mode: 'preset',
+            theme_preset_id: 'choco-strawberry',
+            theme_custom_hex: '#F09BB4'
         };
 
-        let storeSettings = { ...DEFAULT_STATE.storeSettings };
-        let paymentAccounts = [...DEFAULT_STATE.paymentAccounts];
+        let paymentAccounts = [];
         let reviews = [];
 
+        // Loading & Error Flags
+        let isLoadingStore = true;
+        let storeLoadError = null;
+        let isLoadingPayments = true;
+        let paymentsLoadError = null;
+        let isLoadingReviews = true;
+        let reviewsLoadError = null;
+
+        // Interactive & Concurrency Locks
         let selectedRating = 5;
         let currentFilter = 'all';
         let currentActiveTab = 'reviews';
         let isAdminAuthenticated = false;
-        let tempReviewImageBase64 = '';
-        let adminDraftAccounts = [];
 
-        function loadLocalData() {
+        let selectedReviewImageFile = null;
+        let stagedAvatarFile = null;
+        let stagedBannerFile = null;
+        let stagedFeaturedPaymentFile = null;
+        let stagedAudioFile = null;
+        let shouldClearUploadedAudio = false;
+
+        let adminDraftAccounts = [];
+        let deletedAccountIds = [];
+
+        let isSubmittingReview = false;
+        let isLoggingIn = false;
+        let isLoggingOut = false;
+        let isSavingSettings = false;
+        let isSavingAppearance = false;
+        let isSavingAccounts = false;
+        const pendingReviewActions = new Set();
+
+        // ==========================================
+        // 3. SUPABASE DATA FETCHING
+        // ==========================================
+        async function fetchStoreSettings() {
+            isLoadingStore = true;
+            storeLoadError = null;
+            renderStoreProfile();
+
             try {
-                const raw = localStorage.getItem(DATA_STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    if (parsed.storeSettings) {
-                        storeSettings = { ...DEFAULT_STATE.storeSettings, ...parsed.storeSettings };
-                    }
-                    if (Array.isArray(parsed.paymentAccounts)) {
-                        paymentAccounts = parsed.paymentAccounts;
-                    }
-                    if (Array.isArray(parsed.reviews)) {
-                        reviews = parsed.reviews;
-                    }
+                const { data, error } = await supabaseClient
+                    .from('store_settings')
+                    .select('*')
+                    .eq('id', STORE_ID)
+                    .maybeSingle();
+
+                if (error) throw error;
+
+                if (data) {
+                    storeSettings = { ...storeSettings, ...data };
+                    applySavedStoreTheme();
+                } else {
+                    storeLoadError = 'ไม่พบข้อมูลร้านค้าในฐานข้อมูล';
                 }
-            } catch (e) {}
+            } catch (err) {
+                storeLoadError = err.message || 'เกิดข้อผิดพลาดในการโหลดข้อมูลร้านค้า';
+                showToast('เกิดข้อผิดพลาดในการโหลดข้อมูลร้านค้า');
+            } finally {
+                isLoadingStore = false;
+                renderStoreProfile();
+                updateWelcomePlayerUI();
+            }
         }
 
-        function persistLocalData() {
+        async function fetchPaymentAccounts() {
+            isLoadingPayments = true;
+            paymentsLoadError = null;
+            renderPaymentAccounts();
+
             try {
-                localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify({
-                    storeSettings,
-                    paymentAccounts,
-                    reviews
-                }));
+                const { data, error } = await supabaseClient
+                    .from('payment_accounts')
+                    .select('*')
+                    .eq('store_id', STORE_ID)
+                    .order('sort_order', { ascending: true })
+                    .order('created_at', { ascending: true });
+
+                if (error) throw error;
+                paymentAccounts = Array.isArray(data) ? data : [];
+            } catch (err) {
+                paymentsLoadError = err.message || 'เกิดข้อผิดพลาดในการโหลดบัญชีชำระเงิน';
+            } finally {
+                isLoadingPayments = false;
+                renderPaymentAccounts();
+            }
+        }
+
+        async function fetchReviews() {
+            isLoadingReviews = true;
+            reviewsLoadError = null;
+            renderReviews();
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('reviews')
+                    .select('*')
+                    .eq('store_id', STORE_ID)
+                    .order('pinned', { ascending: false })
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                reviews = Array.isArray(data) ? data : [];
+            } catch (err) {
+                reviewsLoadError = err.message || 'เกิดข้อผิดพลาดในการโหลดรีวิว';
+            } finally {
+                isLoadingReviews = false;
+                renderReviews();
+            }
+        }
+
+        async function checkInitialAdminSession() {
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (!session || !session.user) {
+                    isAdminAuthenticated = false;
+                    return;
+                }
+                const { data: isAdmin, error } = await supabaseClient.rpc('is_admin');
+                if (!error && isAdmin === true) {
+                    isAdminAuthenticated = true;
+                    renderReviews();
+                } else {
+                    await supabaseClient.auth.signOut();
+                    isAdminAuthenticated = false;
+                }
             } catch (e) {
-                showToast('บันทึกชั่วคราวในเซสชัน');
+                isAdminAuthenticated = false;
             }
         }
 
         // ==========================================
-        // 3. INITIALIZATION & LIVE CALENDAR ICON
+        // 4. INITIALIZATION & LIVE CALENDAR ICON
         // ==========================================
         document.addEventListener('DOMContentLoaded', async () => {
             initThemeSystem();
-            loadLocalData();
             updateLiveCalendarIcon();
             setRating(5);
-            renderStoreProfile();
             setupAudioPlayerEvents();
-
-            const savedAudio = await loadAudioBlobFromDB();
-            if (savedAudio && savedAudio.blob) {
-                uploadedAudioObjectUrl = URL.createObjectURL(savedAudio.blob);
-                uploadedAudioFileName = savedAudio.fileName || 'Uploaded Track';
-            }
-
-            updateWelcomePlayerUI();
             updateVolumeSliderFill();
-            renderPaymentAccounts();
-            renderReviews();
+
+            await Promise.all([
+                fetchStoreSettings(),
+                fetchPaymentAccounts(),
+                fetchReviews(),
+                checkInitialAdminSession()
+            ]);
         });
 
         function updateLiveCalendarIcon() {
@@ -1391,7 +1438,7 @@
         }
 
         // ==========================================
-        // 4. WELCOME NOW-PLAYING POPUP & AUDIO ENGINE
+        // 5. WELCOME NOW-PLAYING POPUP & AUDIO ENGINE
         // ==========================================
         const BUILTIN_PLAYLIST = [
             {
@@ -1464,22 +1511,14 @@
 
         function getActivePlaylist() {
             const list = [...BUILTIN_PLAYLIST];
-            if (uploadedAudioObjectUrl) {
-                const cleanFallbackName = uploadedAudioFileName.replace(/\.[^/.]+$/, '') || 'Store Uploaded BGM';
-                list.unshift({
-                    id: 'uploaded-file-track',
-                    title: (storeSettings.song_title && storeSettings.song_title.trim()) || cleanFallbackName,
-                    durationLabel: '-1:30',
-                    type: 'audio',
-                    url: uploadedAudioObjectUrl
-                });
-            } else if (storeSettings.song_url && storeSettings.song_url.trim() !== '') {
+            const validSongUrl = safeImageUrl(storeSettings.song_url);
+            if (validSongUrl) {
                 list.unshift({
                     id: 'custom-track',
                     title: (storeSettings.song_title && storeSettings.song_title.trim()) || 'Store Featured BGM',
                     durationLabel: '-1:30',
                     type: 'audio',
-                    url: storeSettings.song_url.trim()
+                    url: validSongUrl
                 });
             }
             return list;
@@ -1653,23 +1692,44 @@
         }
 
         // ==========================================
-        // 5. RENDERING FUNCTIONS (Safe DOM API)
+        // 6. RENDERING FUNCTIONS (Safe DOM API)
         // ==========================================
         function renderStoreProfile() {
-            const name = storeSettings.store_name || 'Sweet Choco Studio';
-            document.getElementById('storeNameDisplay').textContent = name;
-            document.getElementById('welcomeStoreSubtitle').textContent = name;
-            document.getElementById('mailRecipientName').textContent = name;
-            document.getElementById('storeBioDisplay').textContent = storeSettings.store_bio || '';
+            const nameEl = document.getElementById('storeNameDisplay');
+            const bioEl = document.getElementById('storeBioDisplay');
+            const welcomeSubEl = document.getElementById('welcomeStoreSubtitle');
+            const mailRecEl = document.getElementById('mailRecipientName');
 
-            document.getElementById('contactFacebookLink').href = storeSettings.facebook_url || 'https://facebook.com';
-            document.getElementById('contactLineLink').href = storeSettings.line_url || 'https://line.me';
+            if (isLoadingStore) {
+                nameEl.textContent = 'กำลังโหลด...';
+                bioEl.textContent = 'กำลังเชื่อมต่อข้อมูลร้านค้า...';
+                welcomeSubEl.textContent = 'กำลังโหลด...';
+                return;
+            }
+
+            if (storeLoadError) {
+                nameEl.textContent = 'เกิดข้อผิดพลาดในการโหลดข้อมูล';
+                bioEl.textContent = storeLoadError;
+                welcomeSubEl.textContent = 'ไม่สามารถโหลดชื่อร้านได้';
+                return;
+            }
+
+            const name = storeSettings.store_name || 'ไม่มีชื่อร้าน';
+            nameEl.textContent = name;
+            welcomeSubEl.textContent = name;
+            mailRecEl.textContent = name;
+            bioEl.textContent = storeSettings.store_bio || '';
+
+            document.getElementById('contactFacebookLink').href = safeExternalUrl(storeSettings.facebook_url, 'https://facebook.com');
+            document.getElementById('contactLineLink').href = safeExternalUrl(storeSettings.line_url, 'https://line.me');
 
             const bannerImg = document.getElementById('bannerImage');
-            if (storeSettings.banner_url && storeSettings.banner_url.trim() !== '') {
-                bannerImg.src = storeSettings.banner_url.trim();
+            const validBannerUrl = safeImageUrl(storeSettings.banner_url);
+            if (validBannerUrl) {
+                bannerImg.src = validBannerUrl;
                 bannerImg.classList.remove('hidden');
             } else {
+                bannerImg.removeAttribute('src');
                 bannerImg.classList.add('hidden');
             }
 
@@ -1677,15 +1737,15 @@
             const avatarFallback = document.getElementById('avatarFallback');
             const welcomeAlbumImg = document.getElementById('welcomeAlbumImg');
             const welcomeAlbumIcon = document.getElementById('welcomeAlbumIcon');
+            const validAvatarUrl = safeImageUrl(storeSettings.avatar_url);
 
-            if (storeSettings.avatar_url && storeSettings.avatar_url.trim() !== '') {
-                const url = storeSettings.avatar_url.trim();
-                profileImg.src = url;
+            if (validAvatarUrl) {
+                profileImg.src = validAvatarUrl;
                 profileImg.classList.remove('hidden');
                 avatarFallback.classList.add('hidden');
 
                 if (welcomeAlbumImg) {
-                    welcomeAlbumImg.src = url;
+                    welcomeAlbumImg.src = validAvatarUrl;
                     welcomeAlbumImg.classList.remove('hidden');
                     welcomeAlbumIcon.classList.add('hidden');
                 }
@@ -1731,18 +1791,73 @@
             }
         }
 
+        function buildStatusBox(iconClass, messageText, retryHandler = null) {
+            const box = document.createElement('div');
+            box.className = 'text-center py-7 px-4 bg-white rounded-2xl border-[1.5px] border-dashed border-[var(--folder-border)] space-y-2';
+
+            const icon = document.createElement('i');
+            icon.className = `${iconClass} text-lg block`;
+            icon.style.color = 'var(--accent-primary)';
+
+            const p = document.createElement('p');
+            p.className = 'text-xs text-[var(--text-muted)]';
+            p.textContent = messageText;
+
+            box.append(icon, p);
+
+            if (typeof retryHandler === 'function') {
+                const retryBtn = document.createElement('button');
+                retryBtn.type = 'button';
+                retryBtn.className = 'btn-soft text-[11px] font-medium px-3 py-1 rounded-xl bg-[var(--accent-soft)] border-[1.5px] border-[var(--accent-border)] text-[var(--text-primary)] inline-flex items-center gap-1';
+                retryBtn.onclick = retryHandler;
+
+                const rIcon = document.createElement('i');
+                rIcon.className = 'fa-solid fa-rotate-right text-[10px]';
+                const rText = document.createElement('span');
+                rText.textContent = 'ลองโหลดใหม่';
+                retryBtn.append(rIcon, rText);
+                box.appendChild(retryBtn);
+            }
+
+            return box;
+        }
+
         function renderPaymentAccounts() {
-            document.getElementById('unifiedAccountNameDisplay').textContent = storeSettings.unified_account_name || 'Account Name';
-
+            const accNameEl = document.getElementById('unifiedAccountNameDisplay');
             const imgContainer = document.getElementById('featuredPaymentImageContainer');
-            imgContainer.replaceChildren();
+            const listContainer = document.getElementById('paymentAccountsInfoList');
 
-            if (storeSettings.featured_payment_image && storeSettings.featured_payment_image.trim() !== '') {
+            imgContainer.replaceChildren();
+            listContainer.replaceChildren();
+
+            if (isLoadingStore || isLoadingPayments) {
+                accNameEl.textContent = 'กำลังโหลด...';
+                imgContainer.appendChild(buildStatusBox('fa-solid fa-spinner fa-spin', 'กำลังโหลดรูปภาพ QR Code...'));
+                listContainer.appendChild(buildStatusBox('fa-solid fa-spinner fa-spin', 'กำลังโหลดข้อมูลบัญชีชำระเงิน...'));
+                return;
+            }
+
+            if (storeLoadError || paymentsLoadError) {
+                accNameEl.textContent = 'เกิดข้อผิดพลาด';
+                imgContainer.appendChild(buildStatusBox('fa-solid fa-circle-exclamation', 'เกิดข้อผิดพลาดในการโหลดรูปภาพ QR Code'));
+                listContainer.appendChild(
+                    buildStatusBox('fa-solid fa-circle-exclamation', 'เกิดข้อผิดพลาดในการโหลดข้อมูลบัญชีชำระเงิน', () => {
+                        fetchStoreSettings();
+                        fetchPaymentAccounts();
+                    })
+                );
+                return;
+            }
+
+            accNameEl.textContent = storeSettings.unified_account_name || 'ไม่มีข้อมูลชื่อบัญชี';
+
+            const validQrUrl = safeImageUrl(storeSettings.featured_payment_image);
+            if (validQrUrl) {
                 const img = document.createElement('img');
-                img.src = storeSettings.featured_payment_image.trim();
+                img.src = validQrUrl;
                 img.alt = 'Featured Payment QR';
                 img.className = 'w-full h-auto max-h-[340px] object-contain rounded-xl cursor-zoom-in';
-                img.onclick = () => openQuickLook(img.src);
+                img.onclick = () => openQuickLook(validQrUrl);
                 imgContainer.appendChild(img);
             } else {
                 const placeholder = document.createElement('div');
@@ -1755,9 +1870,6 @@
                 placeholder.append(icon, span);
                 imgContainer.appendChild(placeholder);
             }
-
-            const listContainer = document.getElementById('paymentAccountsInfoList');
-            listContainer.replaceChildren();
 
             if (paymentAccounts.length === 0) {
                 const empty = document.createElement('div');
@@ -1815,14 +1927,34 @@
 
         function renderReviews() {
             const listEl = document.getElementById('reviewsList');
+            const avgEl = document.getElementById('avgScoreDisplay');
+            const countTextEl = document.getElementById('reviewCountText');
+            const badgeTextEl = document.getElementById('totalReviewBadgeText');
+
+            listEl.replaceChildren();
+
+            if (isLoadingReviews) {
+                countTextEl.textContent = 'กำลังโหลด...';
+                listEl.appendChild(buildStatusBox('fa-solid fa-spinner fa-spin', 'กำลังโหลดข้อมูลรีวิว...'));
+                return;
+            }
+
+            if (reviewsLoadError) {
+                countTextEl.textContent = 'เกิดข้อผิดพลาด';
+                listEl.appendChild(
+                    buildStatusBox('fa-solid fa-circle-exclamation', 'เกิดข้อผิดพลาดในการโหลดรีวิว', () => fetchReviews())
+                );
+                return;
+            }
+
             const totalCount = reviews.length;
             const avgScore = totalCount > 0 
                 ? (reviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0) / totalCount).toFixed(1)
                 : '5.0';
 
-            document.getElementById('avgScoreDisplay').textContent = avgScore;
-            document.getElementById('reviewCountText').textContent = `Based on ${totalCount} reviews`;
-            document.getElementById('totalReviewBadgeText').textContent = `${totalCount} Reviews`;
+            avgEl.textContent = avgScore;
+            countTextEl.textContent = `Based on ${totalCount} reviews`;
+            badgeTextEl.textContent = `${totalCount} Reviews`;
 
             const sortedReviews = [...reviews].sort((a, b) => {
                 if (Boolean(b.pinned) !== Boolean(a.pinned)) {
@@ -1834,8 +1966,6 @@
             const filteredReviews = currentFilter === '5' 
                 ? sortedReviews.filter(r => Number(r.rating) === 5) 
                 : sortedReviews;
-
-            listEl.replaceChildren();
 
             if (filteredReviews.length === 0) {
                 const emptyBox = document.createElement('div');
@@ -1921,14 +2051,15 @@
                 commentP.textContent = rev.comment;
                 article.appendChild(commentP);
 
-                if (rev.image_url && rev.image_url.trim() !== '') {
+                const validReviewImg = safeImageUrl(rev.image_url);
+                if (validReviewImg) {
                     const imgWrap = document.createElement('div');
                     imgWrap.className = 'mt-2.5 pl-9';
                     const img = document.createElement('img');
-                    img.src = rev.image_url;
+                    img.src = validReviewImg;
                     img.alt = 'Review Photo';
                     img.className = 'w-20 h-20 object-cover rounded-xl border-[1.5px] border-[var(--folder-border)] hover:opacity-90 transition-opacity cursor-zoom-in';
-                    img.onclick = () => openQuickLook(rev.image_url);
+                    img.onclick = () => openQuickLook(validReviewImg);
                     imgWrap.appendChild(img);
                     article.appendChild(imgWrap);
                 }
@@ -1953,6 +2084,7 @@
                     if (isAdminAuthenticated) {
                         const toggleBtn = document.createElement('button');
                         toggleBtn.type = 'button';
+                        toggleBtn.disabled = pendingReviewActions.has(rev.id);
                         toggleBtn.className = 'btn-soft text-[10px] text-[var(--text-secondary)] bg-[var(--bg-surface)] px-2.5 py-0.5 rounded-lg border-[1.5px] border-[var(--folder-border)] flex items-center gap-1 font-medium';
                         toggleBtn.onclick = () => toggleSellerLike(rev.id, !rev.liked_by_seller);
                         const h = document.createElement('i');
@@ -1972,11 +2104,13 @@
         }
 
         // ==========================================
-        // 6. QUICK LOOK & CUSTOMER INTERACTIONS
+        // 7. QUICK LOOK & CUSTOMER INTERACTIONS
         // ==========================================
         function openQuickLook(imgSrc) {
+            const validSrc = safeImageUrl(imgSrc);
+            if (!validSrc) return;
             const modal = document.getElementById('photoQuickLookModal');
-            document.getElementById('quickLookImage').src = imgSrc;
+            document.getElementById('quickLookImage').src = validSrc;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
@@ -2012,56 +2146,102 @@
 
         function handleImagePreview(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    tempReviewImageBase64 = e.target.result;
-                    document.getElementById('imagePreviewTag').src = tempReviewImageBase64;
-                    document.getElementById('imageFileName').textContent = file.name;
-                    document.getElementById('imagePreviewWrapper').classList.remove('hidden');
-                    document.getElementById('imagePreviewWrapper').classList.add('flex');
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showToast('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+                event.target.value = '';
+                return;
             }
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('ขนาดรูปภาพต้องไม่เกิน 5MB');
+                event.target.value = '';
+                return;
+            }
+
+            selectedReviewImageFile = file;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagePreviewTag').src = e.target.result;
+                document.getElementById('imageFileName').textContent = file.name;
+                document.getElementById('imagePreviewWrapper').classList.remove('hidden');
+                document.getElementById('imagePreviewWrapper').classList.add('flex');
+            };
+            reader.readAsDataURL(file);
         }
 
         function clearSelectedImage() {
-            tempReviewImageBase64 = '';
+            selectedReviewImageFile = null;
             document.getElementById('reviewImageFile').value = '';
             document.getElementById('imagePreviewWrapper').classList.add('hidden');
             document.getElementById('imagePreviewWrapper').classList.remove('flex');
         }
 
-        function submitReview(event) {
+        async function submitReview(event) {
             event.preventDefault();
+            if (isSubmittingReview) return;
+
             const nameInput = document.getElementById('customerNameInput');
             const textInput = document.getElementById('reviewTextInput');
+            const submitBtn = document.getElementById('submitReviewBtn');
+            const submitTextSpan = submitBtn.querySelector('span');
 
             const comment = textInput.value.trim();
             if (!comment) return;
 
             const customerName = nameInput.value.trim() || 'Anonymous Customer';
 
-            const newReview = {
-                id: 'rev-' + Date.now(),
-                name: customerName,
-                rating: selectedRating,
-                comment: comment,
-                image_url: tempReviewImageBase64 || '',
-                pinned: false,
-                liked_by_seller: false,
-                created_at: new Date().toISOString()
-            };
+            isSubmittingReview = true;
+            submitBtn.disabled = true;
+            submitTextSpan.textContent = 'Sending...';
 
-            reviews.unshift(newReview);
-            persistLocalData();
+            try {
+                let uploadedImageUrl = '';
+                if (selectedReviewImageFile) {
+                    uploadedImageUrl = await uploadFileToBucket(
+                        REVIEW_IMAGES_BUCKET,
+                        'customer-reviews',
+                        selectedReviewImageFile
+                    );
+                }
 
-            nameInput.value = '';
-            textInput.value = '';
-            clearSelectedImage();
-            setRating(5);
-            renderReviews();
-            showToast('ส่งจดหมายรีวิวเรียบร้อยแล้ว');
+                const payload = {
+                    store_id: STORE_ID,
+                    name: customerName,
+                    rating: selectedRating,
+                    comment: comment,
+                    image_url: uploadedImageUrl,
+                    pinned: false,
+                    liked_by_seller: false
+                };
+
+                const { data, error } = await supabaseClient
+                    .from('reviews')
+                    .insert(payload)
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                if (data) {
+                    reviews.unshift(data);
+                } else {
+                    await fetchReviews();
+                }
+
+                nameInput.value = '';
+                textInput.value = '';
+                clearSelectedImage();
+                setRating(5);
+                renderReviews();
+                showToast('ส่งจดหมายรีวิวเรียบร้อยแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการส่งรีวิว กรุณาลองใหม่');
+            } finally {
+                isSubmittingReview = false;
+                submitBtn.disabled = false;
+                submitTextSpan.textContent = 'Send';
+            }
         }
 
         function setFilter(filterType) {
@@ -2080,20 +2260,62 @@
         }
 
         // ==========================================
-        // 7. LOCAL ADMIN PANEL & AUDIO UPLOAD HANDLERS
+        // 8. ADMIN AUTH (SUPABASE SESSION + IS_ADMIN)
         // ==========================================
-        function openAdminModal() {
+        async function verifyAdminSessionAndRole() {
+            try {
+                const { data: { session }, error: sessionErr } = await supabaseClient.auth.getSession();
+                if (sessionErr || !session || !session.user) {
+                    isAdminAuthenticated = false;
+                    return { allowed: false, reason: 'no_session' };
+                }
+
+                const { data: isAdmin, error: rpcErr } = await supabaseClient.rpc('is_admin');
+                if (rpcErr || isAdmin !== true) {
+                    await supabaseClient.auth.signOut();
+                    isAdminAuthenticated = false;
+                    return { allowed: false, reason: 'not_admin' };
+                }
+
+                isAdminAuthenticated = true;
+                return { allowed: true };
+            } catch (e) {
+                isAdminAuthenticated = false;
+                return { allowed: false, reason: 'error' };
+            }
+        }
+
+        async function openAdminModal() {
             const modal = document.getElementById('adminModal');
+            const loginView = document.getElementById('adminLoginView');
+            const dashView = document.getElementById('adminDashboardView');
+            const loginBtn = document.getElementById('adminLoginBtn');
+            const errorMsg = document.getElementById('loginErrorMsg');
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
 
-            if (isAdminAuthenticated) {
+            loginView.classList.remove('hidden');
+            dashView.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'กำลังตรวจสอบสิทธิ์...';
+
+            const check = await verifyAdminSessionAndRole();
+
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Unlock';
+
+            if (check.allowed) {
                 showAdminDashboard();
+                renderReviews();
             } else {
-                document.getElementById('adminLoginView').classList.remove('hidden');
-                document.getElementById('adminDashboardView').classList.add('hidden');
-                document.getElementById('adminPinInput').value = '';
-                document.getElementById('loginErrorMsg').classList.add('hidden');
+                document.getElementById('adminEmailInput').value = '';
+                document.getElementById('adminPasswordInput').value = '';
+                if (check.reason === 'not_admin') {
+                    errorMsg.textContent = 'บัญชีนี้ไม่มีสิทธิ์เข้าถึงหน้าแอดมิน';
+                    errorMsg.classList.remove('hidden');
+                }
             }
         }
 
@@ -2101,36 +2323,91 @@
             const modal = document.getElementById('adminModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
+            applySavedStoreTheme();
             renderReviews();
             renderPaymentAccounts();
         }
 
-        function handleAdminLogin(e) {
+        async function handleAdminLogin(e) {
             e.preventDefault();
-            const enteredPin = document.getElementById('adminPinInput').value.trim();
-            const currentPin = storeSettings.admin_pin || '1234';
-            const errorMsg = document.getElementById('loginErrorMsg');
+            if (isLoggingIn) return;
 
-            if (enteredPin === currentPin) {
+            const email = document.getElementById('adminEmailInput').value.trim();
+            const password = document.getElementById('adminPasswordInput').value;
+            const errorMsg = document.getElementById('loginErrorMsg');
+            const loginBtn = document.getElementById('adminLoginBtn');
+
+            if (!email || !password) return;
+
+            isLoggingIn = true;
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'กำลังตรวจสอบ...';
+            errorMsg.classList.add('hidden');
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error || !data || !data.session) {
+                    errorMsg.textContent = 'อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                const { data: isAdmin, error: rpcError } = await supabaseClient.rpc('is_admin');
+
+                if (rpcError || isAdmin !== true) {
+                    await supabaseClient.auth.signOut();
+                    isAdminAuthenticated = false;
+                    errorMsg.textContent = 'บัญชีนี้ไม่มีสิทธิ์เข้าถึงหน้าแอดมิน';
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+
                 isAdminAuthenticated = true;
                 errorMsg.classList.add('hidden');
                 showAdminDashboard();
                 renderReviews();
                 showToast('ปลดล็อกหน้าแอดมินแล้ว');
-            } else {
+            } catch (err) {
+                errorMsg.textContent = 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ';
                 errorMsg.classList.remove('hidden');
+            } finally {
+                isLoggingIn = false;
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Unlock';
             }
         }
 
-        function handleAdminLogout() {
+        async function handleAdminLogout() {
+            if (isLoggingOut) return;
+            isLoggingOut = true;
+            const logoutBtn = document.getElementById('adminLogoutBtn');
+            if (logoutBtn) logoutBtn.disabled = true;
+
+            try {
+                await supabaseClient.auth.signOut();
+            } catch (e) {}
+
             isAdminAuthenticated = false;
+            isLoggingOut = false;
+            if (logoutBtn) logoutBtn.disabled = false;
             closeAdminModal();
             showToast('ล็อกหน้าแอดมินแล้ว');
         }
 
         function showAdminDashboard() {
+            if (!isAdminAuthenticated) return;
+
             document.getElementById('adminLoginView').classList.add('hidden');
             document.getElementById('adminDashboardView').classList.remove('hidden');
+
+            stagedAvatarFile = null;
+            stagedBannerFile = null;
+            document.getElementById('editAvatarFile').value = '';
+            document.getElementById('editBannerFile').value = '';
 
             document.getElementById('editStoreName').value = storeSettings.store_name || '';
             document.getElementById('editStoreBio').value = storeSettings.store_bio || '';
@@ -2138,7 +2415,6 @@
             document.getElementById('editBannerUrl').value = storeSettings.banner_url || '';
             document.getElementById('editFacebookUrl').value = storeSettings.facebook_url || '';
             document.getElementById('editLineUrl').value = storeSettings.line_url || '';
-            document.getElementById('editAdminPin').value = storeSettings.admin_pin || '1234';
 
             stagedAudioFile = null;
             shouldClearUploadedAudio = false;
@@ -2147,10 +2423,13 @@
             document.getElementById('editCustomSongUrl').value = storeSettings.song_url || '';
             updateAdminUploadedAudioBadge();
 
+            stagedFeaturedPaymentFile = null;
+            document.getElementById('editFeaturedPaymentFile').value = '';
             document.getElementById('editUnifiedAccountName').value = storeSettings.unified_account_name || '';
             document.getElementById('editFeaturedPaymentImg').value = storeSettings.featured_payment_image || '';
 
-            adminDraftAccounts = paymentAccounts.map(acc => ({ ...acc }));
+            deletedAccountIds = [];
+            adminDraftAccounts = paymentAccounts.map(acc => ({ ...acc, isNew: false }));
             renderAdminPaymentFields();
             renderAdminReviewsList();
         }
@@ -2164,8 +2443,8 @@
                 nameEl.textContent = stagedAudioFile.name;
                 badge.classList.remove('hidden');
                 badge.classList.add('flex');
-            } else if (!shouldClearUploadedAudio && uploadedAudioObjectUrl) {
-                nameEl.textContent = uploadedAudioFileName || 'Uploaded Audio File';
+            } else if (!shouldClearUploadedAudio && safeImageUrl(storeSettings.song_url)) {
+                nameEl.textContent = storeSettings.song_title || 'เพลงประจำร้านที่บันทึกไว้';
                 badge.classList.remove('hidden');
                 badge.classList.add('flex');
             } else {
@@ -2177,6 +2456,17 @@
         function handleAdminAudioFileUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
+
+            if (!file.type.startsWith('audio/')) {
+                showToast('กรุณาเลือกไฟล์เสียงเท่านั้น');
+                event.target.value = '';
+                return;
+            }
+            if (file.size > 15 * 1024 * 1024) {
+                showToast('ขนาดไฟล์เพลงต้องไม่เกิน 15MB');
+                event.target.value = '';
+                return;
+            }
 
             stagedAudioFile = file;
             shouldClearUploadedAudio = false;
@@ -2192,6 +2482,7 @@
             stagedAudioFile = null;
             shouldClearUploadedAudio = true;
             document.getElementById('editCustomSongFile').value = '';
+            document.getElementById('editCustomSongUrl').value = '';
             updateAdminUploadedAudioBadge();
         }
 
@@ -2238,105 +2529,178 @@
 
         function handleAdminAvatarUpload(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('editAvatarUrl').value = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+            if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+                showToast('กรุณาเลือกรูปภาพขนาดไม่เกิน 5MB');
+                event.target.value = '';
+                return;
             }
+            stagedAvatarFile = file;
         }
 
         function handleAdminBannerUpload(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('editBannerUrl').value = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+            if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+                showToast('กรุณาเลือกรูปภาพขนาดไม่เกิน 5MB');
+                event.target.value = '';
+                return;
             }
+            stagedBannerFile = file;
         }
 
         function handleFeaturedPaymentUpload(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('editFeaturedPaymentImg').value = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+            if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+                showToast('กรุณาเลือกรูปภาพขนาดไม่เกิน 5MB');
+                event.target.value = '';
+                return;
             }
+            stagedFeaturedPaymentFile = file;
         }
 
-        function saveAdminSettings(e) {
+        async function saveAdminSettings(e) {
             e.preventDefault();
-            if (!isAdminAuthenticated) return;
+            if (!isAdminAuthenticated || isSavingSettings) return;
 
-            storeSettings = {
-                ...storeSettings,
-                store_name: document.getElementById('editStoreName').value.trim(),
-                store_bio: document.getElementById('editStoreBio').value.trim(),
-                avatar_url: document.getElementById('editAvatarUrl').value.trim(),
-                banner_url: document.getElementById('editBannerUrl').value.trim(),
-                facebook_url: document.getElementById('editFacebookUrl').value.trim(),
-                line_url: document.getElementById('editLineUrl').value.trim(),
-                admin_pin: document.getElementById('editAdminPin').value.trim() || '1234'
-            };
+            const saveBtn = document.getElementById('saveSettingsBtn');
+            const saveText = saveBtn.querySelector('span');
+            isSavingSettings = true;
+            saveBtn.disabled = true;
+            saveText.textContent = 'Saving...';
 
-            persistLocalData();
-            renderStoreProfile();
-            closeAdminModal();
-            showToast('บันทึกข้อมูลร้านค้าเรียบร้อยแล้ว');
+            try {
+                const check = await verifyAdminSessionAndRole();
+                if (!check.allowed) {
+                    showToast('ไม่มีสิทธิ์แอดมิน กรุณาเข้าสู่ระบบใหม่');
+                    closeAdminModal();
+                    return;
+                }
+
+                let avatarUrl = document.getElementById('editAvatarUrl').value.trim();
+                let bannerUrl = document.getElementById('editBannerUrl').value.trim();
+
+                if (stagedAvatarFile) {
+                    avatarUrl = await uploadFileToBucket(STORE_ASSETS_BUCKET, 'avatars', stagedAvatarFile);
+                }
+                if (stagedBannerFile) {
+                    bannerUrl = await uploadFileToBucket(STORE_ASSETS_BUCKET, 'banners', stagedBannerFile);
+                }
+
+                const updates = {
+                    store_name: document.getElementById('editStoreName').value.trim(),
+                    store_bio: document.getElementById('editStoreBio').value.trim(),
+                    avatar_url: avatarUrl,
+                    banner_url: bannerUrl,
+                    facebook_url: document.getElementById('editFacebookUrl').value.trim() || 'https://facebook.com',
+                    line_url: document.getElementById('editLineUrl').value.trim() || 'https://line.me'
+                };
+
+                const { data, error } = await supabaseClient
+                    .from('store_settings')
+                    .update(updates)
+                    .eq('id', STORE_ID)
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                storeSettings = { ...storeSettings, ...(data || updates) };
+                stagedAvatarFile = null;
+                stagedBannerFile = null;
+                renderStoreProfile();
+                closeAdminModal();
+                showToast('บันทึกข้อมูลร้านค้าเรียบร้อยแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการบันทึกข้อมูลร้านค้า');
+            } finally {
+                isSavingSettings = false;
+                saveBtn.disabled = false;
+                saveText.textContent = 'Save Settings';
+            }
         }
 
         async function saveMusicAndThemeSettings() {
-            if (!isAdminAuthenticated) return;
+            if (!isAdminAuthenticated || isSavingAppearance) return;
 
-            storeSettings.song_title = document.getElementById('editCustomSongTitle').value.trim();
-            storeSettings.song_url = document.getElementById('editCustomSongUrl').value.trim();
+            const saveBtn = document.getElementById('saveAppearanceBtn');
+            const saveText = saveBtn.querySelector('span');
+            isSavingAppearance = true;
+            saveBtn.disabled = true;
+            saveText.textContent = 'กำลังบันทึก...';
 
-            if (stagedAudioFile) {
-                if (uploadedAudioObjectUrl) {
-                    URL.revokeObjectURL(uploadedAudioObjectUrl);
+            try {
+                const check = await verifyAdminSessionAndRole();
+                if (!check.allowed) {
+                    showToast('ไม่มีสิทธิ์แอดมิน กรุณาเข้าสู่ระบบใหม่');
+                    closeAdminModal();
+                    return;
                 }
-                uploadedAudioObjectUrl = URL.createObjectURL(stagedAudioFile);
-                uploadedAudioFileName = stagedAudioFile.name;
-                await saveAudioBlobToDB(stagedAudioFile, stagedAudioFile.name);
+
+                const songTitle = document.getElementById('editCustomSongTitle').value.trim();
+                let songUrl = document.getElementById('editCustomSongUrl').value.trim();
+
+                if (stagedAudioFile) {
+                    songUrl = await uploadFileToBucket(STORE_ASSETS_BUCKET, 'bgm', stagedAudioFile);
+                } else if (shouldClearUploadedAudio) {
+                    songUrl = '';
+                }
+
+                const updates = {
+                    song_title: songTitle,
+                    song_url: songUrl,
+                    theme_mode: currentThemeState.mode === 'custom' ? 'custom' : 'preset',
+                    theme_preset_id: currentThemeState.presetId || 'choco-strawberry',
+                    theme_custom_hex: currentThemeState.customHex || '#F09BB4'
+                };
+
+                const { data, error } = await supabaseClient
+                    .from('store_settings')
+                    .update(updates)
+                    .eq('id', STORE_ID)
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                storeSettings = { ...storeSettings, ...(data || updates) };
                 stagedAudioFile = null;
-                currentTrackIndex = 0;
-            } else if (shouldClearUploadedAudio) {
-                if (uploadedAudioObjectUrl) {
-                    URL.revokeObjectURL(uploadedAudioObjectUrl);
-                }
-                uploadedAudioObjectUrl = '';
-                uploadedAudioFileName = '';
-                await deleteAudioBlobFromDB();
                 shouldClearUploadedAudio = false;
                 currentTrackIndex = 0;
-            }
 
-            persistLocalData();
-            updateWelcomePlayerUI();
-            if (isPlaying) {
-                playTrackAtIndex(currentTrackIndex);
+                updateWelcomePlayerUI();
+                if (isPlaying) {
+                    playTrackAtIndex(currentTrackIndex);
+                }
+                closeAdminModal();
+                showToast('บันทึกสีธีมและเพลงเรียบร้อยแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการบันทึกธีมและเพลง');
+            } finally {
+                isSavingAppearance = false;
+                saveBtn.disabled = false;
+                saveText.textContent = 'บันทึกธีมและเพลง';
             }
-            closeAdminModal();
-            showToast('บันทึกสีธีมและเพลงเรียบร้อยแล้ว');
         }
 
         function addAdminPaymentField() {
             syncDraftPaymentFields();
             adminDraftAccounts.push({
-                id: 'acc-' + Date.now(),
+                id: 'new-' + Date.now(),
                 title: 'New Account',
-                account_number: ''
+                account_number: '',
+                isNew: true
             });
             renderAdminPaymentFields();
         }
 
         function removeAdminPaymentField(index) {
             syncDraftPaymentFields();
+            const removed = adminDraftAccounts[index];
+            if (removed && !removed.isNew && removed.id) {
+                deletedAccountIds.push(removed.id);
+            }
             adminDraftAccounts.splice(index, 1);
             renderAdminPaymentFields();
         }
@@ -2350,7 +2714,8 @@
                 const numEl = document.getElementById(`editPayNo_${i}`);
                 if (titleEl && numEl) {
                     updated.push({
-                        id: titleEl.dataset.accId || ('acc-' + Date.now() + '-' + i),
+                        id: titleEl.dataset.accId || ('new-' + Date.now() + '-' + i),
+                        isNew: titleEl.dataset.isNew === 'true',
                         title: titleEl.value,
                         account_number: numEl.value
                     });
@@ -2395,6 +2760,7 @@
                 titleInput.value = acc.title || '';
                 titleInput.className = 'w-full bg-white text-xs text-[var(--text-primary)] px-3 py-1.5 rounded-lg border-[1.5px] border-[var(--folder-border)]';
                 titleInput.dataset.accId = acc.id || '';
+                titleInput.dataset.isNew = acc.isNew ? 'true' : 'false';
                 titleDiv.append(titleLabel, titleInput);
 
                 const numDiv = document.createElement('div');
@@ -2413,27 +2779,96 @@
             });
         }
 
-        function savePaymentAccounts(e) {
+        async function savePaymentAccounts(e) {
             e.preventDefault();
-            if (!isAdminAuthenticated) return;
+            if (!isAdminAuthenticated || isSavingAccounts) return;
 
-            syncDraftPaymentFields();
+            const saveBtn = document.getElementById('saveAccountsBtn');
+            const saveText = saveBtn.querySelector('span');
+            isSavingAccounts = true;
+            saveBtn.disabled = true;
+            saveText.textContent = 'Saving...';
 
-            storeSettings.unified_account_name = document.getElementById('editUnifiedAccountName').value.trim();
-            storeSettings.featured_payment_image = document.getElementById('editFeaturedPaymentImg').value.trim();
+            try {
+                const check = await verifyAdminSessionAndRole();
+                if (!check.allowed) {
+                    showToast('ไม่มีสิทธิ์แอดมิน กรุณาเข้าสู่ระบบใหม่');
+                    closeAdminModal();
+                    return;
+                }
 
-            paymentAccounts = adminDraftAccounts
-                .filter(acc => acc.title.trim() !== '')
-                .map((acc, idx) => ({
-                    id: acc.id || ('acc-' + idx),
-                    title: acc.title.trim(),
-                    account_number: acc.account_number.trim()
-                }));
+                syncDraftPaymentFields();
 
-            persistLocalData();
-            renderPaymentAccounts();
-            closeAdminModal();
-            showToast('บันทึกบัญชีชำระเงินเรียบร้อยแล้ว');
+                let qrImageUrl = document.getElementById('editFeaturedPaymentImg').value.trim();
+                if (stagedFeaturedPaymentFile) {
+                    qrImageUrl = await uploadFileToBucket(STORE_ASSETS_BUCKET, 'qr', stagedFeaturedPaymentFile);
+                }
+
+                const unifiedName = document.getElementById('editUnifiedAccountName').value.trim();
+
+                const { data: updatedStore, error: storeErr } = await supabaseClient
+                    .from('store_settings')
+                    .update({
+                        unified_account_name: unifiedName,
+                        featured_payment_image: qrImageUrl
+                    })
+                    .eq('id', STORE_ID)
+                    .select()
+                    .single();
+
+                if (storeErr) throw storeErr;
+
+                if (deletedAccountIds.length > 0) {
+                    const { error: delErr } = await supabaseClient
+                        .from('payment_accounts')
+                        .delete()
+                        .in('id', deletedAccountIds);
+                    if (delErr) throw delErr;
+                }
+
+                const validDrafts = adminDraftAccounts.filter(acc => acc.title.trim() !== '');
+                for (let idx = 0; idx < validDrafts.length; idx++) {
+                    const acc = validDrafts[idx];
+                    if (acc.isNew) {
+                        const { error: insErr } = await supabaseClient
+                            .from('payment_accounts')
+                            .insert({
+                                store_id: STORE_ID,
+                                title: acc.title.trim(),
+                                account_number: acc.account_number.trim(),
+                                sort_order: idx + 1
+                            });
+                        if (insErr) throw insErr;
+                    } else {
+                        const { error: updErr } = await supabaseClient
+                            .from('payment_accounts')
+                            .update({
+                                title: acc.title.trim(),
+                                account_number: acc.account_number.trim(),
+                                sort_order: idx + 1
+                            })
+                            .eq('id', acc.id);
+                        if (updErr) throw updErr;
+                    }
+                }
+
+                storeSettings = {
+                    ...storeSettings,
+                    ...(updatedStore || { unified_account_name: unifiedName, featured_payment_image: qrImageUrl })
+                };
+                stagedFeaturedPaymentFile = null;
+                deletedAccountIds = [];
+
+                await fetchPaymentAccounts();
+                closeAdminModal();
+                showToast('บันทึกบัญชีชำระเงินเรียบร้อยแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการบันทึกบัญชีชำระเงิน');
+            } finally {
+                isSavingAccounts = false;
+                saveBtn.disabled = false;
+                saveText.textContent = 'Save Accounts';
+            }
         }
 
         function renderAdminReviewsList() {
@@ -2449,6 +2884,7 @@
             }
 
             reviews.forEach(rev => {
+                const isBusy = pendingReviewActions.has(rev.id);
                 const card = document.createElement('div');
                 card.className = 'bg-[var(--bg-surface)] border-[1.5px] border-[var(--folder-border)] rounded-xl p-3 flex items-start justify-between gap-2';
 
@@ -2488,6 +2924,7 @@
 
                 const likeBtn = document.createElement('button');
                 likeBtn.type = 'button';
+                likeBtn.disabled = isBusy;
                 likeBtn.title = 'Love by owner';
                 likeBtn.className = 'btn-soft w-6 h-6 rounded-lg border-[1.5px] flex items-center justify-center text-[10px]';
                 likeBtn.style.backgroundColor = rev.liked_by_seller ? 'var(--accent-soft)' : '#FFFFFF';
@@ -2500,6 +2937,7 @@
 
                 const pinBtn = document.createElement('button');
                 pinBtn.type = 'button';
+                pinBtn.disabled = isBusy;
                 pinBtn.title = rev.pinned ? 'Unpin' : 'Pin';
                 pinBtn.className = 'btn-soft w-6 h-6 rounded-lg border-[1.5px] flex items-center justify-center text-[10px]';
                 pinBtn.style.backgroundColor = rev.pinned ? 'var(--accent-soft)' : '#FFFFFF';
@@ -2512,6 +2950,7 @@
 
                 const delBtn = document.createElement('button');
                 delBtn.type = 'button';
+                delBtn.disabled = isBusy;
                 delBtn.title = 'Delete';
                 delBtn.className = 'btn-soft w-6 h-6 rounded-lg bg-white hover:bg-[var(--accent-soft)] border-[1.5px] border-[var(--folder-border)] flex items-center justify-center text-[10px]';
                 delBtn.style.color = 'var(--danger-pink)';
@@ -2526,41 +2965,89 @@
             });
         }
 
-        function toggleSellerLike(id, newStatus) {
-            if (!isAdminAuthenticated) return;
-            const target = reviews.find(r => r.id === id);
-            if (target) {
-                target.liked_by_seller = newStatus;
-                persistLocalData();
-                renderReviews();
-                renderAdminReviewsList();
-                showToast(newStatus ? 'เพิ่มสถานะ Love by owner แล้ว' : 'นำสถานะ Love by owner ออกแล้ว');
-            }
-        }
-
-        function togglePinReview(id, newStatus) {
-            if (!isAdminAuthenticated) return;
-            const target = reviews.find(r => r.id === id);
-            if (target) {
-                target.pinned = newStatus;
-                persistLocalData();
-                renderReviews();
-                renderAdminReviewsList();
-                showToast(newStatus ? 'ปักหมุดรีวิวแล้ว' : 'ยกเลิกปักหมุดรีวิวแล้ว');
-            }
-        }
-
-        function deleteReview(id) {
-            if (!isAdminAuthenticated) return;
-            reviews = reviews.filter(r => r.id !== id);
-            persistLocalData();
+        async function toggleSellerLike(id, newStatus) {
+            if (!isAdminAuthenticated || pendingReviewActions.has(id)) return;
+            pendingReviewActions.add(id);
             renderReviews();
             renderAdminReviewsList();
-            showToast('ลบรีวิวเรียบร้อยแล้ว');
+
+            try {
+                const { error } = await supabaseClient
+                    .from('reviews')
+                    .update({ liked_by_seller: newStatus })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                const target = reviews.find(r => r.id === id);
+                if (target) {
+                    target.liked_by_seller = newStatus;
+                }
+                showToast(newStatus ? 'เพิ่มสถานะ Love by owner แล้ว' : 'นำสถานะ Love by owner ออกแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการอัปเดตสถานะ');
+            } finally {
+                pendingReviewActions.delete(id);
+                renderReviews();
+                renderAdminReviewsList();
+            }
+        }
+
+        async function togglePinReview(id, newStatus) {
+            if (!isAdminAuthenticated || pendingReviewActions.has(id)) return;
+            pendingReviewActions.add(id);
+            renderReviews();
+            renderAdminReviewsList();
+
+            try {
+                const { error } = await supabaseClient
+                    .from('reviews')
+                    .update({ pinned: newStatus })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                const target = reviews.find(r => r.id === id);
+                if (target) {
+                    target.pinned = newStatus;
+                }
+                showToast(newStatus ? 'ปักหมุดรีวิวแล้ว' : 'ยกเลิกปักหมุดรีวิวแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการปักหมุดรีวิว');
+            } finally {
+                pendingReviewActions.delete(id);
+                renderReviews();
+                renderAdminReviewsList();
+            }
+        }
+
+        async function deleteReview(id) {
+            if (!isAdminAuthenticated || pendingReviewActions.has(id)) return;
+            pendingReviewActions.add(id);
+            renderReviews();
+            renderAdminReviewsList();
+
+            try {
+                const { error } = await supabaseClient
+                    .from('reviews')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                reviews = reviews.filter(r => r.id !== id);
+                showToast('ลบรีวิวเรียบร้อยแล้ว');
+            } catch (err) {
+                showToast('เกิดข้อผิดพลาดในการลบรีวิว');
+            } finally {
+                pendingReviewActions.delete(id);
+                renderReviews();
+                renderAdminReviewsList();
+            }
         }
 
         // ==========================================
-        // 8. TOAST NOTIFICATION
+        // 9. TOAST NOTIFICATION
         // ==========================================
         let toastTimer = null;
         function showToast(msg) {
